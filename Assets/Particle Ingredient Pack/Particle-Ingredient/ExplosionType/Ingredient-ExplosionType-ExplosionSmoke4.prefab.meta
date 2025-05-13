@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bdae7ea6b5be5490b8e440658de76c98
+timeCreated: 1434760385
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Ingredient/ExplosionType/Ingredient-ExplosionType-ExplosionSmoke4.prefab
+  uploadId: 230859

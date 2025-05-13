@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d177c5eb613a3405c92d89f3caf030ef
+timeCreated: 1446777305
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/MagicRing.prefab
+  uploadId: 230859

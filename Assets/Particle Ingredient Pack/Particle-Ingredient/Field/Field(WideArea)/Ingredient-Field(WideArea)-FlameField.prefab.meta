@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1adbbef518cc6d34abe688b5ea539b2c
+timeCreated: 1433220646
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Ingredient/Field/Field(WideArea)/Ingredient-Field(WideArea)-FlameField.prefab
+  uploadId: 230859

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d684cf80ce2e8b842a0ecff019698dc1
+timeCreated: 1432634225
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Ingredient/CandleType/Ingredient-CandleType-Flame.prefab
+  uploadId: 230859

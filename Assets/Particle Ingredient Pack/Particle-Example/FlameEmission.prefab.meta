@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 331ad8f9f3b07c045821a68a5f4164e6
+timeCreated: 1433893423
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/FlameEmission.prefab
+  uploadId: 230859

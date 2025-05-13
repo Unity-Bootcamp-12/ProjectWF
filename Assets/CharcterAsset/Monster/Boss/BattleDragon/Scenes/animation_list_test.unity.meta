@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a6eaaa67a65530243939d473e1290b8d
+timeCreated: 1460431429
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/Scenes/animation_list_test.unity
+  uploadId: 119454

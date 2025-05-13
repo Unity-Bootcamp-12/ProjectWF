@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a61684ed458f942ef8510ef2babd8f34
+timeCreated: 1434767638
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/RainFall.prefab
+  uploadId: 230859

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0efc8fb30d25b8545b3c46121e283901
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262310
+  packageName: LASER BEAM-VFX-URP-EFFECTS PACK
+  packageVersion: 1.0
+  assetPath: Assets/LaseVFXURP/Materials/Beam.mat
+  uploadId: 604947

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 79b296a5acc684015b5245c843e01735
+timeCreated: 1434759283
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Ingredient/ExplosionType/Ingredient-ExplosionType-ExplosionFlame.prefab
+  uploadId: 230859

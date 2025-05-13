@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 24e7fd0a39f754c42acec5ca89c5477e
+timeCreated: 1433893522
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/VolcanoExplode.prefab
+  uploadId: 230859

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0751b960e3cb4b0085f5963e629ac8d
+timeCreated: 1434767219
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/BattleGear-Arrow.prefab
+  uploadId: 230859

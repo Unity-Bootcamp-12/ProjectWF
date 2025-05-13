@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 26302b7e478cf9944abb1fd042e24eba
+timeCreated: 1505430087
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 79142
+  packageName: Toon Skeleton Minion Bundle - Egypt
+  packageVersion: 1.0
+  assetPath: Assets/Temple Minions/Demo/AnimatorControllers/Skeleton1.controller
+  uploadId: 201187

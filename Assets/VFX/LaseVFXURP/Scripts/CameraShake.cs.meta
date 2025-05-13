@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 30f73582c7eac9445927ec63874512c6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262310
+  packageName: LASER BEAM-VFX-URP-EFFECTS PACK
+  packageVersion: 1.0
+  assetPath: Assets/LaseVFXURP/Scripts/CameraShake.cs
+  uploadId: 604947

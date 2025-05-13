@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: aa9cad7762507a84db4bbac884cd7d9a
+timeCreated: 1522476783
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115521
+  packageName: BOSS Class - Bull
+  packageVersion: 1.0
+  assetPath: Assets/TAZO_3D_C/DemoScene/Action_Manage.cs
+  uploadId: 278866

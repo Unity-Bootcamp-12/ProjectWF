@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: cc4347574b823934ba11785e25895920
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/Colosseum/Dust/ParticleSystems/Shaders/PriorityParticleAlpha.shader
+  uploadId: 119454

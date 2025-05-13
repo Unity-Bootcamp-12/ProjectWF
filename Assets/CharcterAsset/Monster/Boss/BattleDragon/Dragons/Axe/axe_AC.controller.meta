@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b4fb809028e6c4647ab5008599766171
+timeCreated: 1461337653
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/Dragons/Axe/axe_AC.controller
+  uploadId: 119454

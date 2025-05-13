@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d4a80d4dde9a438894e3c233e6bd60e
+timeCreated: 1434760425
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Ingredient/ExplosionType/Ingredient-ExplosionType-ExplosionFlash.prefab
+  uploadId: 230859

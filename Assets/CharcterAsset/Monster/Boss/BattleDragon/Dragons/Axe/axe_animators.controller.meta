@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 195896d5a350a2947aec9709dd638dde
+timeCreated: 1460432143
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/Dragons/Axe/axe_animators.controller
+  uploadId: 119454

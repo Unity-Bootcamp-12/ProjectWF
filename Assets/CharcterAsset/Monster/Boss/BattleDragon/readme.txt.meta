@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49230cf808390ec4c806b4382a50184a
+timeCreated: 1463247379
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/readme.txt
+  uploadId: 119454

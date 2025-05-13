@@ -1,0 +1,581 @@
+fileFormatVersion: 2
+guid: 965c00953f7f07b4bb3ddc3291340a40
+timeCreated: 1505232818
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Attack:Shieldjoint
+    100002: Attack:Shieldmesh
+    100004: Attack:Skeleton_0010:beard1
+    100006: Attack:Skeleton_0010:beard2
+    100008: Attack:Skeleton_0010:beard3
+    100010: Attack:Skeleton_0010:beard4
+    100012: Attack:Skeleton_0010:Fabric
+    100014: Attack:Skeleton_0010:Fabric1
+    100016: Attack:Skeleton_0010:Fabric2
+    100018: Attack:Skeleton_0010:Head
+    100020: Attack:Skeleton_0010:helmetfabric
+    100022: Attack:Skeleton_0010:helmetfabric1
+    100024: Attack:Skeleton_0010:helmetfabric2
+    100026: Attack:Skeleton_0010:helmetfabric3
+    100028: Attack:Skeleton_0010:helmetfabric4
+    100030: Attack:Skeleton_0010:helmetfabric5
+    100032: Attack:Skeleton_0010:helmetfabric6
+    100034: Attack:Skeleton_0010:helmetfabric7
+    100036: Attack:Skeleton_0010:helmetfabric8
+    100038: Attack:Skeleton_0010:Hips
+    100040: Attack:Skeleton_0010:LeftArm
+    100042: Attack:Skeleton_0010:LeftFoot
+    100044: Attack:Skeleton_0010:LeftForeArm
+    100046: Attack:Skeleton_0010:LeftHand
+    100048: Attack:Skeleton_0010:LeftLeg
+    100050: Attack:Skeleton_0010:LeftShoulder
+    100052: Attack:Skeleton_0010:LeftToeBase
+    100054: Attack:Skeleton_0010:LeftUpLeg
+    100056: Attack:Skeleton_0010:Minion
+    100058: Attack:Skeleton_0010:Neck
+    100060: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_ChestEndEffector
+    100062: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_ChestOriginEffector
+    100064: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Head
+    100066: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Hips
+    100068: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_HipsEffector
+    100070: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftAnkleEffector
+    100072: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftArm
+    100074: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftElbowEffector
+    100076: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftFoot
+    100078: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftFootEffector
+    100080: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftForeArm
+    100082: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftHand
+    100084: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftHipEffector
+    100086: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftKneeEffector
+    100088: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftLeg
+    100090: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftShoulder
+    100092: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftShoulderEffector
+    100094: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftToeBase
+    100096: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftUpLeg
+    100098: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftWristEffector
+    100100: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Neck
+    100102: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Reference
+    100104: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightAnkleEffector
+    100106: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightArm
+    100108: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightElbowEffector
+    100110: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightFoot
+    100112: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightFootEffector
+    100114: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightForeArm
+    100116: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightHand
+    100118: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightHipEffector
+    100120: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightKneeEffector
+    100122: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightLeg
+    100124: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightShoulder
+    100126: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightShoulderEffector
+    100128: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightToeBase
+    100130: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightUpLeg
+    100132: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightWristEffector
+    100134: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Spine
+    100136: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Spine1
+    100138: Attack:Skeleton_0010:QuickRigCharacter_Guides
+    100140: Attack:Skeleton_0010:QuickRigCharacter_Head
+    100142: Attack:Skeleton_0010:QuickRigCharacter_Hips
+    100144: Attack:Skeleton_0010:QuickRigCharacter_LeftArm
+    100146: Attack:Skeleton_0010:QuickRigCharacter_LeftFoot
+    100148: Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm
+    100150: Attack:Skeleton_0010:QuickRigCharacter_LeftHand
+    100152: Attack:Skeleton_0010:QuickRigCharacter_LeftHand1
+    100154: Attack:Skeleton_0010:QuickRigCharacter_LeftHand2
+    100156: Attack:Skeleton_0010:QuickRigCharacter_LeftHand4
+    100158: Attack:Skeleton_0010:QuickRigCharacter_LeftHand5
+    100160: Attack:Skeleton_0010:QuickRigCharacter_LeftLeg
+    100162: Attack:Skeleton_0010:QuickRigCharacter_LeftShoulder
+    100164: Attack:Skeleton_0010:QuickRigCharacter_LeftToeBase
+    100166: Attack:Skeleton_0010:QuickRigCharacter_LeftUpLeg
+    100168: Attack:Skeleton_0010:QuickRigCharacter_Neck
+    100170: Attack:Skeleton_0010:QuickRigCharacter_Reference
+    100172: Attack:Skeleton_0010:QuickRigCharacter_RightArm
+    100174: Attack:Skeleton_0010:QuickRigCharacter_RightFoot
+    100176: Attack:Skeleton_0010:QuickRigCharacter_RightForeArm
+    100178: Attack:Skeleton_0010:QuickRigCharacter_RightHand
+    100180: Attack:Skeleton_0010:QuickRigCharacter_RightHand1
+    100182: Attack:Skeleton_0010:QuickRigCharacter_RightHand2
+    100184: Attack:Skeleton_0010:QuickRigCharacter_RightHand4
+    100186: Attack:Skeleton_0010:QuickRigCharacter_RightHand5
+    100188: Attack:Skeleton_0010:QuickRigCharacter_RightLeg
+    100190: Attack:Skeleton_0010:QuickRigCharacter_RightShoulder
+    100192: Attack:Skeleton_0010:QuickRigCharacter_RightToeBase
+    100194: Attack:Skeleton_0010:QuickRigCharacter_RightUpLeg
+    100196: Attack:Skeleton_0010:QuickRigCharacter_Spine
+    100198: Attack:Skeleton_0010:QuickRigCharacter_Spine1
+    100200: Attack:Skeleton_0010:Reference
+    100202: Attack:Skeleton_0010:RightArm
+    100204: Attack:Skeleton_0010:RightFoot
+    100206: Attack:Skeleton_0010:RightForeArm
+    100208: Attack:Skeleton_0010:RightHand
+    100210: Attack:Skeleton_0010:RightLeg
+    100212: Attack:Skeleton_0010:RightShoulder
+    100214: Attack:Skeleton_0010:RightToeBase
+    100216: Attack:Skeleton_0010:RightUpLeg
+    100218: Attack:Skeleton_0010:Spine
+    100220: Attack:Skeleton_0010:Spine1
+    100222: Attack:Swordjoint
+    100224: Attack:swordmesh
+    100226: //RootNode
+    400000: Attack:Shieldjoint
+    400002: Attack:Shieldmesh
+    400004: Attack:Skeleton_0010:beard1
+    400006: Attack:Skeleton_0010:beard2
+    400008: Attack:Skeleton_0010:beard3
+    400010: Attack:Skeleton_0010:beard4
+    400012: Attack:Skeleton_0010:Fabric
+    400014: Attack:Skeleton_0010:Fabric1
+    400016: Attack:Skeleton_0010:Fabric2
+    400018: Attack:Skeleton_0010:Head
+    400020: Attack:Skeleton_0010:helmetfabric
+    400022: Attack:Skeleton_0010:helmetfabric1
+    400024: Attack:Skeleton_0010:helmetfabric2
+    400026: Attack:Skeleton_0010:helmetfabric3
+    400028: Attack:Skeleton_0010:helmetfabric4
+    400030: Attack:Skeleton_0010:helmetfabric5
+    400032: Attack:Skeleton_0010:helmetfabric6
+    400034: Attack:Skeleton_0010:helmetfabric7
+    400036: Attack:Skeleton_0010:helmetfabric8
+    400038: Attack:Skeleton_0010:Hips
+    400040: Attack:Skeleton_0010:LeftArm
+    400042: Attack:Skeleton_0010:LeftFoot
+    400044: Attack:Skeleton_0010:LeftForeArm
+    400046: Attack:Skeleton_0010:LeftHand
+    400048: Attack:Skeleton_0010:LeftLeg
+    400050: Attack:Skeleton_0010:LeftShoulder
+    400052: Attack:Skeleton_0010:LeftToeBase
+    400054: Attack:Skeleton_0010:LeftUpLeg
+    400056: Attack:Skeleton_0010:Minion
+    400058: Attack:Skeleton_0010:Neck
+    400060: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_ChestEndEffector
+    400062: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_ChestOriginEffector
+    400064: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Head
+    400066: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Hips
+    400068: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_HipsEffector
+    400070: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftAnkleEffector
+    400072: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftArm
+    400074: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftElbowEffector
+    400076: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftFoot
+    400078: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftFootEffector
+    400080: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftForeArm
+    400082: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftHand
+    400084: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftHipEffector
+    400086: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftKneeEffector
+    400088: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftLeg
+    400090: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftShoulder
+    400092: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftShoulderEffector
+    400094: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftToeBase
+    400096: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftUpLeg
+    400098: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_LeftWristEffector
+    400100: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Neck
+    400102: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Reference
+    400104: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightAnkleEffector
+    400106: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightArm
+    400108: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightElbowEffector
+    400110: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightFoot
+    400112: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightFootEffector
+    400114: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightForeArm
+    400116: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightHand
+    400118: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightHipEffector
+    400120: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightKneeEffector
+    400122: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightLeg
+    400124: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightShoulder
+    400126: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightShoulderEffector
+    400128: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightToeBase
+    400130: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightUpLeg
+    400132: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_RightWristEffector
+    400134: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Spine
+    400136: Attack:Skeleton_0010:QuickRigCharacter_Ctrl_Spine1
+    400138: Attack:Skeleton_0010:QuickRigCharacter_Guides
+    400140: Attack:Skeleton_0010:QuickRigCharacter_Head
+    400142: Attack:Skeleton_0010:QuickRigCharacter_Hips
+    400144: Attack:Skeleton_0010:QuickRigCharacter_LeftArm
+    400146: Attack:Skeleton_0010:QuickRigCharacter_LeftFoot
+    400148: Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm
+    400150: Attack:Skeleton_0010:QuickRigCharacter_LeftHand
+    400152: Attack:Skeleton_0010:QuickRigCharacter_LeftHand1
+    400154: Attack:Skeleton_0010:QuickRigCharacter_LeftHand2
+    400156: Attack:Skeleton_0010:QuickRigCharacter_LeftHand4
+    400158: Attack:Skeleton_0010:QuickRigCharacter_LeftHand5
+    400160: Attack:Skeleton_0010:QuickRigCharacter_LeftLeg
+    400162: Attack:Skeleton_0010:QuickRigCharacter_LeftShoulder
+    400164: Attack:Skeleton_0010:QuickRigCharacter_LeftToeBase
+    400166: Attack:Skeleton_0010:QuickRigCharacter_LeftUpLeg
+    400168: Attack:Skeleton_0010:QuickRigCharacter_Neck
+    400170: Attack:Skeleton_0010:QuickRigCharacter_Reference
+    400172: Attack:Skeleton_0010:QuickRigCharacter_RightArm
+    400174: Attack:Skeleton_0010:QuickRigCharacter_RightFoot
+    400176: Attack:Skeleton_0010:QuickRigCharacter_RightForeArm
+    400178: Attack:Skeleton_0010:QuickRigCharacter_RightHand
+    400180: Attack:Skeleton_0010:QuickRigCharacter_RightHand1
+    400182: Attack:Skeleton_0010:QuickRigCharacter_RightHand2
+    400184: Attack:Skeleton_0010:QuickRigCharacter_RightHand4
+    400186: Attack:Skeleton_0010:QuickRigCharacter_RightHand5
+    400188: Attack:Skeleton_0010:QuickRigCharacter_RightLeg
+    400190: Attack:Skeleton_0010:QuickRigCharacter_RightShoulder
+    400192: Attack:Skeleton_0010:QuickRigCharacter_RightToeBase
+    400194: Attack:Skeleton_0010:QuickRigCharacter_RightUpLeg
+    400196: Attack:Skeleton_0010:QuickRigCharacter_Spine
+    400198: Attack:Skeleton_0010:QuickRigCharacter_Spine1
+    400200: Attack:Skeleton_0010:Reference
+    400202: Attack:Skeleton_0010:RightArm
+    400204: Attack:Skeleton_0010:RightFoot
+    400206: Attack:Skeleton_0010:RightForeArm
+    400208: Attack:Skeleton_0010:RightHand
+    400210: Attack:Skeleton_0010:RightLeg
+    400212: Attack:Skeleton_0010:RightShoulder
+    400214: Attack:Skeleton_0010:RightToeBase
+    400216: Attack:Skeleton_0010:RightUpLeg
+    400218: Attack:Skeleton_0010:Spine
+    400220: Attack:Skeleton_0010:Spine1
+    400222: Attack:Swordjoint
+    400224: Attack:swordmesh
+    400226: //RootNode
+    4300000: Attack:Shieldmesh
+    4300002: Attack:swordmesh
+    4300004: Attack:Skeleton_0010:Minion
+    7400000: Walk
+    7400002: Run
+    7400004: Idle
+    7400006: Attack
+    7400008: Attack2
+    7400010: GetDamage
+    7400012: Death
+    9500000: //RootNode
+    13700000: Attack:Shieldmesh
+    13700002: Attack:Skeleton_0010:Minion
+    13700004: Attack:swordmesh
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
+      in configuration does not match rotation in animation file:\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      : rotation error = 1.614419 deg\n"
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Walk' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftLeg' has
+      translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightForeArm'
+      has translation animation that will be discarded.\n\nClip 'Run' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightForeArm'
+      has translation animation that will be discarded.\n\nClip 'Idle' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm'
+      has translation animation that will be discarded.\n\nClip 'Attack' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightForeArm'
+      has translation animation that will be discarded.\n\nClip 'Attack2' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightForeArm'
+      has translation animation that will be discarded.\n\nClip 'GetDamage' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Death' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightLeg'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightToeBase'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_Spine1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_LeftForeArm'
+      has translation animation that will be discarded.\n\t'Attack:Skeleton_0010:QuickRigCharacter_RightForeArm'
+      has translation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 1
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 41
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 64
+      lastFrame: 123
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Attack
+      firstFrame: 124
+      lastFrame: 154
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack2
+      takeName: Attack2
+      firstFrame: 155
+      lastFrame: 185
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: GetDamage
+      takeName: GetDamage
+      firstFrame: 186
+      lastFrame: 224
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death
+      takeName: Death
+      firstFrame: 225
+      lastFrame: 269
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 79142
+  packageName: Toon Skeleton Minion Bundle - Egypt
+  packageVersion: 1.0
+  assetPath: Assets/Temple Minions/Models/Skeleton1.fbx
+  uploadId: 201187

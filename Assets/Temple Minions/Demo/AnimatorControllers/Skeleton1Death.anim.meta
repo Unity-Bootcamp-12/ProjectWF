@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3c5f58094482c9847913465f98bcce52
+timeCreated: 1505438945
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 79142
+  packageName: Toon Skeleton Minion Bundle - Egypt
+  packageVersion: 1.0
+  assetPath: Assets/Temple Minions/Demo/AnimatorControllers/Skeleton1Death.anim
+  uploadId: 201187

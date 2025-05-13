@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f60228c573320f14280dc5309feac69f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262310
+  packageName: LASER BEAM-VFX-URP-EFFECTS PACK
+  packageVersion: 1.0
+  assetPath: Assets/LaseVFXURP/Shaders/Laser_Shadergraph.shadergraph
+  uploadId: 604947

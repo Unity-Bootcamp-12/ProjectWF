@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: af7e4202e61db454a86b2850d32f2806
+timeCreated: 1446778562
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38436
+  packageName: Particle Ingredient Pack
+  packageVersion: 4.1
+  assetPath: Assets/Particle Ingredient Pack/Particle-Example/FlameRing.prefab
+  uploadId: 230859

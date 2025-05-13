@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e52fb17f9b1e7fd48b8955f1391d3688
+timeCreated: 1427463081
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63644
+  packageName: Battle Dragon - Axe
+  packageVersion: 1.0
+  assetPath: Assets/BattleDragon/Colosseum/Dust/PhysicsMaterials/MaxFriction.physicMaterial
+  uploadId: 119454
