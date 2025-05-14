@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f08f4aed102c3b4b88497f9b8c20958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devilFly: {fileID: 0}
+  magicBallSpeed: 15
 --- !u!23 &5330763189079075124
 MeshRenderer:
   m_ObjectHideFlags: 0

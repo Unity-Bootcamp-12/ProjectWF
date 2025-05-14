@@ -1,35 +1,56 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
+public enum PlayerState
+{
+    Idle,
+    Attack
+}
+
 public class PlayerController : MonoBehaviour
 {
     bool isBallSpawned = false;
     public GameObject magicBall;
     public Transform magicballSpawnTransform;
     Animator playerAnimator;
+
+    [Header("SearchCast")] 
+    private RaycastHit[] monsterHits;
+    private Vector3 searchPosition = new Vector3(1.5f, 1f, 0f);
+    private Vector3 halfExtents = new Vector3(6f, 0.5f, 6f);
+    [SerializeField] private LayerMask monsterLayer;
+    [SerializeField] private Transform playerPosition;
+
+    public GameObject monsterTarget;
+
+    private PlayerState state = PlayerState.Idle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
+        WaveController.Instance.OnProgressPlayerControl += ChangePlayerState;
+        
         playerAnimator = GetComponent<Animator>();
-        await initailGap();
+        await SearchMonsterByDuration();
+    }
+    
+
+    async UniTask SearchMonsterByDuration()
+    {
+        while (true)
+        {
+            await UniTask.Delay(500);
+            SearchNearestMonster();
+        }
+        
     }
 
-    // Update is called once per frame
-    async void Update()
-    {
-       await MagicBallAttack();
-    }
-
-    async UniTask initailGap()
-    {
-        await UniTask.Delay(500);
-    }
     async UniTask MagicBallAttack()
     {
         if (isBallSpawned)
         {
             return;
         }
+        
         isBallSpawned = true;
 
         await UniTask.Delay(100);
@@ -37,16 +58,52 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetTrigger("Attack");
 
         await UniTask.Delay(500);
-
-        Instantiate(magicBall,magicballSpawnTransform.position,Quaternion.identity);
-
+        
+        if (monsterTarget != null)
+        {
+            GameObject spawnedMagicBall=Instantiate(magicBall, magicballSpawnTransform.position, Quaternion.identity);
+            spawnedMagicBall.GetComponent<MagicDefaultAttackController>().GetTarget(monsterTarget.transform);
+        }
         await UniTask.Delay(700);
 
-        isBallSpawned=false;
+        isBallSpawned = false;
+    }
 
+    async void SearchNearestMonster()
+    {
+        if (state == PlayerState.Idle)
+        {
+            return;
+        }
+        monsterHits = Physics.BoxCastAll(searchPosition, halfExtents, Vector3.forward, Quaternion.identity, 0,
+            monsterLayer);
 
+        if (monsterHits.Length > 0)
+        { 
+            RaycastHit nearestMonsterHit = monsterHits[0];
+            float minDistance = Vector3.Distance(transform.position, nearestMonsterHit.transform.position);
+            foreach (var monsterHit in monsterHits)
+            {
+                float Distance = Vector3.Distance(transform.position, monsterHit.transform.position);
+                if (minDistance > Distance)
+                {
+                    nearestMonsterHit = monsterHit;
+                    minDistance = Distance;
+                }
+            }
 
+            monsterTarget = nearestMonsterHit.transform.gameObject;
+            await MagicBallAttack();
+        }
 
+        else
+        {
+            return;
+        }
+    }
 
+    private void ChangePlayerState(PlayerState state)
+    {
+        this.state = state;
     }
 }
