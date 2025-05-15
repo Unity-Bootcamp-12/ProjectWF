@@ -54,6 +54,7 @@ public class MonsterSpwaner : MonoBehaviour
         
         WaveController.Instance.OnReadyMonsterSpawn += MakeMonsterSpawnSectionArray;
         WaveController.Instance.OnReadyMonsterSpawn += SpawnMonsterSequence;
+        
     }
 
     void SpawnMonsterSequence(int spawnMonsterCount)
@@ -66,6 +67,7 @@ public class MonsterSpwaner : MonoBehaviour
             spawnedMonster.GetComponent<MonsterController>().GetMonsterStatus(monsterDataList.monsterDataList[spawnIndex]);
         }
         mosterSpawnPointArray.Clear();
+        Logger.Info("몬스터 소환 로그");
     }
 
     void MakeMonsterSpawnSectionArray(int spawnMonsterCount)
@@ -76,5 +78,6 @@ public class MonsterSpwaner : MonoBehaviour
             float  sectionLocationZ = spawnPoint.position.z + offsetZ * (i % 3); 
             mosterSpawnPointArray.Add(new Vector3(sectionLocationX, spawnPoint.position.y, sectionLocationZ));
         }
+        Logger.Info("몬스터 배치 로그");
     }
 }
