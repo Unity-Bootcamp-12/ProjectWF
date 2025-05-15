@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,21 +16,32 @@ public class WaveController : MonoBehaviour
     static public WaveController Instance { get; private set; }
     
     //웨이브 이벤트 관련 
-    private WaveState currentWaveState = WaveState.Ready;
+    [SerializeField]private WaveState currentWaveState = WaveState.Ready;
     [SerializeField]private int waveLevel = 1;
     public event Action<int> OnReadyMonsterSpawn;
     public event Action<PlayerState> OnProgressPlayerControl;
     public event Action<MonsterWaveState> OnProgressMonsterActive;
-    
+    public event Action OnUIProgressToClear;
+    public event Action OnUIProgressToDefeat;
     
     // 요새 스탯관리
     [SerializeField]private int fortressHp =0;
-    [SerializeField]private int maxFortressHP=50;
+    [SerializeField]private int maxFortressHP = 50;
     [SerializeField] private Slider hpSlider;
     
+    // 플레이어 공격력 관리
+    [SerializeField] private int playerAttackPower;
     // 킬 카운트 관리
     [SerializeField]private int goalKillCount = 0;
     [SerializeField]private int killCount = 0;
+
+    [SerializeField] private GameObject countdownObject;
+    private void Start()
+    {
+        maxFortressHP = 50;
+        playerAttackPower = 3;
+        
+    }
 
     public void IncreaseKillCount()
     {
@@ -78,7 +90,12 @@ public class WaveController : MonoBehaviour
     {
         maxFortressHP += increaseValue;
     }
-    
+
+    public void IncreasePlayerAttackPower(int increaseValue)
+    {
+        playerAttackPower +=  increaseValue;
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -105,10 +122,13 @@ public class WaveController : MonoBehaviour
             goalKillCount = waveLevel * 2;
              OnReadyMonsterSpawn?.Invoke(goalKillCount);
              // UI 변경
+             
+             
         }
         else if (currentWaveState == WaveState.Start)
         {
             // 카운트 다운 이벤트 함수 실행
+            countdownObject.SetActive(true);
             // UI 변경
         }
         else if (currentWaveState == WaveState.Progress)
@@ -127,10 +147,13 @@ public class WaveController : MonoBehaviour
                 Logger.Info("웨이브 패배 로그");
                 OnProgressMonsterActive?.Invoke(MonsterWaveState.Idle);
                 // UI 변경
+                OnUIProgressToDefeat?.Invoke();
             }
             else
             {
                 Logger.Info("웨이브 승리 로그");
+                //ui active - 승리
+                OnUIProgressToClear?.Invoke();
                 waveLevel++;
                 // UI 변경
             }
