@@ -1,0 +1,65 @@
+{
+  "monsterDataList" : 
+[
+  {
+    "monsterID": 1,
+    "monsterName": "DevilFly",
+    "monsterHP": 5,
+    "monsterAttackPower": 1,
+    "monsterSpeed": 2.2,
+    "strengthElementalAttribute": 1,
+    "weakElementalAttribute": 2,
+    "isBoss": 0,
+    "monsterAttackSpeed": 1500,
+    "monsterDistanceValue": -3.5
+  },
+  {
+    "monsterID": 2,
+    "monsterName": "Mimic",
+    "monsterHP": 5,
+    "monsterAttackPower": 2,
+    "monsterSpeed": 1,
+    "strengthElementalAttribute": 0,
+    "weakElementalAttribute": 3,
+    "isBoss": 0,
+    "monsterAttackSpeed": 1500,
+    "monsterDistanceValue": -3
+  },
+  {
+    "monsterID": 3,
+    "monsterName": "FlyingMonoeye",
+    "monsterHP": 5,
+    "monsterAttackPower": 3,
+    "monsterSpeed": 1.5,
+    "strengthElementalAttribute": 3,
+    "weakElementalAttribute": 1,
+    "isBoss": 0,
+    "monsterAttackSpeed": 1500,
+    "monsterDistanceValue": -3.5
+  },
+  {
+    "monsterID": 4,
+    "monsterName": "Dragon",
+    "monsterHP": 10,
+    "monsterAttackPower": 10,
+    "monsterSpeed": 0.5,
+    "strengthElementalAttribute": 2,
+    "weakElementalAttribute": 3,
+    "isBoss": 1,
+    "monsterAttackSpeed": 2500,
+    "monsterDistanceValue": -2.5
+  },
+  {
+    "monsterID": 5,
+    "monsterName": "Minotaur",
+    "monsterHP": 10,
+    "monsterAttackPower": 10,
+    "monsterSpeed": 0.5,
+    "strengthElementalAttribute": 3,
+    "weakElementalAttribute": 1,
+    "isBoss": 1,
+    "monsterAttackSpeed": 2000,
+    "monsterDistanceValue": -2
+  }
+]
+}
