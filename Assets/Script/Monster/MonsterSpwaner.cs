@@ -52,8 +52,8 @@ public class MonsterSpwaner : MonoBehaviour
             //Logger.Error("monsterData.json not found in Resources folder");
         }
         
-        WaveController.Instance.OnReadyMonsterSpawn += MakeMonsterSpawnSectionArray;
-        WaveController.Instance.OnReadyMonsterSpawn += SpawnMonsterSequence;
+        GameController.Instance.OnReadyMonsterSpawn += MakeMonsterSpawnSectionArray;
+        GameController.Instance.OnReadyMonsterSpawn += SpawnMonsterSequence;
         
     }
 
