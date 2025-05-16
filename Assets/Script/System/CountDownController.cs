@@ -26,7 +26,7 @@ public class CountDownController : MonoBehaviour
 
         countdownTMP.text = "Start!";
         await UniTask.Delay(1000);
-        WaveController.Instance.ChangeWaveState(2);
+        GameController.Instance.ChangeWaveState(2);
         gameObject.SetActive(false);
     } 
 }

@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
 
-        WaveController.Instance.OnProgressPlayerControl += ChangePlayerState;
+        GameController.Instance.OnProgressPlayerControl += ChangePlayerState;
         
         
         await SearchMonsterByDuration();

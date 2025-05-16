@@ -47,7 +47,7 @@ public class MonsterController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        WaveController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
+        GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
         
         isMoving = true;
         monsterAnimator = GetComponent<Animator>();
@@ -126,7 +126,7 @@ public class MonsterController : MonoBehaviour
         {
             monsterDamageEffect.Play();
             
-            WaveController.Instance.IncreaseKillCount();
+            GameController.Instance.IncreaseKillCount();
             Destroy(gameObject, 0.5f);
         }
         
