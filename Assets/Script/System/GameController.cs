@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,34 +19,35 @@ public class GameController : MonoBehaviour
     
     //웨이브 이벤트 관련 
     [SerializeField]private WaveState currentWaveState = WaveState.Ready;
-    [SerializeField]private int waveLevel = 1;
+    private int waveLevel;
+    
     public event Action<int> OnReadyMonsterSpawn;
     public event Action<PlayerState> OnProgressPlayerControl;
     public event Action<MonsterWaveState> OnProgressMonsterActive;
-    public event Action OnUIProgressToClear;
-    public event Action OnUIProgressToDefeat;
-    
     // 스킬 리셋
     public event Action OnSkillReset;
     // 카운트 다운 이후 게임 시작
     public event Action OnInGameStart;
+    // Fortress HP 변화 -> UI 변경
+    public event Action<int, int> OnChangeFortressHP;
+    // Progress UI 닫기
+    public event Action<bool> OnEndProgress;
     
     // 요새 스탯관리
-    [SerializeField]private int fortressHp =0;
-    [SerializeField]private int maxFortressHP = 50;
-    [SerializeField] private Slider hpSlider;
+    private int fortressHp =0;
+    private int maxFortressHP = 50;
     
     // 플레이어 공격력 관리
-    [SerializeField] private int playerAttackPower;
-    // 킬 카운트 관리
-    [SerializeField]private int goalKillCount = 0;
-    [SerializeField]private int killCount = 0;
-
-    [SerializeField] private GameObject countdownObject;
+    private int playerAttackPower;
     
+    // 킬 카운트 관리
+    private int goalKillCount;
+    private int killCount;
+
     // 재화(위즈덤 관리)
-    [SerializeField] private int earnedWisdomPoint = 0;
-    [SerializeField] private int currentWisdomPoint;
+    private int earnedWisdomPoint;
+    private int currentWisdomPoint;
+    
     // 요새강화 
     private int fortressHPLevel;
     private int playerAttackPowerLevel;
@@ -53,6 +55,9 @@ public class GameController : MonoBehaviour
     private int increaseFortressHpValue =50;
 
     private int skillTemp = 4;
+    
+    //UI Data
+    public Dictionary<UIType, BaseUIData> uiDataDictionary = new Dictionary<UIType, BaseUIData>();
     private void Awake()
     {
         if (Instance == null)
@@ -66,13 +71,15 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        waveLevel = 1;
         maxFortressHP = 50;
         playerAttackPower = 3;
         currentWisdomPoint = PlayerPrefs.GetInt("CurrentWisdomPoint",500);
         //currentWisdomPoint = 500;
         fortressHPLevel = 1;
         playerAttackPowerLevel = 1;
-        
+
+        UIManager.Instance.OpenUI<FirstStartUI>(uiDataDictionary[UIType.FirstStartUI]);
     }
 
     public void IncreaseKillCount()
@@ -80,7 +87,7 @@ public class GameController : MonoBehaviour
         killCount++;
         if (killCount == goalKillCount)
         {
-            ChangeWaveState(3);
+            ChangeWaveState((int)WaveState.End);
         }
     }
     
@@ -91,18 +98,16 @@ public class GameController : MonoBehaviour
     
     public void GetDamageToFortress(int monsterPower)// 포트리스 손상 주는 메서드 
     {
-       
         fortressHp -= monsterPower;
-        hpSlider.value = (float)fortressHp/maxFortressHP;
+
+        OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
         Logger.Info($"요새HP : {fortressHp}");
         if (IsFortressDestoryed())
         {
-            ChangeWaveState(3);
+            ChangeWaveState((int)WaveState.End);
             //웨이브 종료 
         }
     }
-    
-    
 
     public bool IsFortressDestoryed()// 요새 승패 조건
     {
@@ -145,16 +150,6 @@ public class GameController : MonoBehaviour
         }
        
     }
-
-    public int GetEarnedWisdomPoint()
-    {
-        return earnedWisdomPoint;
-    }
-
-    public int GetCurrentWisdomPoint()
-    {
-        return currentWisdomPoint;  
-    }
     
     public void UpgradeFortressHP()
      {
@@ -176,6 +171,7 @@ public class GameController : MonoBehaviour
         {
             // Hp값 보관하고 시작 
             fortressHp = maxFortressHP;
+            OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
             
             // 킬 카운트 초기화
             killCount = 0;
@@ -183,16 +179,16 @@ public class GameController : MonoBehaviour
             goalKillCount = waveLevel * 2;
             OnReadyMonsterSpawn?.Invoke(goalKillCount);
              // UI 변경
-             
-             
+             UIManager.Instance.OpenUI<ReadyUI>(uiDataDictionary[UIType.ReadyUI]);
         }
         else if (currentWaveState == WaveState.Start)
         {
             // 카운트 다운 이벤트 함수 실행
-            countdownObject.SetActive(true);
+            // countdownObject.SetActive(true);
             // 카운트 다운 이후 스킬 사용가능하도록
             OnInGameStart?.Invoke();
             // UI 변경
+            UIManager.Instance.OpenUI<StartUI>(uiDataDictionary[UIType.StartUI]);
         }
         else if (currentWaveState == WaveState.Progress)
         {
@@ -200,9 +196,13 @@ public class GameController : MonoBehaviour
             OnProgressPlayerControl?.Invoke(PlayerState.Attack);
             OnProgressMonsterActive?.Invoke(MonsterWaveState.Active);
             // UI 변경
+            UIManager.Instance.OpenUI<ProgressUI>(uiDataDictionary[UIType.ProgressUI]);
         }
         else if (currentWaveState == WaveState.End)
         {
+            // progress ui close
+            OnEndProgress?.Invoke(false);
+            // 플레이어 공격 멈춤
             OnProgressPlayerControl?.Invoke(PlayerState.Idle);
             // 스킬 쿨타임 초기화
             OnSkillReset?.Invoke();
@@ -213,17 +213,20 @@ public class GameController : MonoBehaviour
                 EarnWisdom();  
                 OnProgressMonsterActive?.Invoke(MonsterWaveState.Idle);
                 // UI 변경
-                OnUIProgressToDefeat?.Invoke();
+                // OnUIProgressToDefeat?.Invoke();
+                UIManager.Instance.OpenUI<DefeatUI>(uiDataDictionary[UIType.DefeatUI]);
             }
             else
             {
                 Logger.Info("웨이브 승리 로그");
                 //ui active - 승리
                 EarnWisdom();
-                OnUIProgressToClear?.Invoke();
-                
-                waveLevel++;
                 // UI 변경
+                // OnUIProgressToClear?.Invoke();
+                UIManager.Instance.OpenUI<ClearUI>(uiDataDictionary[UIType.ClearUI]);
+                
+                // 웨이브 레벨 증가
+                waveLevel++;
             }
             
         }
