@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillButtonController : MonoBehaviour,IDataSharable
+public class OwendSkillButtonController:MonoBehaviour,IDataSharable  
 {
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     [SerializeField] private string skillName;
     [SerializeField] private int skillCoolTime;
     [SerializeField] string skillExplainText;
@@ -25,14 +26,57 @@ public class SkillButtonController : MonoBehaviour,IDataSharable
     {
 
     }
+    
+
+    public void RemoveSKillStatus()
+    {
+        skillButtonStatus = null;
+        skillButtonImage.sprite = null;
+
+    }
+
+    public bool IsThatSKillName(string skillName)
+    {
+        if (skillButtonStatus == null)
+        {
+            Logger.Error("SkillButtonStatus is null");
+        }
+        if (skillButtonStatus.skillName == skillName)
+        {
+            return true;
+        }
+        else
+        {
+            return false;   
+        }
+           
+    }
+
+    public bool IsSkillButtonNull()
+    {
+        if (skillButtonStatus == null)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;   
+        }
+        
+    }
+    
+    
 
     public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
     {
         skillButtonStatus = new SkillSystemManager.SkillData();
-
+        
         skillButtonImage =GetComponent<Image>();
+        
         skillButtonStatus = skillStatus;
         Sprite sprite = skillSprite;
+        
         skillButtonImage.sprite = sprite;
         skillCoolTime = skillStatus.skillCoolTime;
         skillExplainText = skillStatus.skillExplainText;
@@ -41,25 +85,10 @@ public class SkillButtonController : MonoBehaviour,IDataSharable
         skillDamagePower = skillStatus.skillDamagePower;
     }
 
-
     public void UploadSkillStatus()
     {
         Logger.Info(skillButtonStatus.skillName);
         skillDialogue.SetActive(true);
         skillDialogue.GetComponent<SkillDialogueManager>().DownloadSkillStatus(skillButtonStatus, skillButtonImage.sprite);
-
     }
-
 }
-
-public interface IDataSharable
-{
-    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite);
-    public void UploadSkillStatus();
-
-
-}
-
-
-
-
