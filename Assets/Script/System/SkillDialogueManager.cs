@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class SkillDialogueManager : MonoBehaviour, IDataSharable
 {
-
     SkillSystemManager.SkillData skillDialogueStatus;
     [SerializeField] private Image DialogueSkillImage;
     [SerializeField] private TextMeshProUGUI skillNameText;
     [SerializeField] private TextMeshProUGUI skillSpecText;
     [SerializeField] private TextMeshProUGUI equipButtonText;
+    [SerializeField] private GameObject[] ownedSkillButtonSet;
 
     [SerializeField] private int skillCoolTime;
     [SerializeField] private string skillExplainText;
@@ -22,74 +22,72 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
 
     private void OnEnable()
     {
-        if(isInfoSet ==false)
-        {
-            return;
-        }
-
-        if (SkillSystemManager.Instance.IsSkillEquipped(skillNameText.text))
-        {
-            equipButtonText.text = "¿Â¬¯«ÿ¡¶";
-        }
-
-        else
-        {
-            equipButtonText.text = "¿Â¬¯";
-        }
-
     }
-    public void GetSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
-    {
 
+    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    {
         skillDialogueStatus = new SkillSystemManager.SkillData();
         skillDialogueStatus = skillStatus;
 
         Sprite sprite = skillSprite;
         DialogueSkillImage.sprite = sprite;
         skillNameText.text = $"{skillStatus.skillName}";
-        skillSpecText.text = "Ω∫≈≥∑π∫ß" + skillStatus.skillLevel.ToString() +
-            "\n" + skillStatus.skillExplainText + "\n" + $"«««ÿ∑Æ :{skillStatus.skillDamagePower}\n" + $"¥Î±‚Ω√∞£ :{skillStatus.skillCoolTime}";
-
-        isInfoSet = true;
+        skillSpecText.text = "Ïä§ÌÇ¨Î†àÎ≤®:" + skillStatus.skillLevel.ToString() +
+                             "\n" + skillStatus.skillExplainText + "\n" + $"Ïä§ÌÇ¨Îç∞ÎØ∏ÏßÄ  :{skillStatus.skillDamagePower}\n" +
+                             $"Ïä§ÌÇ¨ Ïø®ÌÉÄÏûÑ :{skillStatus.skillCoolTime}";
+        CheckEquipStatus(skillStatus.skillName);
     }
 
 
     public void CloseDialouge()
     {
         gameObject.SetActive(false);
-
     }
 
-    public void OutSkillStatus()
+    public void UploadSkillStatus()
+    { 
+        SkillSystemManager.Instance.EquipSkillToSkillSet(skillDialogueStatus, DialogueSkillImage.sprite);
+    }
+
+    public void CheckEquipStatus(string skillText)
     {
+        if (SkillSystemManager.Instance.IsSkillEquipped(skillText))
+        {
+            equipButtonText.text = "Ïû•Ï∞©Ìï¥Ï†ú";
+        }
 
-
+        else
+        {
+            equipButtonText.text = "Ïû•Ï∞©";
+        }
     }
 
     public void EquipOrRelease()
     {
-        if (equipButtonText.text.Equals("¿Â¬¯"))
+        if (equipButtonText.text.Equals("Ïû•Ï∞©"))
         {
-            Logger.Info("¿Â¬¯«¡∑ŒººΩ∫ »Æ¿Œ¡ﬂ");
+            Logger.Info("Ïû•Ï∞© ÌîÑÎ°úÏÑ∏Ïä§ ÌôïÏù∏");
             SkillSystemManager.Instance.EquipSkill(skillNameText.text);
+            UploadSkillStatus();
             gameObject.SetActive(false);
         }
         else
         {
             SkillSystemManager.Instance.ReleaseSkill(skillNameText.text);
+            SkillSystemManager.Instance.ReleaseSkillFromSkillSet(skillNameText.text);
             gameObject.SetActive(false);
         }
     }
 
+    // Ïä§ÌÇ¨, Ïû•Ï∞© Ìï¥Ï†ú  
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 }

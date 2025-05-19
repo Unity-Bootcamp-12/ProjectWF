@@ -474,9 +474,9 @@ RectTransform:
   - {fileID: 1336739205}
   m_Father: {fileID: 553623116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -587.27094}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78264018
@@ -1262,6 +1262,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillTreeButtonGroup: {fileID: 369829942}
   testSkillButton: {fileID: 1701920415}
+  ownedSkillButtonSet:
+  - {fileID: 772622558}
+  - {fileID: 2016446795}
+  - {fileID: 1819828326}
+  - {fileID: 565313272}
 --- !u!1 &196668567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,9 +1634,9 @@ RectTransform:
   - {fileID: 565313273}
   m_Father: {fileID: 2082149194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 700, y: -52.4626}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244463165
@@ -2946,9 +2951,9 @@ RectTransform:
   - {fileID: 1178105537}
   m_Father: {fileID: 991013437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.691, y: -352.36124}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365505837
@@ -3020,9 +3025,9 @@ RectTransform:
   - {fileID: 553623116}
   m_Father: {fileID: 1192009656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -780.7853}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 939.6334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369829944
@@ -3084,9 +3089,9 @@ RectTransform:
   - {fileID: 490393304}
   m_Father: {fileID: 553623116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -822.1793}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382700717
@@ -4029,7 +4034,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 490393308}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4408,9 +4413,9 @@ RectTransform:
   - {fileID: 1986394032}
   m_Father: {fileID: 991013437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.691, y: -822.17633}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510897476
@@ -4619,9 +4624,9 @@ RectTransform:
   - {fileID: 382700716}
   m_Father: {fileID: 369829943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 658.2085, y: -469.8167}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 226.4868, y: 939.6334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &553623117
@@ -4685,9 +4690,9 @@ RectTransform:
   - {fileID: 326005348}
   m_Father: {fileID: 1076403854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -115.679825}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 113.7705, y: 97.0684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557862601
@@ -4737,8 +4742,9 @@ GameObject:
   - component: {fileID: 565313276}
   - component: {fileID: 565313275}
   - component: {fileID: 565313274}
+  - component: {fileID: 565313277}
   m_Layer: 5
-  m_Name: OwnerSkillButton1
+  m_Name: OwnedSkillButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4807,7 +4813,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 565313275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 565313277}
+        m_TargetAssemblyTypeName: OwendSkillButtonController, Assembly-CSharp
+        m_MethodName: UploadSkillStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &565313275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4846,6 +4864,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565313272}
   m_CullTransparentMesh: 1
+--- !u!114 &565313277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565313272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillCoolTime: 0
+  skillExplainText: 
+  skillLevel: 0
+  skillAttribute: 0
+  skillDamagePower: 0
+  skillDialogue: {fileID: 1298413737}
+  skillButtonImage: {fileID: 0}
 --- !u!1 &592389600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5339,7 +5377,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 636733243}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5907,9 +5945,9 @@ RectTransform:
   - {fileID: 1510581490}
   m_Father: {fileID: 1076403854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -821.5878}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708101960
@@ -6272,6 +6310,7 @@ GameObject:
   - component: {fileID: 772622562}
   - component: {fileID: 772622561}
   - component: {fileID: 772622560}
+  - component: {fileID: 772622563}
   m_Layer: 5
   m_Name: OwnerSkillButton1
   m_TagString: Untagged
@@ -6342,7 +6381,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 772622561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772622563}
+        m_TargetAssemblyTypeName: OwendSkillButtonController, Assembly-CSharp
+        m_MethodName: UploadSkillStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &772622561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6381,6 +6432,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772622558}
   m_CullTransparentMesh: 1
+--- !u!114 &772622563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772622558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillCoolTime: 0
+  skillExplainText: 
+  skillLevel: 0
+  skillAttribute: 0
+  skillDamagePower: 0
+  skillDialogue: {fileID: 1298413737}
+  skillButtonImage: {fileID: 0}
 --- !u!1 &776106786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6968,9 +7039,9 @@ RectTransform:
   - {fileID: 636733239}
   m_Father: {fileID: 1076403854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -585.4966}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843764055
@@ -8057,9 +8128,9 @@ RectTransform:
   - {fileID: 510897475}
   m_Father: {fileID: 369829943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.691, y: -469.815}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 261.382, y: 939.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &991013438
@@ -8296,9 +8367,9 @@ RectTransform:
   - {fileID: 1701920416}
   m_Father: {fileID: 991013437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.691, y: -587.2688}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1022391571
@@ -9176,9 +9247,9 @@ RectTransform:
   - {fileID: 708101959}
   m_Father: {fileID: 369829943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 403.17352, y: -469.8167}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 226.4868, y: 939.6334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076403855
@@ -9373,9 +9444,9 @@ RectTransform:
   - {fileID: 1819828327}
   m_Father: {fileID: 2082149194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 500, y: -52.4626}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1108350257
@@ -10027,7 +10098,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1178105539}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10677,7 +10748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1228832483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10929,9 +11000,9 @@ RectTransform:
   - {fileID: 1326583802}
   m_Father: {fileID: 553623116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -117.45418}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289540040
@@ -11307,6 +11378,7 @@ MonoBehaviour:
   skillNameText: {fileID: 1059914155}
   skillSpecText: {fileID: 1407240718}
   equipButtonText: {fileID: 1779539332}
+  ownedSkillButtonSet: []
   skillCoolTime: 0
   skillExplainText: 
   skillLevel: 0
@@ -11732,7 +11804,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1336739209}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11982,9 +12054,9 @@ RectTransform:
   - {fileID: 772622559}
   m_Father: {fileID: 2082149194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -52.4626}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376511623
@@ -12591,9 +12663,9 @@ RectTransform:
   - {fileID: 2016446796}
   m_Father: {fileID: 2082149194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -52.4626}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474608509
@@ -12664,9 +12736,9 @@ RectTransform:
   - {fileID: 2090823984}
   m_Father: {fileID: 553623116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -352.36252}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487185859
@@ -12790,7 +12862,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1510581494}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13153,9 +13225,9 @@ RectTransform:
   - {fileID: 1614803353}
   m_Father: {fileID: 1076403854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 113.2434, y: -349.40527}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540247776
@@ -13762,7 +13834,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1614803357}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14185,7 +14257,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1701920420}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14288,9 +14360,9 @@ RectTransform:
   - {fileID: 716085887}
   m_Father: {fileID: 991013437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.691, y: -117.45375}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 106.20001, y: 101.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706209696
@@ -14943,10 +15015,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1819828327}
   - component: {fileID: 1819828330}
+  - component: {fileID: 1819828331}
   - component: {fileID: 1819828329}
   - component: {fileID: 1819828328}
   m_Layer: 5
-  m_Name: OwnerSkillButton1
+  m_Name: OwnedSkillButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15015,7 +15088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1819828329}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1819828331}
+        m_TargetAssemblyTypeName: OwendSkillButtonController, Assembly-CSharp
+        m_MethodName: UploadSkillStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1819828329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15054,6 +15139,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819828326}
   m_CullTransparentMesh: 1
+--- !u!114 &1819828331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819828326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillCoolTime: 0
+  skillExplainText: 
+  skillLevel: 0
+  skillAttribute: 0
+  skillDamagePower: 0
+  skillDialogue: {fileID: 1298413737}
+  skillButtonImage: {fileID: 0}
 --- !u!1 &1867247521
 GameObject:
   m_ObjectHideFlags: 0
@@ -15944,7 +16049,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1986394036}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16406,6 +16511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016446796}
+  - component: {fileID: 2016446800}
   - component: {fileID: 2016446799}
   - component: {fileID: 2016446798}
   - component: {fileID: 2016446797}
@@ -16479,7 +16585,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2016446798}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2016446800}
+        m_TargetAssemblyTypeName: OwendSkillButtonController, Assembly-CSharp
+        m_MethodName: UploadSkillStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2016446798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16518,6 +16636,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016446795}
   m_CullTransparentMesh: 1
+--- !u!114 &2016446800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016446795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillCoolTime: 0
+  skillExplainText: 
+  skillLevel: 0
+  skillAttribute: 0
+  skillDamagePower: 0
+  skillDialogue: {fileID: 1298413737}
+  skillButtonImage: {fileID: 0}
 --- !u!1 &2039089727
 GameObject:
   m_ObjectHideFlags: 0
@@ -16822,9 +16960,9 @@ RectTransform:
   - {fileID: 244463164}
   m_Father: {fileID: 1192009656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -121.14372}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 104.9252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082149195
@@ -16939,7 +17077,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2090823988}
         m_TargetAssemblyTypeName: SkillButtonController, Assembly-CSharp
-        m_MethodName: OutSkillStatus
+        m_MethodName: UploadSkillStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

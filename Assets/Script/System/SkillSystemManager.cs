@@ -10,6 +10,7 @@ public class SkillSystemManager : MonoBehaviour
     [SerializeField] GameObject testSkillButton;
     static public SkillSystemManager Instance { get; private set; }
     [SerializeField] Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
+    [SerializeField] private GameObject[] ownedSkillButtonSet;
     [System.Serializable]
     public class SkillData
     {
@@ -50,7 +51,7 @@ public class SkillSystemManager : MonoBehaviour
             skillDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
             foreach (var skills in skillDataList.skillDataList)
             {
-                //Logger.Info($"½ºÅ³¸í : {skills.skillName},{skills.skillExplainText}");
+                //Logger.Info($"ï¿½ï¿½Å³ï¿½ï¿½ : {skills.skillName},{skills.skillExplainText}");
             }
         }
         else
@@ -58,8 +59,7 @@ public class SkillSystemManager : MonoBehaviour
             Logger.Error("monsterData.json not found in Resources folder");
         }
         SetSkillButtonStatus();
-        //testSkillButton.GetComponent<SkillButtonController>().skillButtonImage = GetComponent<Image>();
-        //testSkillButton.GetComponent<SkillButtonController>().GetSkillStatus(skillDataList.skillDataList[0]);
+      
     }
 
     void SetSkillButtonStatus()
@@ -71,16 +71,16 @@ public class SkillSystemManager : MonoBehaviour
             for (int j = 0; j < skillTreeButtonGroup.transform.GetChild(i).childCount - 1; j++)
             {
                 Transform skillButtonTransForm = skillTreeButtonGroup.transform.GetChild(i).GetChild(j + 1).GetChild(0);
-                Logger.Info("¹öÆ° °´Ã¼ µð¹ö±ë È®ÀÎ:" + skillButtonTransForm.gameObject.name);
+                Logger.Info("ï¿½ï¿½Æ° ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½:" + skillButtonTransForm.gameObject.name);
                 string skillName = skillDataList.skillDataList[j + indexOffset].skillName;
                 Sprite skillSprite = Resources.Load<Sprite>($"IconData/{skillName}");
-                skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().GetSkillStatus(skillDataList.skillDataList[j + indexOffset], skillSprite);
+                skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().DownloadSkillStatus(skillDataList.skillDataList[j + indexOffset], skillSprite);
             }
             indexOffset += 3;
         }
     }
-
-    public void EquipSkill(string skillName)//½ºÅ³ ÀåÂø
+    // ë”•ì…”ë„ˆë¦¬ ê´€ë¦¬ 
+    public void EquipSkill(string skillName)//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
     {
         if (skillEquipMap.ContainsKey(skillName))
         {
@@ -89,7 +89,7 @@ public class SkillSystemManager : MonoBehaviour
 
         else
         {
-            Logger.Info("¸ÞÀÎ ¸Å´ÏÀú ÀåÂøÇÁ·Î¼¼½º È®ÀÎÀýÂ÷");
+            Logger.Info("ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             skillEquipMap.Add(skillName, true);
         }
     }
@@ -103,7 +103,7 @@ public class SkillSystemManager : MonoBehaviour
     {
         if (skillEquipMap.ContainsKey(skillName))
         {
-            Logger.Info("ÀåÂø ¿©ºÎ È®ÀÎ");
+            Logger.Info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
             if (skillEquipMap[skillName])
             {
                 return true;
@@ -122,6 +122,39 @@ public class SkillSystemManager : MonoBehaviour
         }
 
     }
+    
+    public void EquipSkillToSkillSet(SkillSystemManager.SkillData skillData,Sprite sprite) //ìŠ¤í‚¬ ìž¥ì°©
+    {
+        for (int i = 0; i < ownedSkillButtonSet.Length; i++)
+        {
+            Logger.Info($"{i} ë²ˆì§¸ ë²„íŠ¼ ");
+            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsSkillButtonNull())
+            {   
+               
+                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().DownloadSkillStatus(skillData, sprite);
+                break;  
+            }
+           
+        }
+    }
+
+    public void ReleaseSkillFromSkillSet(string skillName)
+    {
+        for (int i = 0; i < ownedSkillButtonSet.Length; i++)
+        {
+            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsSkillButtonNull())
+            {
+                continue;
+            }
+            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsThatSKillName(skillName))
+            {
+                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().RemoveSKillStatus();
+                break;  
+            }
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
