@@ -74,6 +74,6 @@ public class OwendSkillButtonController:MonoBehaviour
 
     public void TransferInfoOwenedSkillButtonToDialogue()
     {
-        SkillSystemManager.Instance.InitDialogueInfo(skillButtonStatus,skillButtonImage.sprite);
+        //SkillSystemManager.Instance.InitDialogueInfo(skillButtonStatus,skillButtonImage.sprite);
     }
 }

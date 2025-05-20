@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class SkillSystemManager : MonoBehaviour
     static public SkillSystemManager Instance { get; private set; }
     [SerializeField] Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
     [SerializeField] private GameObject[] ownedSkillButtonSet;
+    public event Action<int, int> OnTransferInfoButtonToDialgue;
+    public event Action<int, int> OnTransferInfoDialgueToOwnedButtonSkill;
     [System.Serializable]
     public class SkillData
     {
@@ -19,6 +22,7 @@ public class SkillSystemManager : MonoBehaviour
         public string skillExplainText;
         public int skillLevel;
         public int skillAttribute;
+        public int skillGrade;
         public int skillDamagePower;
 
     }
@@ -29,6 +33,13 @@ public class SkillSystemManager : MonoBehaviour
     {
         public List<SkillData> skillDataList;
     }
+    private SkillDataList skillJsonDataList;
+    private SkillData[,] skillDataSet;
+    private Sprite[,] skillSpriteSet;
+    private int skillAttributeCount;
+    private int skillGradeCount;
+    private int initialAttibuteNumber = 0;
+
     private void Awake()
     {
         if (Instance == null)
@@ -39,48 +50,64 @@ public class SkillSystemManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        InitSkillManager();
     }
-    private SkillDataList skillDataList;
 
+  
     void Start()
     {
+        
+       
+        
+       
+
+    }
+
+    void InitSkillManager()
+    {
+        skillAttributeCount = skillTreeButtonGroup.transform.childCount;
+        skillGradeCount = skillTreeButtonGroup.transform.GetChild(0).childCount-1;
+        Logger.Info($"스킬등급수 확인: {skillGradeCount}");
         skillEquipMap = new Dictionary<string, bool>();
+        skillDataSet = new SkillData[skillAttributeCount,skillGradeCount];
+        skillSpriteSet = new Sprite[skillAttributeCount,skillGradeCount];
         TextAsset jsonFile = Resources.Load<TextAsset>("JsonData/SkillDataJson");
         if (jsonFile != null)
         {
-            skillDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
+            skillJsonDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
         }
         else
         {
-            Logger.Error("monsterData.json not found in Resources folder");
+            Logger.Error("skillData.json not found in Resources folder");
         }
-        InitSkillButtonStatus();
-      
+
+        InitSkillJsonData();
     }
     // 스킬 버튼 초기설정
-    void InitSkillButtonStatus()
+    void InitSkillJsonData()
     {
-        int indexOffset = 0;
-
-        for (int i = 0; i < skillTreeButtonGroup.transform.childCount; i++)
+        for (int i = 0; i < skillJsonDataList.skillDataList.Count; i++)
         {
-            for (int j = 0; j < skillTreeButtonGroup.transform.GetChild(i).childCount - 1; j++)
-            {
-                Transform skillButtonTransForm = skillTreeButtonGroup.transform.GetChild(i).GetChild(j + 1).GetChild(0);
-                string skillName = skillDataList.skillDataList[j + indexOffset].skillName;
-                Sprite skillSprite = Resources.Load<Sprite>($"IconData/{skillName}");
-                skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().SetSkillButtonStatusInfo(skillDataList.skillDataList[j + indexOffset], skillSprite);
-            }
-            indexOffset += 3;
+            SkillData skillInputData  = skillJsonDataList.skillDataList[i];
+            Logger.Info($"Skill 횟수 디버깅: {skillInputData.skillAttribute},{skillInputData.skillGrade}");
+            skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
+            skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] = Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
         }
+        
+    }
+
+    public SkillData GetSkillData(int  skillAttributeNumber, int skillGradeNumber)
+    {
+        return skillDataSet[skillAttributeNumber,skillGradeNumber];
+        
+    }
+
+    public Sprite GetSkillSprite(int skillAttributeNumber, int skillGradeNumber)
+    {
+        return skillSpriteSet[skillAttributeNumber,skillGradeNumber];
     }
     
-    // 스킬 설명창 설정 
-    public void InitDialogueInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
-    {
-        skillDialogue.SetActive(true);
-        skillDialogue.GetComponent<SkillDialogueManager>().SetDialogueSkillStatusInfo(skillStatus, skillSprite);
-    }
     // 딕셔너리 관리 
     public void EquipSkill(string skillName)
     {
@@ -124,39 +151,6 @@ public class SkillSystemManager : MonoBehaviour
 
     }
     
-    public void EquipSkillToSkillSet(SkillSystemManager.SkillData skillData,Sprite sprite) //스킬 장착
-    {
-        for (int i = 0; i < ownedSkillButtonSet.Length; i++)
-        {
-            Logger.Info($"{i} 번째 버튼 ");
-            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsSkillButtonNull())
-            {   
-               
-                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().SetOwnedSkillButtonSkillStatusInfo(skillData, sprite);
-                break;  
-            }
-           
-        }
-    }
-    
-    
-
-    public void ReleaseSkillFromSkillSet(string skillName)
-    {
-        for (int i = 0; i < ownedSkillButtonSet.Length; i++)
-        {
-            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsSkillButtonNull())
-            {
-                continue;
-            }
-            if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsThatSKillName(skillName))
-            {
-                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().RemoveSKillStatus();
-                break;  
-            }
-        }
-        
-    }
     
     
 

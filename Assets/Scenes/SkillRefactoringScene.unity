@@ -2426,6 +2426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 1
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -3473,6 +3475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 1
+  skillGradeNumber: 1
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -3626,6 +3630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 2
+  skillGradeNumber: 0
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -3779,6 +3785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -5221,6 +5229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 2
+  skillGradeNumber: 2
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -5707,6 +5717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 2
+  skillGradeNumber: 1
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -5860,6 +5872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 1
+  skillGradeNumber: 2
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -6088,6 +6102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 1
+  skillGradeNumber: 0
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
@@ -6380,6 +6396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 2
   skillName: 
   skillCoolTime: 0
   skillExplainText: 
