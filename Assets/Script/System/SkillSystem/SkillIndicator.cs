@@ -19,18 +19,33 @@ public class SkillIndicator : MonoBehaviour
 
     private void Update()
     {
-        if (!isTargeting) return;
-
+        if (!isTargeting)
+        {
+            return;
+        }
         UpdateIndicatorPositionToMouse();
 
+        // 에디터에서 보여지는 경우
         if (Input.GetMouseButtonDown(0))
         {
-            if (IsMouseOverPanel())
+            // 타겟패널안에 입력할 경우
+            if (IsMouseOnPanel())
             {
-                Vector3 targetWorldPos = GetTargetWorldPosition();
-                onTargetConfirmed?.Invoke(targetWorldPos);
+                Vector3 targetWorldPosition = GetTargetWorldPositionInEditor();
+                onTargetConfirmed?.Invoke(targetWorldPosition);
             }
-
+            // 타겟패널 밖에 입력할 경우
+            EndTargeting();
+        }
+        // 모바일에서 보여지는 경우
+        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            Vector3 touchPosition = Input.GetTouch(0).position;
+            if (IsTouchOnPanel(touchPosition))
+            {
+                Vector3 targetWorldPosition = GetTargetWorldPositionInGame(touchPosition);
+                onTargetConfirmed?.Invoke(targetWorldPosition);
+            }
             EndTargeting();
         }
     }
@@ -92,10 +107,18 @@ public class SkillIndicator : MonoBehaviour
         return new Vector2(clampedX, clampedY);
     }
 
-    private bool IsMouseOverPanel()
+    // 에디터용
+    private bool IsMouseOnPanel()
     {
         RectTransform panelRect = targetingPanel.GetComponent<RectTransform>();
         return RectTransformUtility.RectangleContainsScreenPoint(panelRect, Input.mousePosition);
+    }
+
+    // 모바일용
+    private bool IsTouchOnPanel(Vector2 touchPosition)
+    {
+        RectTransform panelRect = targetingPanel.GetComponent<RectTransform>();
+        return RectTransformUtility.RectangleContainsScreenPoint(panelRect, touchPosition);
     }
 
     private void EndTargeting()
@@ -116,9 +139,22 @@ public class SkillIndicator : MonoBehaviour
         Time.fixedDeltaTime = 0.02f;
     }
     
-    private Vector3 GetTargetWorldPosition()
+    // 에디터에서 사용
+    private Vector3 GetTargetWorldPositionInEditor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        {
+            return new Vector3(hit.point.x, inGameGroundHeight, hit.point.z);
+        }
+
+        return Vector3.zero;
+    }
+    
+    // 모바일에서 사용
+    private Vector3 GetTargetWorldPositionInGame(Vector2 touchScreenPosition)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(touchScreenPosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
             return new Vector3(hit.point.x, inGameGroundHeight, hit.point.z);

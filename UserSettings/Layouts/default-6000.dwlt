@@ -1646,7 +1646,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: b0230000
     m_LastClickedID: 9136
-    m_ExpandedIDs: 00000000b0c70000b2c70000b4c70000b6c70000b8c70000bac70000bcc70000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1675,7 +1675,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b0c70000b2c70000b4c70000b6c70000b8c70000bac70000bcc70000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 480, y: 800}
+  m_TargetSize: {x: 1920, y: 1080}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1790,10 +1790,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -240
-    m_HBaseRangeMax: 240
-    m_VBaseRangeMin: -400
-    m_VBaseRangeMax: 400
+    m_HBaseRangeMin: -960
+    m_HBaseRangeMax: 960
+    m_VBaseRangeMin: -540
+    m_VBaseRangeMax: 540
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1813,7 +1813,7 @@ MonoBehaviour:
       y: 21
       width: 680
       height: 484
-    m_Scale: {x: 0.605, y: 0.605}
+    m_Scale: {x: 0.35416666, y: 0.35416666}
     m_Translation: {x: 340, y: 242}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1821,12 +1821,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -561.98346
-      y: -400
-      width: 1123.9669
-      height: 800
+      x: -960
+      y: -683.2941
+      width: 1920
+      height: 1366.5883
     m_MinimalGUI: 1
-  m_defaultScale: 0.605
+  m_defaultScale: 0.35416666
   m_LastWindowPixelSize: {x: 680, y: 505}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1

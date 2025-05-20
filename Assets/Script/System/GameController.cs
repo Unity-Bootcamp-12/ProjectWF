@@ -39,6 +39,11 @@ public class GameController : MonoBehaviour
     
     // 플레이어 공격력 관리
     private int playerAttackPower;
+    public int GetPlayerAttackPower()
+    {
+        return playerAttackPower;
+    }
+    
     
     // 킬 카운트 관리
     private int goalKillCount;
@@ -123,17 +128,6 @@ public class GameController : MonoBehaviour
         
     }
 
-    // public void IncreaseFortressHp(int increaseValue)
-    // {
-    //     maxFortressHP += increaseValue;
-    // }
-
-    // public void IncreasePlayerAttackPower(int increaseValue)
-    // {
-    //     playerAttackPower +=  increaseValue;
-    // }
-    
-    
     private void EarnWisdom()
     {
         if (IsFortressDestoryed())
