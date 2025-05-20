@@ -6,8 +6,8 @@ using static SkillSystemManager;
 
 public class SkillSystemManager : MonoBehaviour
 {
-    [SerializeField] GameObject skillTreeButtonGroup;
-    [SerializeField] GameObject testSkillButton;
+    [SerializeField] private GameObject skillTreeButtonGroup;
+    [SerializeField] private GameObject skillDialogue;
     static public SkillSystemManager Instance { get; private set; }
     [SerializeField] Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
     [SerializeField] private GameObject[] ownedSkillButtonSet;
@@ -49,20 +49,16 @@ public class SkillSystemManager : MonoBehaviour
         if (jsonFile != null)
         {
             skillDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
-            foreach (var skills in skillDataList.skillDataList)
-            {
-                //Logger.Info($"��ų�� : {skills.skillName},{skills.skillExplainText}");
-            }
         }
         else
         {
             Logger.Error("monsterData.json not found in Resources folder");
         }
-        SetSkillButtonStatus();
+        InitSkillButtonStatus();
       
     }
-
-    void SetSkillButtonStatus()
+    // 스킬 버튼 초기설정
+    void InitSkillButtonStatus()
     {
         int indexOffset = 0;
 
@@ -71,16 +67,22 @@ public class SkillSystemManager : MonoBehaviour
             for (int j = 0; j < skillTreeButtonGroup.transform.GetChild(i).childCount - 1; j++)
             {
                 Transform skillButtonTransForm = skillTreeButtonGroup.transform.GetChild(i).GetChild(j + 1).GetChild(0);
-                //Logger.Info("��ư ��ü ����� Ȯ��:" + skillButtonTransForm.gameObject.name);
                 string skillName = skillDataList.skillDataList[j + indexOffset].skillName;
                 Sprite skillSprite = Resources.Load<Sprite>($"IconData/{skillName}");
-                skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().DownloadSkillStatus(skillDataList.skillDataList[j + indexOffset], skillSprite);
+                skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().SetSkillButtonStatusInfo(skillDataList.skillDataList[j + indexOffset], skillSprite);
             }
             indexOffset += 3;
         }
     }
+    
+    // 스킬 설명창 설정 
+    public void InitDialogueInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    {
+        skillDialogue.SetActive(true);
+        skillDialogue.GetComponent<SkillDialogueManager>().SetDialogueSkillStatusInfo(skillStatus, skillSprite);
+    }
     // 딕셔너리 관리 
-    public void EquipSkill(string skillName)//��ų ����
+    public void EquipSkill(string skillName)
     {
         if (skillEquipMap.ContainsKey(skillName))
         {
@@ -89,7 +91,7 @@ public class SkillSystemManager : MonoBehaviour
 
         else
         {
-            //Logger.Info("���� �Ŵ��� �������μ��� Ȯ������");
+            
             skillEquipMap.Add(skillName, true);
         }
     }
@@ -103,7 +105,6 @@ public class SkillSystemManager : MonoBehaviour
     {
         if (skillEquipMap.ContainsKey(skillName))
         {
-            //Logger.Info("���� ���� Ȯ��");
             if (skillEquipMap[skillName])
             {
                 return true;
@@ -131,12 +132,14 @@ public class SkillSystemManager : MonoBehaviour
             if (ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().IsSkillButtonNull())
             {   
                
-                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().DownloadSkillStatus(skillData, sprite);
+                ownedSkillButtonSet[i].GetComponent<OwendSkillButtonController>().SetOwnedSkillButtonSkillStatusInfo(skillData, sprite);
                 break;  
             }
            
         }
     }
+    
+    
 
     public void ReleaseSkillFromSkillSet(string skillName)
     {
@@ -154,6 +157,8 @@ public class SkillSystemManager : MonoBehaviour
         }
         
     }
+    
+    
 
 
 

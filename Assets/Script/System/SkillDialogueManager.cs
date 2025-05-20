@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillDialogueManager : MonoBehaviour, IDataSharable
+public class SkillDialogueManager : MonoBehaviour
 {
     SkillSystemManager.SkillData skillDialogueStatus;
     [SerializeField] private Image DialogueSkillImage;
@@ -20,11 +20,9 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
     [SerializeField] private int skillDamagePower;
     bool isInfoSet = false;
 
-    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    public void SetDialogueSkillStatusInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
     {
-        skillDialogueStatus = new SkillSystemManager.SkillData();
         skillDialogueStatus = skillStatus;
-
         Sprite sprite = skillSprite;
         DialogueSkillImage.sprite = sprite;
         skillNameText.text = $"{skillStatus.skillName}";
@@ -40,7 +38,7 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
         gameObject.SetActive(false);
     }
 
-    public void UploadSkillStatus()
+    public void TransferInfoDialougeToOwnedSkillButton()
     { 
         SkillSystemManager.Instance.EquipSkillToSkillSet(skillDialogueStatus, DialogueSkillImage.sprite);
     }
@@ -64,7 +62,7 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
         {
             Logger.Info("장착 프로세스 확인");
             SkillSystemManager.Instance.EquipSkill(skillNameText.text);
-            UploadSkillStatus();
+            TransferInfoDialougeToOwnedSkillButton();
             gameObject.SetActive(false);
         }
         else
