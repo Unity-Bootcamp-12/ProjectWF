@@ -13,6 +13,19 @@ public enum WaveState
     End = 3
 }
 
+public class DefaultValue
+{
+    public int waveLevel;
+    public int maxFortressHP;
+    public int playerAttackPower;
+    public int defaultWisdomPoint;
+    public int defaultFortressHPLevel;
+    public int defaultAttackPowerLevel;
+    public int increasePlayerAttackPowerValue;
+    public int increaseFortressHpValue;
+    public int goalKillCountCoefficient;
+}
+
 public class GameController : MonoBehaviour
 {   
     static public GameController Instance { get; private set; }
@@ -34,32 +47,30 @@ public class GameController : MonoBehaviour
     public event Action<bool> OnEndProgress;
     
     // 요새 스탯관리
-    private int fortressHp =0;
-    private int maxFortressHP = 50;
+    [SerializeField]private int fortressHp;
+    [SerializeField]private int maxFortressHP;
     
     // 플레이어 공격력 관리
-    private int playerAttackPower;
+    [SerializeField]private int playerAttackPower;
     public int GetPlayerAttackPower()
     {
         return playerAttackPower;
     }
     
-    
     // 킬 카운트 관리
     private int goalKillCount;
     private int killCount;
+    private int goalKillCountCoefficient;
 
     // 재화(위즈덤 관리)
-    private int earnedWisdomPoint;
-    private int currentWisdomPoint;
+    [SerializeField]private int currentWisdomPoint;
     
     // 요새강화 
     private int fortressHPLevel;
     private int playerAttackPowerLevel;
-    private int increasePlayerAttackPowerValue =1;
-    private int increaseFortressHpValue =50;
+    private int increasePlayerAttackPowerValue;
+    private int increaseFortressHpValue;
 
-    private int skillTemp = 4;
     
     //UI Data
     public Dictionary<UIType, BaseUIData> uiDataDictionary = new Dictionary<UIType, BaseUIData>();
@@ -74,19 +85,28 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
     private void Start()
     {
-        waveLevel = 1;
-        maxFortressHP = 50;
-        playerAttackPower = 3;
-        currentWisdomPoint = PlayerPrefs.GetInt("CurrentWisdomPoint",500);
-        //currentWisdomPoint = 500;
-        fortressHPLevel = 1;
-        playerAttackPowerLevel = 1;
-
-        UIManager.Instance.OpenUI<FirstStartUI>(uiDataDictionary[UIType.FirstStartUI]);
+        SetDefaultValues();
     }
 
+    private void SetDefaultValues()
+    {
+        // Json으로 기본값 파싱
+        TextAsset defaultValueJson =  Resources.Load<TextAsset>("JsonData/DefaultValueJson");
+        DefaultValue defaultValue = JsonUtility.FromJson<DefaultValue>(defaultValueJson.text);
+        waveLevel = defaultValue.waveLevel;
+        maxFortressHP = defaultValue.maxFortressHP;
+        playerAttackPower = defaultValue.playerAttackPower;
+        currentWisdomPoint = PlayerPrefs.GetInt("CurrentWisdomPoint",defaultValue.defaultWisdomPoint);
+        fortressHPLevel = defaultValue.defaultFortressHPLevel;
+        playerAttackPowerLevel = defaultValue.defaultAttackPowerLevel;
+        increasePlayerAttackPowerValue = defaultValue.increasePlayerAttackPowerValue;
+        increaseFortressHpValue = defaultValue.increaseFortressHpValue;
+        goalKillCountCoefficient = defaultValue.goalKillCountCoefficient;
+    }
+    
     public void IncreaseKillCount()
     {
         killCount++;
@@ -94,6 +114,11 @@ public class GameController : MonoBehaviour
         {
             ChangeWaveState((int)WaveState.End);
         }
+    }
+
+    public int GetCurrentWisdom()
+    {
+        return currentWisdomPoint;
     }
     
     public int GetWaveLevel()
@@ -106,11 +131,9 @@ public class GameController : MonoBehaviour
         fortressHp -= monsterPower;
 
         OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
-        Logger.Info($"요새HP : {fortressHp}");
         if (IsFortressDestoryed())
         {
             ChangeWaveState((int)WaveState.End);
-            //웨이브 종료 
         }
     }
 
@@ -120,40 +143,37 @@ public class GameController : MonoBehaviour
         {
             return false;
         }
-
         else
         {
             return true;
         }
-        
     }
 
-    private void EarnWisdom()
+    public void SetCurrentWisdom(int value)
     {
-        if (IsFortressDestoryed())
-        {
-            earnedWisdomPoint =250 * (waveLevel - 1) * skillTemp;
-            currentWisdomPoint = earnedWisdomPoint;
-            PlayerPrefs.SetInt("CurrentWisdomPoint", currentWisdomPoint);
-        }
-        else
-        {
-            earnedWisdomPoint = 1000 * waveLevel;
-            currentWisdomPoint += earnedWisdomPoint;
-            PlayerPrefs.SetInt("CurrentWisdomPoint", currentWisdomPoint);
-        }
-       
+        currentWisdomPoint = value;
+        PlayerPrefs.SetInt("CurrentWisdomPoint",  currentWisdomPoint);
     }
-    
-    public void UpgradeFortressHP()
-     {
-         fortressHPLevel++;
-         maxFortressHP +=increaseFortressHpValue;
-         
-     }
 
-     public void UpgradePlayerAttackPower()
+    public int GetHPUpgradeLevel()
+    {
+        return fortressHPLevel;
+    }
+
+    public int GetAttackPowerUpgradeLevel()
+    {
+        return playerAttackPowerLevel;
+    }
+    public void UpgradeFortressHP(int expense)
+    {
+        currentWisdomPoint -= expense;
+        fortressHPLevel++;
+        maxFortressHP += increaseFortressHpValue;
+    }
+
+     public void UpgradePlayerAttackPower(int expense)
      {
+         currentWisdomPoint -= expense;
          playerAttackPowerLevel++;
          playerAttackPower += increasePlayerAttackPowerValue;
      }
@@ -163,23 +183,21 @@ public class GameController : MonoBehaviour
         currentWaveState = (WaveState)state;
         if (currentWaveState == WaveState.Ready)
         {
-            // Hp값 보관하고 시작 
-            fortressHp = maxFortressHP;
-            OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
-            
             // 킬 카운트 초기화
             killCount = 0;
             // 웨이브 레벨에 따라 공식 적용 필요
-            goalKillCount = waveLevel * 2;
+            goalKillCount = waveLevel * goalKillCountCoefficient;
             OnReadyMonsterSpawn?.Invoke(goalKillCount);
              // UI 변경
              UIManager.Instance.OpenUI<ReadyUI>(uiDataDictionary[UIType.ReadyUI]);
         }
         else if (currentWaveState == WaveState.Start)
         {
+            // Hp값 보관하고 시작 
+            fortressHp = maxFortressHP;
+            OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
+            
             // 카운트 다운 이벤트 함수 실행
-            // countdownObject.SetActive(true);
-            // 카운트 다운 이후 스킬 사용가능하도록
             OnInGameStart?.Invoke();
             // UI 변경
             UIManager.Instance.OpenUI<StartUI>(uiDataDictionary[UIType.StartUI]);
@@ -203,31 +221,25 @@ public class GameController : MonoBehaviour
             
             if (IsFortressDestoryed())
             {
-                Logger.Info("웨이브 패배 로그");
-                EarnWisdom();  
                 OnProgressMonsterActive?.Invoke(MonsterWaveState.Idle);
                 // UI 변경
-                // OnUIProgressToDefeat?.Invoke();
                 UIManager.Instance.OpenUI<DefeatUI>(uiDataDictionary[UIType.DefeatUI]);
             }
             else
             {
-                Logger.Info("웨이브 승리 로그");
                 //ui active - 승리
-                EarnWisdom();
                 // UI 변경
-                // OnUIProgressToClear?.Invoke();
                 UIManager.Instance.OpenUI<ClearUI>(uiDataDictionary[UIType.ClearUI]);
                 
+                // 최고 웨이브 갱신
+                int maxWave = PlayerPrefs.GetInt("MaxWave", 0);
+                if (waveLevel > maxWave)
+                {
+                    PlayerPrefs.SetInt("MaxWave", waveLevel);
+                }
                 // 웨이브 레벨 증가
                 waveLevel++;
             }
-            
         }
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
     }
 }

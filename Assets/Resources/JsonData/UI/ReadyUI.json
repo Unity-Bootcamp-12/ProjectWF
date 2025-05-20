@@ -2,5 +2,7 @@
     "hpUpgradeButtonText" : "HP 업그레이드",
     "attackPowerUpgradeButtonText" : "공격력 업그레이드",
     "skillButtonText" : "스킬",
-    "readyButtonText" : "준비 완료"
+    "readyButtonText" : "준비 완료",
+    "hpUpgradeCoeffecient" : 400,
+    "attackPowerUpgradeCoeffecient" : 300
 }

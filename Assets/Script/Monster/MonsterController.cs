@@ -64,8 +64,6 @@ public class MonsterController : MonoBehaviour
         
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
         currentMonsterHP = monsterHp;
-
-        playerAttackPower = GameController.Instance.GetPlayerAttackPower();
     }
 
     void Update()
@@ -145,8 +143,6 @@ public class MonsterController : MonoBehaviour
             monsterDamageEffect.Play();
             TakeDamage();
         }
-        
-        
     }
     
     private void MonsterDead()
@@ -179,5 +175,6 @@ public class MonsterController : MonoBehaviour
     private void ChangeMonsterWaveState(MonsterWaveState newState)
     {
         currentWaveState = newState;
+        playerAttackPower = GameController.Instance.GetPlayerAttackPower();
     }
 }

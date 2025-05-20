@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class ClearUIData : BaseUIData
     public string nextWaveButtonText;
     public int earnedWisdomCoefficient;
     public int defaultEarnedWisdom;
+    public int effectCount;
+    public int effectDelay;
 }
 
 public class ClearUI : BaseUI
@@ -19,9 +22,19 @@ public class ClearUI : BaseUI
     public TextMeshProUGUI clearEarnedWisdomText;
     public TextMeshProUGUI nextWaveButtonText;
 
+    public TextMeshProUGUI currentWisdomText;
+    
+    public RectTransform wisdomFromPosition;
+    public RectTransform wisdomToPosition;
+    public EarnedWisdom clearWisdomPrefab;
+    
+    private ClearUIData clearUIData;
+    
     private int earnedWisdomCoefficient;
     private int defaultEarnedWisdom;
-    private ClearUIData clearUIData;
+    private int effectCount;
+    private int effectDelay;
+    
     private Action<int> OnNextWaveButtonClick;
 
     private void Start()
@@ -40,13 +53,19 @@ public class ClearUI : BaseUI
         nextWaveButtonText.text = clearUIData.nextWaveButtonText;
         earnedWisdomCoefficient =  clearUIData.earnedWisdomCoefficient;
         defaultEarnedWisdom = clearUIData.defaultEarnedWisdom;
+        effectCount = clearUIData.effectCount;
+        effectDelay = clearUIData.effectDelay;
     }
 
-    public override void ShowUI()
+    public override async void ShowUI()
     {
         waveLevelText.text = GameController.Instance.GetWaveLevel().ToString();
-        clearEarnedWisdomText.text = GetEarnedWisdom().ToString();
+        int earnedWisdom = GetEarnedWisdom();
+        clearEarnedWisdomText.text = earnedWisdom.ToString();
+        GameController.Instance.SetCurrentWisdom(GameController.Instance.GetCurrentWisdom() + earnedWisdom);
         base.ShowUI();
+
+        await ClearEarnWidomEffect();
     }
 
     public void OnClickNextWaveButton()
@@ -59,5 +78,22 @@ public class ClearUI : BaseUI
     {
         int currentWave = GameController.Instance.GetWaveLevel();
         return defaultEarnedWisdom + earnedWisdomCoefficient *  currentWave;
+    }
+    
+    public async UniTask ClearEarnWidomEffect()
+    {
+        for (int i = 0; i < effectCount; i++)
+        {
+            var wisdom = GameObject.Instantiate<EarnedWisdom>(clearWisdomPrefab, transform);
+            wisdom.Explosion(wisdomFromPosition.position, wisdomToPosition.position, 150.0f);
+            await UniTask.Delay(effectDelay);
+        }
+
+        ChangeWisdomText();
+    }
+
+    private void ChangeWisdomText()
+    {
+        currentWisdomText.text = GameController.Instance.GetCurrentWisdom().ToString();
     }
 }
