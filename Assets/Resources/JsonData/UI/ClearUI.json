@@ -3,5 +3,7 @@
     "waveLevelText" : "웨이브 레벨",
     "nextWaveButtonText" : "다음 웨이브",
     "earnedWisdomCoefficient" : 1000,
-    "defaultEarnedWisdom" : 500
+    "defaultEarnedWisdom" : 500,
+    "effectCount" : 5,
+    "effectDelay" : 100
 }

@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ public class DefeatUIData : BaseUIData
     public string currentWaveText;
     public string wisdomText;
     public int defeatEarnedWisdomCoefficient;
+    public int effectCount;
+    public int effectDelay;
 }
 
 public class DefeatUI : BaseUI
@@ -21,11 +24,19 @@ public class DefeatUI : BaseUI
     public TextMeshProUGUI currentWaveLevelText;
     public TextMeshProUGUI maxWaveLevelText;
     public TextMeshProUGUI defeatEarnedWisdomText;
+
+    public TextMeshProUGUI currentWisdomText;
+    
+    public LostWisdom wisdomPrefab;
+    public RectTransform wisdomTargetPosition;
     
     private DefeatUIData defeatUIData;
 
     private int skillCount;
     private int defeatEarnedWisdomCoefficient;
+    
+    private int effectCount;
+    private int effectDelay;
 
     public override void SetInfo(BaseUIData uiData)
     {
@@ -33,18 +44,27 @@ public class DefeatUI : BaseUI
         
         defeatUIData = uiData as DefeatUIData;
         
+        defeatEarnedWisdomCoefficient =  defeatUIData.defeatEarnedWisdomCoefficient;
         waveDefeatText.text = defeatUIData.waveDefeatText;
         maxWaveText.text = defeatUIData.maxWaveText;
         currentWaveText.text = defeatUIData.currentWaveText;
         wisdomText.text = defeatUIData.wisdomText;
+        effectCount =  defeatUIData.effectCount;
+        effectDelay =  defeatUIData.effectDelay;
     }
 
-    public override void ShowUI()
+    public override async void ShowUI()
     {
         currentWaveLevelText.text = GameController.Instance.GetWaveLevel().ToString();
         maxWaveLevelText.text = PlayerPrefs.GetInt("MaxWave", 0).ToString();
-        defeatEarnedWisdomText.text = GetDefeatEarnedWisdom().ToString();
+
+        int defeatEarnedWisdom = GetDefeatEarnedWisdom();
+        defeatEarnedWisdomText.text = defeatEarnedWisdom.ToString();
+        GameController.Instance.SetCurrentWisdom(defeatEarnedWisdom);
+        
         base.ShowUI();
+
+        await ShowDefeatEarnedWisdomEffect();
     }
 
     private int GetDefeatEarnedWisdom()
@@ -55,7 +75,8 @@ public class DefeatUI : BaseUI
     
     public void OnClickRestartButton()
     {
-        SceneManager.LoadScene(0);
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
         CloseUI();
     }
 
@@ -63,5 +84,22 @@ public class DefeatUI : BaseUI
     {
         Application.Quit();
         CloseUI();
+    }
+    
+    public async UniTask ShowDefeatEarnedWisdomEffect()
+    {
+        for (int i = 0; i < effectCount; i++)
+        {
+            var wisdom = GameObject.Instantiate<LostWisdom>(wisdomPrefab, transform);
+            wisdom.Explosion(wisdomTargetPosition.position);
+            await UniTask.Delay(effectDelay);
+        }
+
+        ChangeWisdomText();
+    }
+    
+    private void ChangeWisdomText()
+    {
+        currentWisdomText.text = GameController.Instance.GetCurrentWisdom().ToString();
     }
 }

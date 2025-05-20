@@ -3,5 +3,7 @@
     "maxWaveText" : "최고 웨이브",
     "currentWaveText" : "현재 웨이브",
     "wisdomText" : "수고비 ",
-    "defeatEarnedWisdomCoefficient" : 500
+    "defeatEarnedWisdomCoefficient" : 500,
+    "effectCount" : 5,
+    "effectDelay" : 100
 }

@@ -147,5 +147,7 @@ public class UIManager : SingletonBehaviour<UIManager>
                 Logger.Warning($"Enum 변환 실패: {jsonFile.name}");
             }
         }
+        
+        OpenUI<FirstStartUI>(GameController.Instance.uiDataDictionary[UIType.FirstStartUI]);
     }
 }
