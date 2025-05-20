@@ -8,20 +8,14 @@ public class MagicDefaultAttackController : MonoBehaviour
     Vector3 moveDirection;
 
     private Transform monsterTarget;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
 
     public void GetTarget(Transform targetPosition)
     {
         moveDirection = targetPosition.position - transform.position;
         moveDirection.Normalize();
         
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         MagicBallMove();
@@ -29,17 +23,7 @@ public class MagicDefaultAttackController : MonoBehaviour
 
     void MagicBallMove()
     {
-        /*
-        if (Vector3.Distance(transform.position, monsterTarget.transform.position) < 0.01f)
-        {
-            return;
-        }
-        */
-
-
         transform.Translate(moveDirection * (magicBallSpeed * Time.deltaTime));
-        
-
     }
 
 

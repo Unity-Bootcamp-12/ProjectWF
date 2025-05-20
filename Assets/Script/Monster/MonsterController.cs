@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum MonsterState
 {
@@ -25,6 +26,7 @@ public class MonsterController : MonoBehaviour
     [SerializeField]private ElementalAttribute weakAttribute;
     [SerializeField]private bool isBoss;
     [SerializeField]private int monsterAttackSpeed;
+    [SerializeField]private Slider monsterHpSlider;
     
     
     bool isMoving = false;
@@ -44,7 +46,11 @@ public class MonsterController : MonoBehaviour
     private GameObject monsterAttackHitMap;
     
     private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    private int currentMonsterHP;
+
+    private int playerAttackPower;
+    
     void Start()
     {
         GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
@@ -57,10 +63,11 @@ public class MonsterController : MonoBehaviour
         monsterAttackHitMap = transform.GetChild(0).gameObject;
         
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
-        
+        currentMonsterHP = monsterHp;
+
+        playerAttackPower = GameController.Instance.GetPlayerAttackPower();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentWaveState == MonsterWaveState.Idle)
@@ -120,17 +127,42 @@ public class MonsterController : MonoBehaviour
         fortressPositionX = status.monsterDistanceValue;
     }
 
+    private void TakeDamage()
+    {
+        currentMonsterHP -= playerAttackPower;
+        monsterHpSlider.value = (float)currentMonsterHP/monsterHp;
+
+        if (currentMonsterHP <= 0)
+        {
+            MonsterDead();
+        }
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
             monsterDamageEffect.Play();
-            
-            GameController.Instance.IncreaseKillCount();
-            Destroy(gameObject, 0.5f);
+            TakeDamage();
         }
         
         
+    }
+    
+    private void MonsterDead()
+    {
+        if (currentState == MonsterState.Die)
+        {
+            return;   
+        }
+        
+        currentState = MonsterState.Die;
+        isMoving = false;
+        DeActvieMonsterAttackHitMap();
+        GetComponent<Collider>().enabled = false;
+        monsterHpSlider.gameObject.SetActive(false);
+        GameController.Instance.IncreaseKillCount();
+        Destroy(gameObject, 0.1f);
     }
 
     public void ActvieMonsterAttackHitMap()

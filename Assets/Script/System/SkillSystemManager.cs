@@ -41,7 +41,7 @@ public class SkillSystemManager : MonoBehaviour
         }
     }
     private SkillDataList skillDataList;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         skillEquipMap = new Dictionary<string, bool>();
@@ -71,7 +71,7 @@ public class SkillSystemManager : MonoBehaviour
             for (int j = 0; j < skillTreeButtonGroup.transform.GetChild(i).childCount - 1; j++)
             {
                 Transform skillButtonTransForm = skillTreeButtonGroup.transform.GetChild(i).GetChild(j + 1).GetChild(0);
-                Logger.Info("��ư ��ü ����� Ȯ��:" + skillButtonTransForm.gameObject.name);
+                //Logger.Info("��ư ��ü ����� Ȯ��:" + skillButtonTransForm.gameObject.name);
                 string skillName = skillDataList.skillDataList[j + indexOffset].skillName;
                 Sprite skillSprite = Resources.Load<Sprite>($"IconData/{skillName}");
                 skillButtonTransForm.gameObject.GetComponent<SkillButtonController>().DownloadSkillStatus(skillDataList.skillDataList[j + indexOffset], skillSprite);
@@ -89,7 +89,7 @@ public class SkillSystemManager : MonoBehaviour
 
         else
         {
-            Logger.Info("���� �Ŵ��� �������μ��� Ȯ������");
+            //Logger.Info("���� �Ŵ��� �������μ��� Ȯ������");
             skillEquipMap.Add(skillName, true);
         }
     }
@@ -103,7 +103,7 @@ public class SkillSystemManager : MonoBehaviour
     {
         if (skillEquipMap.ContainsKey(skillName))
         {
-            Logger.Info("���� ���� Ȯ��");
+            //Logger.Info("���� ���� Ȯ��");
             if (skillEquipMap[skillName])
             {
                 return true;
@@ -155,11 +155,6 @@ public class SkillSystemManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
 
 }

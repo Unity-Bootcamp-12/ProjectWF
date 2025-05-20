@@ -20,10 +20,6 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
     [SerializeField] private int skillDamagePower;
     bool isInfoSet = false;
 
-    private void OnEnable()
-    {
-    }
-
     public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
     {
         skillDialogueStatus = new SkillSystemManager.SkillData();
@@ -81,13 +77,4 @@ public class SkillDialogueManager : MonoBehaviour, IDataSharable
 
     // 스킬, 장착 해제  
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }
