@@ -22,10 +22,10 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
         {
             m_Instance = this as T;
 
-            if (!isDestoryedOnLoad)
-            {
-                DontDestroyOnLoad(this);
-            }
+            // if (!isDestoryedOnLoad)
+            // {
+            //     DontDestroyOnLoad(this);
+            // }
         }
         else
         {
