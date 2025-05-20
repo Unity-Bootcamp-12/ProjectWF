@@ -48,6 +48,8 @@ public class MonsterController : MonoBehaviour
     private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
     
     private int currentMonsterHP;
+
+    private int playerAttackPower;
     
     void Start()
     {
@@ -62,6 +64,8 @@ public class MonsterController : MonoBehaviour
         
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
         currentMonsterHP = monsterHp;
+
+        playerAttackPower = GameController.Instance.GetPlayerAttackPower();
     }
 
     void Update()
@@ -123,7 +127,7 @@ public class MonsterController : MonoBehaviour
         fortressPositionX = status.monsterDistanceValue;
     }
 
-    private void TakeDamage(int playerAttackPower)
+    private void TakeDamage()
     {
         currentMonsterHP -= playerAttackPower;
         monsterHpSlider.value = (float)currentMonsterHP/monsterHp;
@@ -139,8 +143,7 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
             monsterDamageEffect.Play();
-            
-            TakeDamage(GameController.Instance.GetPlayerAttackPower());
+            TakeDamage();
         }
         
         
