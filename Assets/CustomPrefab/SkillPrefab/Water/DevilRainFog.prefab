@@ -47,7 +47,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127215195339075412}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -4857,8 +4857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fc4b5cc58b2434a888b0d806581bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillParticle: {fileID: 6426396481675029747}
-  collider: {fileID: 847146790894726014}
 --- !u!65 &847146790894726014
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4876,7 +4874,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 16, y: 6, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
