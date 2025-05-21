@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SkillDialogueManager : MonoBehaviour
 {
-    SkillSystemManager.SkillData skillDialogueStatus;
+    SkillData skillDialogueStatus;
     [SerializeField] private Image DialogueSkillImage;
     [SerializeField] private TextMeshProUGUI skillNameText;
     [SerializeField] private TextMeshProUGUI skillSpecText;
@@ -20,7 +20,7 @@ public class SkillDialogueManager : MonoBehaviour
     [SerializeField] private int skillDamagePower;
     bool isInfoSet = false;
 
-    public void SetDialogueSkillStatusInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    public void SetDialogueSkillStatusInfo(SkillData skillStatus, Sprite skillSprite)
     {
         skillDialogueStatus = skillStatus;
         Sprite sprite = skillSprite;

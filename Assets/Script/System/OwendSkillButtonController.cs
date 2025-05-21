@@ -1,79 +1,38 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OwendSkillButtonController:MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    [SerializeField] private string skillName;
-    [SerializeField] private int skillCoolTime;
-    [SerializeField] string skillExplainText;
-    [SerializeField] private int skillLevel;
-    [SerializeField] private int skillAttribute;
-    [SerializeField] private int skillDamagePower;
-    [SerializeField] GameObject skillDialogue;
-    public Image skillButtonImage;
-    SkillSystemManager.SkillData skillButtonStatus;
+    private Image skillButtonImage;
+    [SerializeField] private int skillIndex;
 
-    public void RemoveSKillStatus()
+    private SkillData skillData;
+    private int skillAttribute;
+    private int skillGrade;
+
+    private void Start()
     {
-        skillButtonStatus = null;
-        skillButtonImage.sprite = null;
-
+        skillButtonImage = GetComponent<Image>();
     }
 
-    public bool IsThatSKillName(string skillName)
+    private void Update()
     {
-        if (skillButtonStatus == null)
+        skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
+        if (skillData == null)
         {
-            Logger.Error("SkillButtonStatus is null");
-        }
-        if (skillButtonStatus.skillName == skillName)
-        {
-            return true;
+            skillButtonImage.sprite = null;
         }
         else
         {
-            return false;   
+            skillAttribute = skillData.skillAttribute;
+            skillGrade = skillData.skillGrade;
+            skillButtonImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillAttribute, skillGrade);
         }
-           
     }
 
-    public bool IsSkillButtonNull()
+    public void OnOwnedSkillButtonClick()
     {
-        if (skillButtonStatus == null)
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;   
-        }
-        
-    }
-    
-    
-
-    public void SetOwnedSkillButtonSkillStatusInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
-    {
-        skillButtonStatus = new SkillSystemManager.SkillData();
-        
-        skillButtonImage =GetComponent<Image>();
-        
-        skillButtonStatus = skillStatus;
-        Sprite sprite = skillSprite;
-        
-        skillButtonImage.sprite = sprite;
-        skillCoolTime = skillStatus.skillCoolTime;
-        skillExplainText = skillStatus.skillExplainText;
-        skillLevel = skillStatus.skillLevel;
-        skillAttribute = skillStatus.skillAttribute;
-        skillDamagePower = skillStatus.skillDamagePower;
-    }
-
-    public void TransferInfoOwenedSkillButtonToDialogue()
-    {
-        //SkillSystemManager.Instance.InitDialogueInfo(skillButtonStatus,skillButtonImage.sprite);
+        SkillSystemManager.Instance.ShowDialogue((EnumSkillAttribute)skillAttribute,skillGrade);
     }
 }

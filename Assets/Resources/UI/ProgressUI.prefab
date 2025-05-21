@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 2299338372409750969}
   - component: {fileID: 2952190374039461992}
   - component: {fileID: 2441966033492010771}
+  - component: {fileID: 7803830424955375078}
   m_Layer: 5
   m_Name: SkillButton3
   m_TagString: Untagged
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cc16da6188962544787f7f3b5c7f499f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -194,6 +195,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7803830424955375078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166971107994610801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b18db6e250d82f4bac958ba6e896104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIndex: 2
 --- !u!1 &665416841378486700
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +518,7 @@ GameObject:
   - component: {fileID: 4176104360943571145}
   - component: {fileID: 4458211100864760875}
   - component: {fileID: 3841688294786593629}
+  - component: {fileID: 4523202635351372194}
   m_Layer: 5
   m_Name: SkillButton3
   m_TagString: Untagged
@@ -559,7 +574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 40be8921eaa3c3d45980551b8b1bdc05, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -613,6 +628,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4523202635351372194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351602649055492580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b18db6e250d82f4bac958ba6e896104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIndex: 0
 --- !u!1 &2595200405260252804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1215,7 @@ GameObject:
   - component: {fileID: 4204486388667296282}
   - component: {fileID: 5270260425127849445}
   - component: {fileID: 8183623651706690568}
+  - component: {fileID: 5174747002541491372}
   m_Layer: 5
   m_Name: SkillButton3
   m_TagString: Untagged
@@ -1242,7 +1271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af540b54112c40642af9bf93acf0757c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1296,6 +1325,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5174747002541491372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359876854800153008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b18db6e250d82f4bac958ba6e896104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIndex: 3
 --- !u!1 &4878822492817856429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1851,7 @@ GameObject:
   - component: {fileID: 5594217185732857086}
   - component: {fileID: 1330814722360119404}
   - component: {fileID: 4354857189086723333}
+  - component: {fileID: 1225824032515698267}
   m_Layer: 5
   m_Name: SkillButton3
   m_TagString: Untagged
@@ -1864,7 +1907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b63bf0edc1771ed4ab959c64452af058, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1918,6 +1961,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1225824032515698267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841085481292590491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b18db6e250d82f4bac958ba6e896104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIndex: 1
 --- !u!1 &9098100858603006890
 GameObject:
   m_ObjectHideFlags: 0
