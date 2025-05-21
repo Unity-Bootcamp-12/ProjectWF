@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5606332041574688240}
   - component: {fileID: -51758042092479280}
   m_Layer: 5
-  m_Name: WisdomImage
+  m_Name: ClearWisdomImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

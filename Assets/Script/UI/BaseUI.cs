@@ -46,8 +46,6 @@ public class BaseUI : MonoBehaviour
     // 각 UI가 보여질 때, 없어질 때 실행할 이벤트 초기화
     public virtual void SetInfo(BaseUIData uiData)
     {
-        Logger.Info($"{GetType()}::SetInfo");
-        
         m_OnShow = uiData.OnShow;
         m_OnClose = uiData.OnClose;
     }

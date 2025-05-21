@@ -1,0 +1,11 @@
+{
+    "waveLevel" : 1,
+    "maxFortressHP" : 50,
+    "playerAttackPower" : 3,
+    "defaultWisdomPoint" : 500,
+    "defaultFortressHPLevel" : 1,
+    "defaultAttackPowerLevel" : 1,
+    "increasePlayerAttackPowerValue" : 1,
+    "increaseFortressHpValue" : 25,
+    "goalKillCountCoefficient" : 2
+}
