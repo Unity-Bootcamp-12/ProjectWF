@@ -1709,6 +1709,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 113944, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1079286953897672377}
+    - targetCorrespondingSourceObject: {fileID: 113944, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7722788250355697750}
   m_SourcePrefab: {fileID: 100100000, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
 --- !u!1 &1245286395499128849 stripped
 GameObject:
@@ -1758,6 +1761,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2421176, y: 2.0777955, z: 0.5106849}
   m_Center: {x: 0.09281883, y: 0.53889656, z: 0.21990362}
+--- !u!54 &7722788250355697750
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245286395499128849}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1245286395499340797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 456436, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
@@ -1906,14 +1936,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1245286395499340797}
     m_Modifications:
-    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1424134926555726828, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1980,6 +2002,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6026040131983064895, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

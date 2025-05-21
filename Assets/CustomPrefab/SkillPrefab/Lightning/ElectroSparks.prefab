@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2741683110102010597}
   m_Layer: 0
   m_Name: ElectroSparks
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4884,6 +4884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectroSpark (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
+      objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: startDelay.scalar
       value: 0.2
@@ -4973,6 +4977,10 @@ PrefabInstance:
     - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: m_Name
       value: ElectroSpark (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
       objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: startDelay.scalar
@@ -5064,6 +5072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectroSpark (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
+      objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: startDelay.scalar
       value: 0.5
@@ -5145,6 +5157,10 @@ PrefabInstance:
     - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: m_Name
       value: ElectroSpark
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
       objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -5231,6 +5247,10 @@ PrefabInstance:
     - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: m_Name
       value: ElectroSpark (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
       objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: startDelay.scalar
@@ -5321,6 +5341,10 @@ PrefabInstance:
     - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: m_Name
       value: ElectroSpark (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7414592913308394277, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
+      propertyPath: m_TagString
+      value: Skill
       objectReference: {fileID: 0}
     - target: {fileID: 8408423449800199513, guid: faaefde6e1d41354e90f36b957b8a9f4, type: 3}
       propertyPath: startDelay.scalar

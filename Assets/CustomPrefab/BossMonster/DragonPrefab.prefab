@@ -146,30 +146,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 61066859901280794}
     m_Modifications:
-    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5877335778333291104, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5877335778333291104, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8057315898313684686, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1424134926555726828, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -247,6 +223,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057315898313684686, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424134926555726828, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057315898313684686, guid: 1b8758acbf6136b4ebbc61285c938dec, type: 3}
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
@@ -1774,6 +1774,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2414076903363324199, guid: 5a43c66ae600ba347a02b466fa5c7c57, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2280814011085014411}
+    - targetCorrespondingSourceObject: {fileID: 2414076903363324199, guid: 5a43c66ae600ba347a02b466fa5c7c57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597701358323111750}
   m_SourcePrefab: {fileID: 100100000, guid: 5a43c66ae600ba347a02b466fa5c7c57, type: 3}
 --- !u!1 &61066859900927610 stripped
 GameObject:
@@ -1823,6 +1826,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.107557, y: 10.985873, z: 8.758856}
   m_Center: {x: 1.2078633, y: 4.992931, z: -0.33174077}
+--- !u!54 &597701358323111750
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61066859900927610}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &61066859901280794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2414076903363556679, guid: 5a43c66ae600ba347a02b466fa5c7c57, type: 3}

@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: -3999542498903725804}
   m_Layer: 0
   m_Name: SilentWaterSlash
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9817,7 +9817,7 @@ GameObject:
   - component: {fileID: 2204593927936733292}
   m_Layer: 0
   m_Name: Slash
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29434,7 +29434,7 @@ GameObject:
   - component: {fileID: 9178061614876897820}
   m_Layer: 0
   m_Name: Slash (1)
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

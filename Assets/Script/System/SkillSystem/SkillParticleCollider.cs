@@ -6,6 +6,8 @@ public class SkillParticleCollider : MonoBehaviour
 {
     private ParticleSystem skillParticle;
     private Collider collider;
+    
+    public event Action<Collider> OnParticleCollision;
 
 
     private void Awake()
@@ -41,6 +43,7 @@ public class SkillParticleCollider : MonoBehaviour
 
         if (collider != null && collider.enabled)
         {
+            OnParticleCollision?.Invoke(collider);
             collider.enabled = false;
         }
         

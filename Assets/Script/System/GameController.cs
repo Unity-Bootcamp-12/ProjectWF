@@ -32,6 +32,11 @@ public class GameController : MonoBehaviour
     
     //웨이브 이벤트 관련 
     [SerializeField]private WaveState currentWaveState = WaveState.Ready;
+    
+    public WaveState GetCurrentWaveState()
+    {
+        return currentWaveState;
+    }
     private int waveLevel;
     
     public event Action<int> OnReadyMonsterSpawn;

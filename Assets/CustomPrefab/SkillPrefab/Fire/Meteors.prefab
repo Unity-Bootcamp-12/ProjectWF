@@ -19750,7 +19750,7 @@ GameObject:
   - component: {fileID: 4753799473052242871}
   m_Layer: 0
   m_Name: Meteors
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
