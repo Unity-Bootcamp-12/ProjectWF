@@ -68,7 +68,7 @@ public class ReadyUI : BaseUI
 
     public void OnClickSkillButton()
     {
-        
+        UIManager.Instance.OpenUI<SkillSettingUI>(new SkillSettingUIData());
     }
 
     private int GetHpUpgradeExpense()
