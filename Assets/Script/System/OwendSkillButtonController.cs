@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OwendSkillButtonController:MonoBehaviour,IDataSharable  
+public class OwendSkillButtonController:MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -55,7 +55,7 @@ public class OwendSkillButtonController:MonoBehaviour,IDataSharable
     
     
 
-    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    public void SetOwnedSkillButtonSkillStatusInfo(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
     {
         skillButtonStatus = new SkillSystemManager.SkillData();
         
@@ -72,10 +72,8 @@ public class OwendSkillButtonController:MonoBehaviour,IDataSharable
         skillDamagePower = skillStatus.skillDamagePower;
     }
 
-    public void UploadSkillStatus()
+    public void TransferInfoOwenedSkillButtonToDialogue()
     {
-        Logger.Info(skillButtonStatus.skillName);
-        skillDialogue.SetActive(true);
-        skillDialogue.GetComponent<SkillDialogueManager>().DownloadSkillStatus(skillButtonStatus, skillButtonImage.sprite);
+        //SkillSystemManager.Instance.InitDialogueInfo(skillButtonStatus,skillButtonImage.sprite);
     }
 }

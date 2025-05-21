@@ -1,52 +1,54 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillButtonController : MonoBehaviour,IDataSharable
+public class SkillButtonController : MonoBehaviour
 {
-
+    [SerializeField] private int skillButtonAttributeNumber;
+    [SerializeField] private int skillGradeNumber;
     [SerializeField] private string skillName;
     [SerializeField] private int skillCoolTime;
     [SerializeField] string skillExplainText;
     [SerializeField] private int skillLevel;
     [SerializeField] private int skillAttribute;
     [SerializeField] private int skillDamagePower;
-    [SerializeField] GameObject skillDialogue;
+    
     public Image skillButtonImage;
-    SkillSystemManager.SkillData skillButtonStatus;
-
-    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite)
+    private SkillSystemManager.SkillData skillButtonStatus;
+    private void Start()
     {
-        skillButtonStatus = new SkillSystemManager.SkillData();
-
-        skillButtonImage =GetComponent<Image>();
-        skillButtonStatus = skillStatus;
-        Sprite sprite = skillSprite;
-        skillButtonImage.sprite = sprite;
-        skillCoolTime = skillStatus.skillCoolTime;
-        skillExplainText = skillStatus.skillExplainText;
-        skillLevel = skillStatus.skillLevel;
-        skillAttribute = skillStatus.skillAttribute;
-        skillDamagePower = skillStatus.skillDamagePower;
+        Logger.Info($" 스킬 변수명 :{gameObject.name},{skillButtonAttributeNumber},{skillGradeNumber}");
+         skillButtonImage =GetComponent<Image>();
+         SetSkillButtonStatus();
+         skillButtonImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillButtonAttributeNumber, skillGradeNumber); 
+    }
+    public void SetSkillButtonStatus()
+    {
+        skillButtonStatus = SkillSystemManager.Instance.GetSkillData(skillButtonAttributeNumber,skillGradeNumber);
+       
+        
+        skillCoolTime = skillButtonStatus.skillCoolTime;
+        skillExplainText = skillButtonStatus.skillExplainText;
+        skillLevel = skillButtonStatus.skillLevel;
+        skillAttribute = skillButtonStatus.skillAttribute;
+        skillDamagePower = skillButtonStatus.skillDamagePower;
     }
 
 
-    public void UploadSkillStatus()
+    public void TransferInfoSkillButtonToDialogue()
     {
-        Logger.Info(skillButtonStatus.skillName);
-        skillDialogue.SetActive(true);
-        skillDialogue.GetComponent<SkillDialogueManager>().DownloadSkillStatus(skillButtonStatus, skillButtonImage.sprite);
+        Logger.Info("버튼 눌림 확인");
+       
+    }
 
+    public void TransferIndex(int attributeIndex, int gradeIndex)
+    {
+        
+        
     }
 
 }
 
-public interface IDataSharable
-{
-    public void DownloadSkillStatus(SkillSystemManager.SkillData skillStatus, Sprite skillSprite);
-    public void UploadSkillStatus();
 
-
-}
 
 
 
