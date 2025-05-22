@@ -52,15 +52,7 @@ public class MonsterController : MonoBehaviour
     
     [SerializeField]private int currentMonsterHP;
     private int playerAttackPower;
-    
-    // 임의 스킬데미지
-    private int skillAttackPower =1;
 
-    private float skillDamageInterval = 0.3f;
-    private Coroutine skillDamageCoroutine;
-    
-    private Dictionary<SkillParticleCollider, Coroutine> activeSkillCoroutine = new();
-    
     void Start()
     {
         GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
@@ -135,15 +127,15 @@ public class MonsterController : MonoBehaviour
         fortressPositionX = status.monsterDistanceValue;
     }
 
-    private void TakeDamage(bool isSkill)
+    public void TakeDamage(bool isSkill, int amount)
     {
         if (isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
-            currentMonsterHP -= skillAttackPower;
+            currentMonsterHP -= amount;
         }
         else if(!isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
-            currentMonsterHP -= playerAttackPower;            
+            currentMonsterHP -= amount;            
         }
         monsterHpSlider.value = (float)currentMonsterHP/monsterHp;
 
@@ -158,58 +150,9 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
             monsterDamageEffect.Play();
-            TakeDamage(false);
+            TakeDamage(false, playerAttackPower);
         }
-        else if (other.gameObject.tag.Contains("Skill"))
-        {
-            SkillParticleCollider skillCollider = other.gameObject.GetComponent<SkillParticleCollider>();
-            if (skillCollider != null && !activeSkillCoroutine.ContainsKey(skillCollider))
-            {
-                Coroutine coroutine = StartCoroutine(SkillDamageIntervalCoroutine());
-                activeSkillCoroutine.Add(skillCollider, coroutine);
-                skillCollider.OnParticleCollision += skillColliderDisable;
-            }
-        }
-
     }   
-    private IEnumerator SkillDamageIntervalCoroutine()
-    {
-        while (true)
-        {
-            TakeDamage(true);
-            yield return new WaitForSeconds(skillDamageInterval);
-        }
-    }
-
-    private void skillColliderDisable(Collider collider)
-    {
-        if (collider == null)
-        {
-            return;
-        }
-
-        SkillParticleCollider skillCollider = collider.GetComponent<SkillParticleCollider>();
-        if (skillCollider != null && activeSkillCoroutine.ContainsKey(skillCollider))
-        {
-            RemoveSkillDamageCoroutine(skillCollider);
-        }
-    }
-
-    private void RemoveSkillDamageCoroutine(SkillParticleCollider skillCollider)
-    {
-        if (this == null || gameObject == null || skillCollider == null)
-        {
-            return;
-        }
-
-        if (activeSkillCoroutine.TryGetValue(skillCollider, out Coroutine coroutine))
-        {
-            StopCoroutine(coroutine);
-            activeSkillCoroutine.Remove(skillCollider);
-            skillCollider.OnParticleCollision -= skillColliderDisable;
-        }
-
-    }
 
     private void MonsterDead()
     {
