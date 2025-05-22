@@ -10,10 +10,14 @@ public class EquippedSkillButtonController : MonoBehaviour
     private int skillGrade;
 
     private Image skillImage;
-    
-    private void Start()
+
+    private void Awake()
     {
         skillImage = GetComponent<Image>();
+    }
+
+    private void OnEnable()
+    {
         if (SkillSystemManager.Instance.equipSkillData[skillIndex] != null)
         {
             skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
