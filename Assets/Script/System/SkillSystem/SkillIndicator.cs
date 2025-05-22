@@ -19,6 +19,7 @@ public class SkillIndicator : MonoBehaviour
 
     private void Update()
     {
+        #if UNITY_EDITOR
         if (!isTargeting)
         {
             return;
@@ -37,6 +38,7 @@ public class SkillIndicator : MonoBehaviour
             // 타겟패널 밖에 입력할 경우
             EndTargeting();
         }
+        #else
         // 모바일에서 보여지는 경우
         else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -48,6 +50,7 @@ public class SkillIndicator : MonoBehaviour
             }
             EndTargeting();
         }
+        #endif
     }
 
     public void StartTargeting(GameObject indicatorPrefab, Action<Vector3> onConfirm)

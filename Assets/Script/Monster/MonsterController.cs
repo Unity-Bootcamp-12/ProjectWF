@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -47,10 +50,9 @@ public class MonsterController : MonoBehaviour
     
     private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
     
-    private int currentMonsterHP;
-
+    [SerializeField]private int currentMonsterHP;
     private int playerAttackPower;
-    
+
     void Start()
     {
         GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
@@ -125,9 +127,16 @@ public class MonsterController : MonoBehaviour
         fortressPositionX = status.monsterDistanceValue;
     }
 
-    private void TakeDamage()
+    public void TakeDamage(bool isSkill, int amount)
     {
-        currentMonsterHP -= playerAttackPower;
+        if (isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
+        {
+            currentMonsterHP -= amount;
+        }
+        else if(!isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
+        {
+            currentMonsterHP -= amount;            
+        }
         monsterHpSlider.value = (float)currentMonsterHP/monsterHp;
 
         if (currentMonsterHP <= 0)
@@ -141,10 +150,10 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
             monsterDamageEffect.Play();
-            TakeDamage();
+            TakeDamage(false, playerAttackPower);
         }
-    }
-    
+    }   
+
     private void MonsterDead()
     {
         if (currentState == MonsterState.Die)
