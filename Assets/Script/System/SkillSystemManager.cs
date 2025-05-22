@@ -114,22 +114,6 @@ public class SkillSystemManager : MonoBehaviour
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
         }
-
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                int skillRangeType = skillDataSet[i,j].skillRangeType;
-                int skillRangeVertical = skillDataSet[i,j].skillRangeVertical;
-                int skillRangeHorizontal = skillDataSet[i,j].skillRangeHorizontal;
-                int skillRangeRadius = skillDataSet[i,j].skillRangeRadius;
-                int skillSideEffect = skillDataSet[i,j].skillSideEffect;
-                int continuousSkillState = skillDataSet[i,j].continuousSkillState;
-                int unlockState = skillDataSet[i,j].unlockState;
-                int equippedIndexPosition = skillDataSet[i,j].equippedIndexPosition;
-            }
-        }
-             
     }
 
     public SkillData GetSkillData(int skillAttributeNumber, int skillGradeNumber)
