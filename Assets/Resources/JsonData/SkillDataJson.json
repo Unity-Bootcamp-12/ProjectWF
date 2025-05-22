@@ -7,7 +7,16 @@
       "skillLevel": 0,
       "skillAttribute": 0,
       "skillGrade": 0,
-      "skillDamagePower": 5
+      "skillDamagePower": 5,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "FireExplosion",
@@ -16,7 +25,16 @@
       "skillLevel": 0,
       "skillAttribute": 0,
       "skillGrade": 1,
-      "skillDamagePower": 8
+      "skillDamagePower": 8,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "Meteor",
@@ -25,7 +43,16 @@
       "skillLevel": 0,
       "skillAttribute": 0,
       "skillGrade": 2,
-      "skillDamagePower": 10
+      "skillDamagePower": 10,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "ElectroSpark",
@@ -34,7 +61,16 @@
       "skillLevel": 0,
       "skillAttribute": 1,
       "skillGrade": 0,
-      "skillDamagePower": 5
+      "skillDamagePower": 5,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "LightningAura",
@@ -43,7 +79,16 @@
       "skillLevel": 0,
       "skillAttribute": 1,
       "skillGrade": 1,
-      "skillDamagePower": 0
+      "skillDamagePower": 0,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "LightningSlash",
@@ -52,7 +97,16 @@
       "skillLevel": 0,
       "skillAttribute": 1,
       "skillGrade": 2,
-      "skillDamagePower": 10
+      "skillDamagePower": 10,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "WaterPowerBall",
@@ -61,7 +115,16 @@
       "skillLevel": 0,
       "skillAttribute": 2,
       "skillGrade": 0,
-      "skillDamagePower": 5
+      "skillDamagePower": 5,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "DevilsRainFog",
@@ -70,7 +133,16 @@
       "skillLevel": 0,
       "skillAttribute": 2,
       "skillGrade": 1,
-      "skillDamagePower": 3
+      "skillDamagePower": 3,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     },
     {
       "skillName": "SilentWaterSlash",
@@ -79,7 +151,16 @@
       "skillLevel": 0,
       "skillAttribute": 2,
       "skillGrade": 2,
-      "skillDamagePower": 20
+      "skillDamagePower": 20,
+      "skillType": 1,
+      "skillRangeType": 1,
+      "skillRangeVertical": 1,
+      "skillRangeHorizontal": 1,
+      "skillRangeRadius": 1,
+      "skillSideEffect": 1,
+      "continuousSkillState": 1,
+      "unlockState": 1,
+      "equippedIndexPosition": -1
     }
   ]
 }

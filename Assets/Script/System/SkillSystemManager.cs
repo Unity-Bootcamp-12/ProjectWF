@@ -22,6 +22,16 @@ public class SkillData : BaseUIData
     public int skillAttribute;
     public int skillGrade;
     public int skillDamagePower;
+    public int skillType; 
+    public int skillRangeType;
+    public int skillRangeVertical; 
+    public int skillRangeHorizontal;
+    public int skillRangeRadius;
+    public int skillSideEffect;
+    public int continuousSkillState;
+    public int unlockState;
+    public int equippedIndexPosition;
+
 }
 
 
@@ -74,7 +84,6 @@ public class SkillSystemManager : MonoBehaviour
         //하드코딩 제거 필요
         skillAttributeCount = 3;
         skillGradeCount = 3;
-        Logger.Info($"스킬등급수 확인: {skillGradeCount}");
         skillEquipMap = new Dictionary<string, bool>();
         skillDataSet = new SkillData[skillAttributeCount, skillGradeCount];
         skillSpriteSet = new Sprite[skillAttributeCount, skillGradeCount];
@@ -85,6 +94,15 @@ public class SkillSystemManager : MonoBehaviour
         if (jsonFile != null)
         {
             skillJsonDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
+            foreach (var data in  skillJsonDataList.skillDataList)
+            {
+                Logger.Info($"추가 엔티티 디버깅 skillType:{data.skillRangeType},skillRangeVertical:{data.skillRangeVertical},skillRangeHorizontal:{data.skillRangeHorizontal}" +"\n"
+                            +$"skillRangeRadius:{data.skillRangeRadius},skillSideEffect:{data.skillSideEffect},continuousSkillState:{data.continuousSkillState}," +"\n"+
+                            $"unlockState:{data.unlockState},equippedIndexPosition:{data.equippedIndexPosition}");
+            }
+
+            
+            Logger.Info($"skillType: {skillJsonDataList.skillDataList[0].skillName}");
         }
         else
         {
@@ -105,6 +123,25 @@ public class SkillSystemManager : MonoBehaviour
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                int skillRangeType = skillDataSet[i,j].skillRangeType;
+                int skillRangeVertical = skillDataSet[i,j].skillRangeVertical;
+                int skillRangeHorizontal = skillDataSet[i,j].skillRangeHorizontal;
+                int skillRangeRadius = skillDataSet[i,j].skillRangeRadius;
+                int skillSideEffect = skillDataSet[i,j].skillSideEffect;
+                int continuousSkillState = skillDataSet[i,j].continuousSkillState;
+                int unlockState = skillDataSet[i,j].unlockState;
+                int equippedIndexPosition = skillDataSet[i,j].equippedIndexPosition;
+                Logger.Info($"스킬데이터셋 디버깅 :skillRangeType:{skillRangeType},skillRangeVertical:{skillRangeVertical}" + "\n"
+                    + $"skillRangeHorizontal:{skillRangeHorizontal},skillRangeRadius:{skillRangeRadius},skillSideEffect:{skillSideEffect},"+"\n"
+                    + $"continuousSkillState :{continuousSkillState},unlockState:{unlockState},equippedIndexPosition:{equippedIndexPosition}");
+            }
+        }
+             
     }
 
     public SkillData GetSkillData(int skillAttributeNumber, int skillGradeNumber)
