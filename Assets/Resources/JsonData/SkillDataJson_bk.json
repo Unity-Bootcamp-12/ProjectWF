@@ -1,0 +1,85 @@
+  {
+  "skillDataList": [
+    {
+      "skillName": "FireWall",
+      "skillCoolTime": 8,
+      "skillExplainText": "불꽃의 장벽을 소환해 적의 접근을 막고 피해를 입힌다.",
+      "skillLevel": 0,
+      "skillAttribute": 0,
+      "skillGrade": 0,
+      "skillDamagePower": 5
+    },
+    {
+      "skillName": "FireExplosion",
+      "skillCoolTime": 8,
+      "skillExplainText": "강렬한 화염 폭발로 주변의 적을 태운다.",
+      "skillLevel": 0,
+      "skillAttribute": 0,
+      "skillGrade": 1,
+      "skillDamagePower": 8
+    },
+    {
+      "skillName": "Meteor",
+      "skillCoolTime": 8,
+      "skillExplainText": "거대한 유성을 소환해 넓은 범위에 강력한 화염 피해를 준다.",
+      "skillLevel": 0,
+      "skillAttribute": 0,
+      "skillGrade": 2,
+      "skillDamagePower": 10
+    },
+    {
+      "skillName": "ElectroSpark",
+      "skillCoolTime": 8,
+      "skillExplainText": "전기의 불꽃을 발사해 적에게 마법 피해를 입힌다.",
+      "skillLevel": 0,
+      "skillAttribute": 1,
+      "skillGrade": 0,
+      "skillDamagePower": 5
+    },
+    {
+      "skillName": "LightningAura",
+      "skillCoolTime": 8,
+      "skillExplainText": "자신의 몸에 전기 오라를 두르고 근접하는 적에게 피해를 준다.",
+      "skillLevel": 0,
+      "skillAttribute": 1,
+      "skillGrade": 1,
+      "skillDamagePower": 0
+    },
+    {
+      "skillName": "LightningSlash",
+      "skillCoolTime": 15,
+      "skillExplainText": "번개의 힘을 실은 검격으로 적을 베며 감전 효과를 준다.",
+      "skillLevel": 0,
+      "skillAttribute": 1,
+      "skillGrade": 2,
+      "skillDamagePower": 10
+    },
+    {
+      "skillName": "WaterPowerBall",
+      "skillCoolTime": 8,
+      "skillExplainText": "고압의 물구슬을 날려 단일 대상에게 강한 마법 피해를 준다.",
+      "skillLevel": 0,
+      "skillAttribute": 2,
+      "skillGrade": 0,
+      "skillDamagePower": 5
+    },
+    {
+      "skillName": "DevilsRainFog",
+      "skillCoolTime": 8,
+      "skillExplainText": "저주받은 안개를 뿌려 적에게 지속 피해와 디버프를 부여한다.",
+      "skillLevel": 0,
+      "skillAttribute": 2,
+      "skillGrade": 1,
+      "skillDamagePower": 3
+    },
+    {
+      "skillName": "SilentWaterSlash",
+      "skillCoolTime": 20,
+      "skillExplainText": "무음의 물의 칼날로 적을 베어 침묵 상태로 만든다.",
+      "skillLevel": 0,
+      "skillAttribute": 2,
+      "skillGrade": 2,
+      "skillDamagePower": 20
+    }
+  ]
+}

@@ -22,6 +22,16 @@ public class SkillData : BaseUIData
     public int skillAttribute;
     public int skillGrade;
     public int skillDamagePower;
+    public int skillType; 
+    public int skillRangeType;
+    public int skillRangeVertical; 
+    public int skillRangeHorizontal;
+    public int skillRangeRadius;
+    public int skillSideEffect;
+    public int continuousSkillState;
+    public int unlockState;
+    public int equippedIndexPosition;
+
 }
 
 
@@ -74,7 +84,6 @@ public class SkillSystemManager : MonoBehaviour
         //하드코딩 제거 필요
         skillAttributeCount = 3;
         skillGradeCount = 3;
-        Logger.Info($"스킬등급수 확인: {skillGradeCount}");
         skillEquipMap = new Dictionary<string, bool>();
         skillDataSet = new SkillData[skillAttributeCount, skillGradeCount];
         skillSpriteSet = new Sprite[skillAttributeCount, skillGradeCount];
@@ -85,6 +94,7 @@ public class SkillSystemManager : MonoBehaviour
         if (jsonFile != null)
         {
             skillJsonDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
+            
         }
         else
         {
@@ -100,7 +110,6 @@ public class SkillSystemManager : MonoBehaviour
         for (int i = 0; i < skillJsonDataList.skillDataList.Count; i++)
         {
             SkillData skillInputData = skillJsonDataList.skillDataList[i];
-            Logger.Info($"Skill 횟수 디버깅: {skillInputData.skillAttribute},{skillInputData.skillGrade}");
             skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
