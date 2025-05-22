@@ -94,15 +94,7 @@ public class SkillSystemManager : MonoBehaviour
         if (jsonFile != null)
         {
             skillJsonDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
-            foreach (var data in  skillJsonDataList.skillDataList)
-            {
-                Logger.Info($"추가 엔티티 디버깅 skillType:{data.skillRangeType},skillRangeVertical:{data.skillRangeVertical},skillRangeHorizontal:{data.skillRangeHorizontal}" +"\n"
-                            +$"skillRangeRadius:{data.skillRangeRadius},skillSideEffect:{data.skillSideEffect},continuousSkillState:{data.continuousSkillState}," +"\n"+
-                            $"unlockState:{data.unlockState},equippedIndexPosition:{data.equippedIndexPosition}");
-            }
-
             
-            Logger.Info($"skillType: {skillJsonDataList.skillDataList[0].skillName}");
         }
         else
         {
@@ -118,7 +110,6 @@ public class SkillSystemManager : MonoBehaviour
         for (int i = 0; i < skillJsonDataList.skillDataList.Count; i++)
         {
             SkillData skillInputData = skillJsonDataList.skillDataList[i];
-            Logger.Info($"Skill 횟수 디버깅: {skillInputData.skillAttribute},{skillInputData.skillGrade}");
             skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
@@ -136,9 +127,6 @@ public class SkillSystemManager : MonoBehaviour
                 int continuousSkillState = skillDataSet[i,j].continuousSkillState;
                 int unlockState = skillDataSet[i,j].unlockState;
                 int equippedIndexPosition = skillDataSet[i,j].equippedIndexPosition;
-                Logger.Info($"스킬데이터셋 디버깅 :skillRangeType:{skillRangeType},skillRangeVertical:{skillRangeVertical}" + "\n"
-                    + $"skillRangeHorizontal:{skillRangeHorizontal},skillRangeRadius:{skillRangeRadius},skillSideEffect:{skillSideEffect},"+"\n"
-                    + $"continuousSkillState :{continuousSkillState},unlockState:{unlockState},equippedIndexPosition:{equippedIndexPosition}");
             }
         }
              
