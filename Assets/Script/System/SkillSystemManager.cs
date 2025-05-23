@@ -43,6 +43,7 @@ public class SkillSystemManager : MonoBehaviour
 
     private EnumSkillAttribute currentSkillAttribute;
     private int currentSkillGradeNumber;
+    public event Action<int,int> onSkillUnlockStateChanged;
 
 
     [System.Serializable]
@@ -140,12 +141,14 @@ public class SkillSystemManager : MonoBehaviour
 
     public bool isSkillUsingUnloked(int skillAttributeNumber, int skillGradeNumber)
     {
+        
         return isSkillUnlocked[skillAttributeNumber, skillGradeNumber];
     }
 
     public void UnlockSkill(int skillAttributeNumber, int skillGradeNumber)
     {
         isSkillUnlocked[skillAttributeNumber, skillGradeNumber] = true;
+        onSkillUnlockStateChanged?.Invoke(skillAttributeNumber, skillGradeNumber);
     }
 
 
