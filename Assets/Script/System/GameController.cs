@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     }
     private int waveLevel;
     
-    public event Action<int> OnReadyMonsterSpawn;
+    public event Action<int, int> OnReadyMonsterSpawn;
     public event Action<PlayerState> OnProgressPlayerControl;
     public event Action<MonsterWaveState> OnProgressMonsterActive;
     // 스킬 리셋
@@ -50,6 +50,8 @@ public class GameController : MonoBehaviour
     public event Action<int, int> OnChangeFortressHP;
     // Progress UI 닫기
     public event Action<bool> OnEndProgress;
+
+    public event Action<int> OnBossSpawn;
     
     // 요새 스탯관리
     [SerializeField]private int fortressHp;
@@ -115,6 +117,10 @@ public class GameController : MonoBehaviour
     public void IncreaseKillCount()
     {
         killCount++;
+        if (killCount == goalKillCount- 3 && waveLevel % 5 == 0)
+        {
+            OnBossSpawn?.Invoke(waveLevel);
+        }
         if (killCount == goalKillCount)
         {
             ChangeWaveState((int)WaveState.End);
@@ -192,7 +198,12 @@ public class GameController : MonoBehaviour
             killCount = 0;
             // 웨이브 레벨에 따라 공식 적용 필요
             goalKillCount = waveLevel * goalKillCountCoefficient;
-            OnReadyMonsterSpawn?.Invoke(goalKillCount);
+            if (waveLevel % 5 == 0)
+            {
+                goalKillCount++;
+            }
+            // 테스트
+            OnReadyMonsterSpawn?.Invoke(goalKillCount, waveLevel);
              // UI 변경
              UIManager.Instance.OpenUI<ReadyUI>(uiDataDictionary[UIType.ReadyUI]);
         }
