@@ -7,9 +7,9 @@ using static SkillSystemManager;
 
 public enum EnumSkillAttribute
 {
-    Fire =0,
-    Lightning =1,
-    Water =2,
+    Fire = 0,
+    Lightning = 1,
+    Water = 2,
 }
 
 [System.Serializable]
@@ -22,30 +22,28 @@ public class SkillData : BaseUIData
     public int skillAttribute;
     public int skillGrade;
     public int skillDamagePower;
-    public int skillType; 
+    public int skillType;
     public int skillRangeType;
-    public int skillRangeVertical; 
+    public int skillRangeVertical;
     public int skillRangeHorizontal;
     public int skillRangeRadius;
     public int skillSideEffect;
     public int continuousSkillState;
     public int unlockState;
     public int equippedIndexPosition;
-
 }
 
 
 public class SkillSystemManager : MonoBehaviour
 {
     static public SkillSystemManager Instance { get; private set; }
-    
+
     private Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
     [SerializeField] private GameObject[] ownedSkillButtonSet;
-    
+
     private EnumSkillAttribute currentSkillAttribute;
     private int currentSkillGradeNumber;
 
-    
 
     [System.Serializable]
     public class SkillDataList
@@ -56,6 +54,7 @@ public class SkillSystemManager : MonoBehaviour
     private SkillDataList skillJsonDataList;
     private SkillData[,] skillDataSet;
     private Sprite[,] skillSpriteSet;
+    private bool[,] isSkillUnlocked;
     private int skillAttributeCount;
     private int skillGradeCount;
     private int initialAttibuteNumber = 0;
@@ -63,7 +62,7 @@ public class SkillSystemManager : MonoBehaviour
     //장착 스킬
     [SerializeField] private int equipSkillCount;
     public SkillData[] equipSkillData;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -87,14 +86,13 @@ public class SkillSystemManager : MonoBehaviour
         skillEquipMap = new Dictionary<string, bool>();
         skillDataSet = new SkillData[skillAttributeCount, skillGradeCount];
         skillSpriteSet = new Sprite[skillAttributeCount, skillGradeCount];
-
+        isSkillUnlocked = new bool[skillAttributeCount, skillGradeCount];
         equipSkillData = new SkillData[ownedSkillButtonSet.Length];
-        
+
         TextAsset jsonFile = Resources.Load<TextAsset>("JsonData/SkillDataJson");
         if (jsonFile != null)
         {
             skillJsonDataList = JsonUtility.FromJson<SkillDataList>(jsonFile.text);
-            
         }
         else
         {
@@ -113,6 +111,20 @@ public class SkillSystemManager : MonoBehaviour
             skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
+            if (skillInputData.unlockState == 1)
+            {
+                isSkillUnlocked[skillInputData.skillAttribute, skillInputData.skillGrade] = true;
+            }
+
+            else if (skillInputData.unlockState == 0)
+            {
+                isSkillUnlocked[skillInputData.skillAttribute, skillInputData.skillGrade] = false;
+            }
+
+            else
+            {
+                Logger.Error($"skillData.unlockState={skillInputData.unlockState}");
+            }
         }
     }
 
@@ -125,18 +137,28 @@ public class SkillSystemManager : MonoBehaviour
     {
         return skillSpriteSet[skillAttributeNumber, skillGradeNumber];
     }
-    
+
+    public bool isSkillUsingUnloked(int skillAttributeNumber, int skillGradeNumber)
+    {
+        return isSkillUnlocked[skillAttributeNumber, skillGradeNumber];
+    }
+
+    public void UnlockSkill(int skillAttributeNumber, int skillGradeNumber)
+    {
+        isSkillUnlocked[skillAttributeNumber, skillGradeNumber] = true;
+    }
+
+
     // 다이얼로그 
     public void ShowDialogue(EnumSkillAttribute skillAttribute, int skillGradeNumber)
     {
-        
         currentSkillAttribute = skillAttribute;
-        currentSkillGradeNumber = skillGradeNumber; 
+        currentSkillGradeNumber = skillGradeNumber;
         // UI 매니저에서 다이얼로그 받아옴
         UIManager.Instance.OpenUI<SkillDialogueUI>(skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber]);
     }
-    
-    
+
+
     // 딕셔너리 관리 
     public void EquipSkill(string skillName)
     {
@@ -152,6 +174,7 @@ public class SkillSystemManager : MonoBehaviour
                 {
                     skillEquipMap.Add(skillName, true);
                 }
+
                 equipSkillData[i] = skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber];
                 return;
             }
