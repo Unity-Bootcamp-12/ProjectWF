@@ -71,11 +71,6 @@ public class MonsterSpwaner : MonoBehaviour
         {
             if (i == spawnMonsterCount - 1 && waveLevel % 5 == 0)
             {
-                // int bossIndex = waveLevel % 10 == 0 ? 3 : 4;
-                // GameObject spawnedBossMonster = Instantiate(monsterPrefabs[bossIndex],
-                //     mosterSpawnPointArray[i], Quaternion.Euler(0, -90, 0));
-                // spawnedBossMonster.GetComponent<MonsterController>()
-                //     .GetMonsterStatus(monsterDataList.monsterDataList[bossIndex]);
                 break;
             }
             else
@@ -100,9 +95,6 @@ public class MonsterSpwaner : MonoBehaviour
         {
             if (i == spawnMonsterCount - 1 && (waveLevel % 5) == 0)
             {
-                // float sectionLocationX = spawnPoint.position.x + offsetX * (i / 3) + 1;
-                // float sectionLocationZ = spawnPoint.position.z + offsetZ;
-                // mosterSpawnPointArray.Add(new Vector3(sectionLocationX, spawnPoint.position.y, sectionLocationZ));
                 break;
             }
             else
