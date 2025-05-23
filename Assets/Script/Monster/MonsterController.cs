@@ -48,7 +48,7 @@ public class MonsterController : MonoBehaviour
 
     private GameObject monsterAttackHitMap;
     
-    private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
+    [SerializeField]private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
     
     [SerializeField]private int currentMonsterHP;
     private int playerAttackPower;
@@ -66,6 +66,11 @@ public class MonsterController : MonoBehaviour
         
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
         currentMonsterHP = monsterHp;
+        if (isBoss)
+        {
+            currentWaveState = MonsterWaveState.Active;
+            playerAttackPower = GameController.Instance.GetPlayerAttackPower();
+        }
     }
 
     void Update()
@@ -74,6 +79,7 @@ public class MonsterController : MonoBehaviour
         {
             return;
         }
+        
         if (currentState == MonsterState.Move)
         {
             MonsterMove();
@@ -112,7 +118,7 @@ public class MonsterController : MonoBehaviour
             return;
         }
 
-        transform.position += new Vector3(-1, 0, 0) * monsterSpeed * Time.deltaTime;;
+        transform.position += new Vector3(-1, 0, 0) * monsterSpeed * Time.deltaTime;
     }
 
     public void GetMonsterStatus(MonsterSpwaner.MonsterData status)
