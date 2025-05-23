@@ -584,6 +584,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWaveState: 0
+  fortressHp: 0
+  maxFortressHP: 0
+  playerAttackPower: 0
+  currentWisdomPoint: 0
 --- !u!1 &193257773
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,13 +632,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91be1b87f9ce6384583a82cf3109f6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillTreeButtonGroup: {fileID: 369829942}
-  testSkillButton: {fileID: 1701920415}
   ownedSkillButtonSet:
   - {fileID: 772622558}
   - {fileID: 2016446795}
   - {fileID: 1819828326}
   - {fileID: 565313272}
+  equipSkillCount: 0
+  equipSkillData: []
 --- !u!1 &196668567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,13 +2682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &504847674
 GameObject:
@@ -3280,14 +3279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
-  skillButtonImage: {fileID: 0}
+  skillIndex: 0
 --- !u!1 &630035207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,13 +3562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &661558642
 GameObject:
@@ -4131,14 +4118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
-  skillButtonImage: {fileID: 0}
+  skillIndex: 0
 --- !u!1 &789425679
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,7 +5648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 301.885, y: -160.422}
+  m_AnchoredPosition: {x: 301.885, y: -160.42195}
   m_SizeDelta: {x: 603.77, y: 320.8439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122192099
@@ -5982,13 +5962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!114 &1178105540
 MonoBehaviour:
@@ -6649,7 +6624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.53052, y: -50}
+  m_AnchoredPosition: {x: 86.5305, y: -50}
   m_SizeDelta: {x: 173.061, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1313600377
@@ -7028,13 +7003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &1376511621
 GameObject:
@@ -7191,7 +7161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 291.68307, y: -537.2366}
+  m_AnchoredPosition: {x: 291.6831, y: -537.2366}
   m_SizeDelta: {x: 583.3662, y: 432.7853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407240718
@@ -7666,13 +7636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &1540247774
 GameObject:
@@ -8240,13 +8205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &1701920415
 GameObject:
@@ -8394,13 +8354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &1706209694
 GameObject:
@@ -8880,14 +8835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
-  skillButtonImage: {fileID: 0}
+  skillIndex: 0
 --- !u!1 &1877975565
 GameObject:
   m_ObjectHideFlags: 0
@@ -9412,13 +9360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &2013694376
 GameObject:
@@ -9619,14 +9562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dddb8f1653b1234ea968f771ab06385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
-  skillButtonImage: {fileID: 0}
+  skillIndex: 0
 --- !u!1 &2082149193
 GameObject:
   m_ObjectHideFlags: 0
@@ -9839,13 +9775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d78ed55d7375284bb79bb9909afcbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
-  skillDialogue: {fileID: 1298413737}
+  skillButtonAttributeNumber: 0
+  skillGradeNumber: 0
   skillButtonImage: {fileID: 0}
 --- !u!1 &2135346960
 GameObject:

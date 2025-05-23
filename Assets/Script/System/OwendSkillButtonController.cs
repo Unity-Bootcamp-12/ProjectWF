@@ -33,6 +33,10 @@ public class OwendSkillButtonController:MonoBehaviour
 
     public void OnOwnedSkillButtonClick()
     {
+        if (skillData == null)
+        {
+            return;
+        }
         SkillSystemManager.Instance.ShowDialogue((EnumSkillAttribute)skillAttribute,skillGrade);
     }
 }
