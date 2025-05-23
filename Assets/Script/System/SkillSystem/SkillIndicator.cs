@@ -1,17 +1,67 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+
+public enum IndicatorType
+{
+    None,
+    Rectangle,
+    Circle
+    
+}
 
 public class SkillIndicator : MonoBehaviour
 {
-    [SerializeField] private GameObject targetingPanel;
-
-    private GameObject currentIndicator;
+    [SerializeField]private GameObject targetingPanel;
+    [SerializeField]private Image skillIndicatorPrefab;
+    private IndicatorType indicatorType;
+    private Image currentIndicator;
     private Action<Vector3> onTargetConfirmed;
     private bool isTargeting = false;
     
     private Camera mainCamera;
     private float inGameGroundHeight = 1f;
     
+    private SkillData skillData;
+    private int skillIndex;
+    private int skillRangeVertical; 
+    private int skillRangeHorizontal; 
+    private int skillRangeRadius;
+    private int skillAttribute;
+    
+    public void SetSkillIndex(int index)
+    {
+        skillIndex = index;
+        
+        if (SkillSystemManager.Instance.equipSkillData[skillIndex] != null)
+        {
+            skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
+            skillRangeVertical = skillData.skillRangeVertical;
+            skillRangeHorizontal = skillData.skillRangeHorizontal;
+            skillRangeRadius = skillData.skillRangeRadius;
+            skillAttribute = skillData.skillAttribute;
+            Logger.Info($"{skillData}");
+            
+            if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius > 0)
+            {
+                indicatorType = IndicatorType.Circle;
+            }
+            else if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius == 0)
+            {
+                indicatorType = IndicatorType.Rectangle;
+            }
+            else if (skillRangeVertical == 0 && skillRangeHorizontal == 0 && skillRangeRadius == 0)
+            {
+                indicatorType = IndicatorType.None;
+            }
+            
+        }
+        else
+        {
+            skillData = null;
+        }
+    }
+
     private void Start()
     {
         targetingPanel.SetActive(false);
@@ -53,7 +103,55 @@ public class SkillIndicator : MonoBehaviour
         #endif
     }
 
-    public void StartTargeting(GameObject indicatorPrefab, Action<Vector3> onConfirm)
+    private Image SkillIndicatorPrefab(Image skillIndicatorPrefab, int skillRangeVertical, int skillRangeHorizontal, int skillRangeRadius, int skillAttribute)
+    {
+        if (skillIndicatorPrefab == null)
+        {
+            return null;
+        }
+
+        RectTransform skillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
+        switch (indicatorType)
+        {
+            case IndicatorType.Rectangle:
+                skillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeVertical*50, skillRangeHorizontal*50);
+                break;
+            case IndicatorType.Circle:
+                float diameter = skillRangeRadius * 2f;
+                skillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*20, diameter*20);
+                break;
+            case IndicatorType.None:
+                skillIndicatorPrefab.gameObject.SetActive(false);
+                break;
+            default:
+                skillIndicatorPrefab.gameObject.SetActive(false);
+                break;
+        }
+        
+        Color indicatorColor = Color.white;
+        switch (skillAttribute)
+        {
+            case 0:
+                indicatorColor = new Color(1f, 0f, 0f, 0.2f);
+                break;
+            case 1:
+                indicatorColor = new Color(0f, 1f, 1f, 0.2f);
+                break;
+            case 2:
+                indicatorColor = new Color(0f, 0f, 1f, 0.2f);
+                break;
+            default:
+                indicatorColor = Color.white;
+                break;
+        }
+
+        skillIndicatorPrefab.color = indicatorColor;
+
+        return skillIndicatorPrefab;
+        
+    }
+
+    public void StartTargeting(Action<Vector3> onConfirm)
     {
         if (isTargeting)
         {
@@ -67,8 +165,11 @@ public class SkillIndicator : MonoBehaviour
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         
         onTargetConfirmed = onConfirm;
-        currentIndicator = Instantiate(indicatorPrefab, targetingPanel.transform);
-
+        var prefab = SkillIndicatorPrefab(skillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
+        if (prefab != null)
+        {
+            currentIndicator = Instantiate(prefab, targetingPanel.transform);
+        }
         UpdateIndicatorPositionToMouse();
     }
     
@@ -93,9 +194,9 @@ public class SkillIndicator : MonoBehaviour
         indicatorRect.localPosition = clampedPosition;
     }
     
-    private Vector2 ClampToPanel(RectTransform panel, RectTransform indicator, Vector2 localPos)
+    private Vector2 ClampToPanel(RectTransform image, RectTransform indicator, Vector2 localPos)
     {
-        Vector2 panelSize = panel.rect.size;
+        Vector2 panelSize = image.rect.size;
         Vector2 indicatorSize = indicator.rect.size;
 
         float halfPanelWidth = panelSize.x / 2f;
