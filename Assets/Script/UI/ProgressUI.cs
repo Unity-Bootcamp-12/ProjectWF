@@ -13,7 +13,7 @@ public class ProgressUI : BaseUI
     public TextMeshProUGUI waveText;
     public Slider fortressHPSlider;
     private ProgressUIData progressUIData;
-
+    
     private void Start()
     {
         GameController.Instance.OnChangeFortressHP += ChangeHPSlider;
@@ -38,5 +38,11 @@ public class ProgressUI : BaseUI
     private void ChangeHPSlider(int currentFortressHP, int maxFortressHP)
     {
         fortressHPSlider.value = (float)currentFortressHP /maxFortressHP;
+    }
+
+    public void OnClickPauseButton()
+    {
+        GameController.Instance.PauseGame();
+        UIManager.Instance.OpenUI<PauseUI>(GameController.Instance.uiDataDictionary[UIType.PauseUI]);
     }
 }
