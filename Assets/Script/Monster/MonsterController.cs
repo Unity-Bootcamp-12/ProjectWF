@@ -22,14 +22,14 @@ public enum MonsterWaveState
 
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField]private int monsterHp = 5;
-    [SerializeField]private int monsterAttackPower = 2;
-    [SerializeField]private float monsterSpeed = 1.0f;
-    [SerializeField]private ElementalAttribute strengthAttribute;
-    [SerializeField]private ElementalAttribute weakAttribute;
-    [SerializeField]private bool isBoss;
-    [SerializeField]private int monsterAttackSpeed;
-    [SerializeField]private Slider monsterHpSlider;
+    private int monsterHp;
+    private int monsterAttackPower;
+    private float monsterSpeed = 1.0f;
+    private ElementalAttribute strengthAttribute;
+    private ElementalAttribute weakAttribute;
+    private bool isBoss;
+    private int monsterAttackSpeed;
+    [SerializeField] private Slider monsterHpSlider;
     
     
     bool isMoving = false;
@@ -43,14 +43,13 @@ public class MonsterController : MonoBehaviour
     
     [SerializeField] private float fortressPositionX;
     
-    [Header("AttackRelated")]
     private bool isMonsterAttacking = false;
 
     private GameObject monsterAttackHitMap;
     
-    [SerializeField]private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
+    private MonsterWaveState currentWaveState = MonsterWaveState.Idle;
     
-    [SerializeField]private int currentMonsterHP;
+    private int currentMonsterHP;
     private int playerAttackPower;
 
     void Start()
@@ -66,6 +65,7 @@ public class MonsterController : MonoBehaviour
         
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
         currentMonsterHP = monsterHp;
+        
         if (isBoss)
         {
             currentWaveState = MonsterWaveState.Active;
@@ -123,8 +123,9 @@ public class MonsterController : MonoBehaviour
 
     public void GetMonsterStatus(MonsterSpwaner.MonsterData status)
     {
-        monsterHp = status.monsterHP;
-        monsterAttackPower = status.monsterAttackPower;
+        int waveLevel = GameController.Instance.GetWaveLevel();
+        monsterHp = status.monsterHP + waveLevel;
+        monsterAttackPower = status.monsterAttackPower + waveLevel;
         monsterSpeed = status.monsterSpeed;
         strengthAttribute = (ElementalAttribute)status.strengthElementalAttribute;
         weakAttribute =  (ElementalAttribute)status.weakElementalAttribute;
