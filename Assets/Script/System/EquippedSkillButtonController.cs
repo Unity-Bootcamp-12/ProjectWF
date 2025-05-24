@@ -65,7 +65,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private void OnTargetConfirmed(Vector3 targetPos)
     {
         Vector3 spawnPosition = skillIndicator.GetCurrentTargetPosition();
-        skillEffectPrefab = Resources.Load<GameObject>(skillData.skillPrefabPath);
+        skillEffectPrefab = Resources.Load<GameObject>(skillPrefabPath);
         GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
         SkillController controller = skillPrefab.GetComponent<SkillController>();
         if (controller != null)
