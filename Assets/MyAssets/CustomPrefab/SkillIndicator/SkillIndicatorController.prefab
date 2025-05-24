@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9028946957882770787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7040621935428814672}
+  - component: {fileID: 535606989845588216}
+  m_Layer: 0
+  m_Name: SkillIndicatorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7040621935428814672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028946957882770787}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -246.82556, y: -18.368591, z: 5.198539}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535606989845588216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028946957882770787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78d66c7449efdf4c9d6c8383ef4aa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetingPanel: {fileID: 1316603760369334072, guid: 4b3f26b3daabfad49b93db299674cc44, type: 3}
+  rectangleSkillIndicatorPrefab: {fileID: 2103197868761745199, guid: 5f955f277b26e3146b247cd132a33deb, type: 3}
+  circleSkillIndicatorPrefab: {fileID: 2103197868761745199, guid: b89667c2fb225074ebc4ee322735037e, type: 3}
+  playerTransform: {fileID: 2832143512311734151, guid: d93277a4c22ebd641a895e5fb4f3b8eb, type: 3}

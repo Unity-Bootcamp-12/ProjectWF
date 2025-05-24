@@ -10,13 +10,15 @@
       "skillDamagePower": 5,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 100,
+      "skillRangeHorizontal": 500,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Fire/FireWall",
+      "skillTargetType" : 2
     },
     {
       "skillName": "FireExplosion",
@@ -28,13 +30,15 @@
       "skillDamagePower": 8,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 600,
+      "skillRangeHorizontal": 100,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Fire/FireExplosion",
+      "skillTargetType" : 1
     },
     {
       "skillName": "Meteor",
@@ -43,16 +47,18 @@
       "skillLevel": 0,
       "skillAttribute": 0,
       "skillGrade": 2,
-      "skillDamagePower": 10,
+      "skillDamagePower": 5,
       "skillType": 1,
       "skillRangeType": 1,
       "skillRangeVertical": 1,
       "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeRadius": 6,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Fire/Meteor",
+      "skillTargetType" : 2
     },
     {
       "skillName": "ElectroSpark",
@@ -64,13 +70,15 @@
       "skillDamagePower": 5,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 600,
+      "skillRangeHorizontal": 100,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Lightning/ElectroSpark",
+      "skillTargetType" : 1
     },
     {
       "skillName": "LightningAura",
@@ -82,13 +90,15 @@
       "skillDamagePower": 0,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 0,
+      "skillRangeHorizontal": 0,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Lightning/LightningAura",
+      "skillTargetType" : 0
     },
     {
       "skillName": "LightningSlash",
@@ -102,16 +112,18 @@
       "skillRangeType": 1,
       "skillRangeVertical": 1,
       "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeRadius": 5,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Lightning/LightningSlash",
+      "skillTargetType" : 2
     },
     {
-      "skillName": "WaterPowerBall",
+      "skillName": "HydroFrozen",
       "skillCoolTime": 8,
-      "skillExplainText": "고압의 물구슬을 날려 단일 대상에게 강한 마법 피해를 준다.",
+      "skillExplainText": "얼음 마법진을 소환해 마법진안에 있는 적에게 강한 마법 피해를 준다.",
       "skillLevel": 0,
       "skillAttribute": 2,
       "skillGrade": 0,
@@ -120,11 +132,13 @@
       "skillRangeType": 1,
       "skillRangeVertical": 1,
       "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeRadius": 6,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Water/HydroFrozen",
+      "skillTargetType" : 2
     },
     {
       "skillName": "DevilsRainFog",
@@ -136,13 +150,15 @@
       "skillDamagePower": 3,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 600,
+      "skillRangeHorizontal": 500,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Water/DevilsRainFog",
+      "skillTargetType" : 1
     },
     {
       "skillName": "SilentWaterSlash",
@@ -154,13 +170,15 @@
       "skillDamagePower": 20,
       "skillType": 1,
       "skillRangeType": 1,
-      "skillRangeVertical": 1,
-      "skillRangeHorizontal": 1,
-      "skillRangeRadius": 1,
+      "skillRangeVertical": 100,
+      "skillRangeHorizontal": 500,
+      "skillRangeRadius": 0,
       "skillSideEffect": 1,
       "continuousSkillState": 1,
       "unlockState": 0,
-      "equippedIndexPosition": -1
+      "equippedIndexPosition": -1,
+      "skillPrefabPath" : "SkillPrefab/Water/SilentWaterSlash",
+      "skillTargetType" : 2
     }
   ]
 }

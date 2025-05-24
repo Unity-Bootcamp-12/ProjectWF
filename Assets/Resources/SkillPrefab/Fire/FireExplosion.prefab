@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 5485906910147296955}
   - component: {fileID: 764750723791573327}
   - component: {fileID: 6815102377269973531}
-  - component: {fileID: 8077946208298484369}
+  - component: {fileID: 3899017434785749254}
   m_Layer: 0
   m_Name: FireExplosion
   m_TagString: Skill
@@ -4875,15 +4875,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2445958372189895872}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 843012903330662767}
   - {fileID: 8930031884059543372}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &6792447778760870704
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9860,7 +9860,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 2.1406937
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6815102377269973531
 MonoBehaviour:
@@ -9876,29 +9876,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillAttackPower: 1
   skillDamageInterval: 0.3
-  isContinous: 0
---- !u!95 &8077946208298484369
-Animator:
-  serializedVersion: 7
+  isContinous: 1
+--- !u!114 &3899017434785749254
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2445958372189895872}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: efdc0baacae92024f8612be7d4cfe659, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddbe489e61570e2458302972af142eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
 --- !u!1 &7064722418359090725
 GameObject:
   m_ObjectHideFlags: 0
