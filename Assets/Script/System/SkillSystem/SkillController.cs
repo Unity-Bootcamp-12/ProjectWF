@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class SkillController : MonoBehaviour
 {
-    [SerializeField]private int skillAttackPower =1;
+    private int skillDamagePower;
+    
+    public void SetSkillDamagePower(int damage)
+    {
+        skillDamagePower = damage;
+    }
+    
+    
     [SerializeField]private float skillDamageInterval = 0.3f;
     private Coroutine skillDamageCoroutine;
     private ParticleSystem skillParticle;
@@ -55,7 +62,7 @@ public class SkillController : MonoBehaviour
             }
             else
             {
-                monster.TakeDamage(true, skillAttackPower);
+                monster.TakeDamage(true, skillDamagePower);
             }
         }
     }
@@ -75,7 +82,7 @@ public class SkillController : MonoBehaviour
     {
         while (true)
         {
-            monster.TakeDamage(true, skillAttackPower);
+            monster.TakeDamage(true, skillDamagePower);
             yield return new WaitForSeconds(skillDamageInterval);
         }
     }

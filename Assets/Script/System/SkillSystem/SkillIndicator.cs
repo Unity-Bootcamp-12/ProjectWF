@@ -13,14 +13,16 @@ public enum IndicatorType
 public class SkillIndicator : MonoBehaviour
 {
     [SerializeField]private GameObject targetingPanel;
-    [SerializeField]private Image skillIndicatorPrefab;
+    [SerializeField]private Image rectangleSkillIndicatorPrefab;
+    [SerializeField]private Image circleSkillIndicatorPrefab;
+    
     private IndicatorType indicatorType;
     private Image currentIndicator;
     private Action<Vector3> onTargetConfirmed;
     private bool isTargeting = false;
     
     private Camera mainCamera;
-    private float inGameGroundHeight = 1f;
+    private float inGameGroundHeight = 1.5f;
     
     private SkillData skillData;
     private int skillIndex;
@@ -28,6 +30,9 @@ public class SkillIndicator : MonoBehaviour
     private int skillRangeHorizontal; 
     private int skillRangeRadius;
     private int skillAttribute;
+    
+    private EnumSkillTargetType skillTargetType;
+    [SerializeField] private Transform playerTransform;
     
     public void SetSkillIndex(int index)
     {
@@ -40,27 +45,31 @@ public class SkillIndicator : MonoBehaviour
             skillRangeHorizontal = skillData.skillRangeHorizontal;
             skillRangeRadius = skillData.skillRangeRadius;
             skillAttribute = skillData.skillAttribute;
-            Logger.Info($"{skillData}");
-            
-            if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius > 0)
-            {
-                indicatorType = IndicatorType.Circle;
-            }
-            else if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius == 0)
-            {
-                indicatorType = IndicatorType.Rectangle;
-            }
-            else if (skillRangeVertical == 0 && skillRangeHorizontal == 0 && skillRangeRadius == 0)
-            {
-                indicatorType = IndicatorType.None;
-            }
-            
+            skillTargetType = (EnumSkillTargetType)skillData.skillTargetType;
+            SwitchBySkillType();
         }
         else
         {
             skillData = null;
         }
     }
+
+    private void SwitchBySkillType()
+    {
+        if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius > 0)
+        {
+            indicatorType = IndicatorType.Circle;
+        }
+        else if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius == 0)
+        {
+            indicatorType = IndicatorType.Rectangle;
+        }
+        else if (skillRangeVertical == 0 && skillRangeHorizontal == 0 && skillRangeRadius == 0)
+        {
+            indicatorType = IndicatorType.None;
+        }
+    }
+    
 
     private void Start()
     {
@@ -110,15 +119,15 @@ public class SkillIndicator : MonoBehaviour
             return null;
         }
 
-        RectTransform skillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
+        RectTransform rectangleSkillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
         switch (indicatorType)
         {
             case IndicatorType.Rectangle:
-                skillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeVertical*50, skillRangeHorizontal*50);
+                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeHorizontal, skillRangeVertical);
                 break;
             case IndicatorType.Circle:
                 float diameter = skillRangeRadius * 2f;
-                skillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*20, diameter*20);
+                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*20, diameter*20);
                 break;
             case IndicatorType.None:
                 skillIndicatorPrefab.gameObject.SetActive(false);
@@ -165,30 +174,53 @@ public class SkillIndicator : MonoBehaviour
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         
         onTargetConfirmed = onConfirm;
-        var prefab = SkillIndicatorPrefab(skillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
-        if (prefab != null)
-        {
-            currentIndicator = Instantiate(prefab, targetingPanel.transform);
-        }
-        UpdateIndicatorPositionToMouse();
+
+        SwithIndicatorType();
+        
     }
-    
+
+    private void SwithIndicatorType()
+    {
+        if (indicatorType == IndicatorType.Circle)
+        {
+            var prefab = SkillIndicatorPrefab(circleSkillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
+            if (prefab != null)
+            {
+                currentIndicator = Instantiate(prefab, targetingPanel.transform);
+            }
+        }
+        else if (indicatorType == IndicatorType.Rectangle)
+        {
+            var prefab = SkillIndicatorPrefab(rectangleSkillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
+            if (prefab != null)
+            {
+                currentIndicator = Instantiate(prefab, targetingPanel.transform);
+            }
+        }
+        
+    }
+
     private void UpdateIndicatorPositionToMouse()
     {
+        if (indicatorType == IndicatorType.None)
+        {
+            return;
+        }
+
         Vector2 localPoint;
-        RectTransform panelRect = targetingPanel.GetComponent<RectTransform>();
+        RectTransform imageRect = targetingPanel.GetComponent<RectTransform>();
         RectTransform indicatorRect = currentIndicator.GetComponent<RectTransform>();
 
         // 마우스 위치를 패널 기준 로컬 좌표로 변환
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            panelRect,
+            imageRect,
             Input.mousePosition,
             null,
             out localPoint
         );
 
         // 인디케이터 크기 맞춤으로 제작
-        Vector2 clampedPosition = ClampToPanel(panelRect, indicatorRect, localPoint);
+        Vector2 clampedPosition = ClampToPanel(imageRect, indicatorRect, localPoint);
 
         // 위치 적용
         indicatorRect.localPosition = clampedPosition;
@@ -242,7 +274,36 @@ public class SkillIndicator : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
-    
+
+    public Vector3 GetCurrentTargetPosition()
+    {
+        return SwithSkillTargetPosition();
+    } 
+
+    private Vector3 SwithSkillTargetPosition()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+
+        switch (skillTargetType)
+        {
+            case EnumSkillTargetType.Buff:
+                spawnPosition = playerTransform.position;
+                break;
+            case EnumSkillTargetType.InFrontOfPlayer:
+                float distance = 2f; 
+                Vector3 forwardPos = playerTransform.position + playerTransform.forward * distance;
+                Vector3 targetMousePos = GetTargetWorldPositionInEditor();
+                spawnPosition = new Vector3(forwardPos.x, forwardPos.y, targetMousePos.z);
+                break;
+            case EnumSkillTargetType.ByMousePoint:
+                spawnPosition = GetTargetWorldPositionInEditor();
+                break;
+        }
+
+        return spawnPosition;
+
+    }
+
     // 에디터에서 사용
     private Vector3 GetTargetWorldPositionInEditor()
     {
