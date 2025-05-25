@@ -14,9 +14,16 @@ public class OwendSkillButtonController:MonoBehaviour
     private void Start()
     {
         skillButtonImage = GetComponent<Image>();
+        ShowOwenedSkillButtonState();
     }
 
     private void Update()
+    {
+        
+        ShowOwenedSkillButtonState();
+    }
+
+    public void ShowOwenedSkillButtonState()
     {
         skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
         if (skillData == null)
@@ -30,7 +37,6 @@ public class OwendSkillButtonController:MonoBehaviour
             skillButtonImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillAttribute, skillGrade);
         }
     }
-
     public void OnOwnedSkillButtonClick()
     {
         if (skillData == null)

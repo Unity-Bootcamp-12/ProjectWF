@@ -52,7 +52,7 @@ public class SkillSystemManager : MonoBehaviour
 
     private EnumSkillAttribute currentSkillAttribute;
     private int currentSkillGradeNumber;
-    public event Action<int,int> onSkillUnlockStateChanged;
+    public event Action<int, int> onSkillUnlockStateChanged;
 
 
     [System.Serializable]
@@ -121,20 +121,8 @@ public class SkillSystemManager : MonoBehaviour
             skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
-            if (skillInputData.unlockState == 1)
-            {
-                isSkillUnlocked[skillInputData.skillAttribute, skillInputData.skillGrade] = true;
-            }
-
-            else if (skillInputData.unlockState == 0)
-            {
-                isSkillUnlocked[skillInputData.skillAttribute, skillInputData.skillGrade] = false;
-            }
-
-            else
-            {
-                Logger.Error($"skillData.unlockState={skillInputData.unlockState}");
-            }
+            InitUnLockSkillSetting(skillInputData);
+            InitEquipSkillSetting(skillInputData);
         }
     }
 
@@ -148,15 +136,42 @@ public class SkillSystemManager : MonoBehaviour
         return skillSpriteSet[skillAttributeNumber, skillGradeNumber];
     }
 
+    public void InitUnLockSkillSetting(SkillData skillData)
+    {
+        if (skillData.unlockState == 1)
+        {
+            isSkillUnlocked[skillData.skillAttribute, skillData.skillGrade] = true;
+        }
+
+        else if (skillData.unlockState == 0)
+        {
+            isSkillUnlocked[skillData.skillAttribute, skillData.skillGrade] = false;
+        }
+
+        else
+        {
+            Logger.Error($"skillData.unlockState={skillData.unlockState}");
+        }
+    }
+
+    public void InitEquipSkillSetting(SkillData skillData)
+    {
+        if (skillData.equippedIndexPosition != -1)
+        {
+            equipSkillData[skillData.equippedIndexPosition] = skillData;
+            skillEquipMap.Add(skillData.skillName, true);
+        }
+    }
+
     public bool isSkillUsingUnloked(int skillAttributeNumber, int skillGradeNumber)
     {
-        
         return isSkillUnlocked[skillAttributeNumber, skillGradeNumber];
     }
 
     public void UnlockSkill(int skillAttributeNumber, int skillGradeNumber)
     {
         isSkillUnlocked[skillAttributeNumber, skillGradeNumber] = true;
+        skillDataSet[skillAttributeNumber, skillGradeNumber].unlockState = 1;
         onSkillUnlockStateChanged?.Invoke(skillAttributeNumber, skillGradeNumber);
     }
 
@@ -193,6 +208,7 @@ public class SkillSystemManager : MonoBehaviour
                 }
 
                 equipSkillData[i] = skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber];
+                skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = i;
                 return;
             }
         }
@@ -206,6 +222,9 @@ public class SkillSystemManager : MonoBehaviour
             if (equipSkillData[i] != null && equipSkillData[i].skillName == skillName)
             {
                 equipSkillData[i] = null;
+                skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = -1;
+                
+                
                 return;
             }
         }
@@ -230,5 +249,39 @@ public class SkillSystemManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private SkillDataList ConvertSkillDataSetToList()
+    {
+        SkillDataList dataList = new SkillDataList();
+        dataList.skillDataList = new List<SkillData>();
+
+        for (int i = 0; i < skillAttributeCount; i++)
+        {
+            for (int j = 0; j < skillGradeCount; j++)
+            {
+                if (skillDataSet[i, j] != null)
+                {
+                    dataList.skillDataList.Add(skillDataSet[i, j]);
+                }
+            }
+        }
+
+        return dataList;
+    }
+
+    public void SaveSkillDataToJson()
+    {
+        SkillDataList dataList = ConvertSkillDataSetToList();
+        string json = JsonUtility.ToJson(dataList, true);
+
+#if UNITY_EDITOR
+        string path = Application.dataPath + "/Resources/JsonData/SkillDataJson.json";
+        System.IO.File.WriteAllText(path, json);
+        UnityEditor.AssetDatabase.Refresh(); // 에디터 상 파일 반영
+        Logger.Info("Skill data saved to JSON at: " + path);
+#else
+    Logger.Warning("Saving JSON is only supported in the Unity Editor.");
+#endif
     }
 }
