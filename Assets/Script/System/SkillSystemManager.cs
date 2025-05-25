@@ -12,6 +12,13 @@ public enum EnumSkillAttribute
     Water = 2,
 }
 
+public enum EnumSkillTargetType
+{
+    Buff = 0,
+    InFrontOfPlayer = 1,
+    ByMousePoint = 2
+}
+
 [System.Serializable]
 public class SkillData : BaseUIData
 {
@@ -31,6 +38,8 @@ public class SkillData : BaseUIData
     public int continuousSkillState;
     public int unlockState;
     public int equippedIndexPosition;
+    public string skillPrefabPath;
+    public int skillTargetType;
 }
 
 
@@ -166,6 +175,11 @@ public class SkillSystemManager : MonoBehaviour
         onSkillUnlockStateChanged?.Invoke(skillAttributeNumber, skillGradeNumber);
     }
 
+    public EnumSkillTargetType GetSkillTargetType(SkillData data)
+    {
+        return (EnumSkillTargetType)data.skillTargetType;
+    }
+    
 
     // 다이얼로그 
     public void ShowDialogue(EnumSkillAttribute skillAttribute, int skillGradeNumber)

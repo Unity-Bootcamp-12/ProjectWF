@@ -10,7 +10,7 @@ public enum UIType
     ProgressUI,
     ClearUI,
     DefeatUI,
-    
+    PauseUI,
 }
 
 public class UIManager : SingletonBehaviour<UIManager>
@@ -133,6 +133,9 @@ public class UIManager : SingletonBehaviour<UIManager>
                             break;
                         case UIType.ProgressUI:
                             data = JsonUtility.FromJson<ProgressUIData>(jsonFile.text);
+                            break;
+                        case UIType.PauseUI:
+                            data = JsonUtility.FromJson<PauseUIData>(jsonFile.text);
                             break;
                     }
                     GameController.Instance.uiDataDictionary[type] = data;

@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class EquippedSkillButtonController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private int skillAttribute;
     private int skillGrade;
     private int skillCoolTime;
+    private string skillPrefabPath;
     private bool isOnCooldown = false;
     
     [Header("UI 요소")]
@@ -19,6 +21,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     [SerializeField] private Image backGroundImage;
     
     [SerializeField] private SkillIndicator skillIndicator;
+    private GameObject skillEffectPrefab;
     private bool isSkillLocked = false;
 
     private string skillname;
@@ -36,6 +39,8 @@ public class EquippedSkillButtonController : MonoBehaviour
             skillname = skillData.skillName;
             skillImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillAttribute, skillGrade);
             backGroundImage.sprite = skillImage.sprite;
+            skillPrefabPath = skillData.skillPrefabPath;
+
         }
         else
         {
@@ -43,23 +48,30 @@ public class EquippedSkillButtonController : MonoBehaviour
             skillImage.sprite = null;
         }
     }
-    
+
     public void OnSkillButtonClick()
     {
         if (isOnCooldown || isSkillLocked) 
         {
             return;   
         }
+        skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
         skillIndicator.SetSkillIndex(skillIndex);
-        // 타겟팅 시작
+        
         skillIndicator.StartTargeting(OnTargetConfirmed);        
         GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
     }
     
     private void OnTargetConfirmed(Vector3 targetPos)
     {
-        //Instantiate(skillEffectPrefab, targetPos, Quaternion.identity);
-        
+        Vector3 spawnPosition = skillIndicator.GetCurrentTargetPosition();
+        skillEffectPrefab = Resources.Load<GameObject>(skillPrefabPath);
+        GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
+        SkillController controller = skillPrefab.GetComponent<SkillController>();
+        if (controller != null)
+        {
+            controller.SetSkillDamagePower(skillData.skillDamagePower);
+        }
         GetComponent<Image>().color = Color.black;
             
         isOnCooldown = true;

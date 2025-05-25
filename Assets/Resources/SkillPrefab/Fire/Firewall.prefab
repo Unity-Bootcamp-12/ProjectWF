@@ -678,7 +678,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.283185
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5124,7 +5124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillAttackPower: 1
   skillDamageInterval: 0.3
-  isContinous: 0
+  isContinous: 1
 --- !u!1 &6599313418816421422
 GameObject:
   m_ObjectHideFlags: 0
