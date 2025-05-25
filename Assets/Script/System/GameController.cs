@@ -77,6 +77,9 @@ public class GameController : MonoBehaviour
     private int playerAttackPowerLevel;
     private int increasePlayerAttackPowerValue;
     private int increaseFortressHpValue;
+    
+    // 임시 하드코딩 추후 수정 필요
+    private int[] skillUnlockgradeWisdom  = new int[]{100,500,1000};
 
     
     //UI Data
@@ -130,6 +133,11 @@ public class GameController : MonoBehaviour
     public int GetCurrentWisdom()
     {
         return currentWisdomPoint;
+    }
+
+    public int GetcurrentSkillUnlockgradeWisdom(int skillGrade)
+    {
+        return skillUnlockgradeWisdom[skillGrade];
     }
     
     public int GetWaveLevel()

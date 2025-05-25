@@ -58,6 +58,7 @@ public class SkillDialogueUI : BaseUI
         {
             if (skillData.skillGrade == 0)
             {
+               
                 SkillSystemManager.Instance.UnlockSkill(skillData.skillAttribute, skillData.skillGrade);
             }
 
@@ -75,6 +76,10 @@ public class SkillDialogueUI : BaseUI
         CloseUI();
     }
 
+    public void UpgradeSkill()
+    {
+        
+    }
     public void ShowEquipTextState()
     {
         if (isSkillUnlocked)

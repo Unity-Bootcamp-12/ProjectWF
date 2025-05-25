@@ -68,6 +68,7 @@ public class SkillSystemManager : MonoBehaviour
     private int skillAttributeCount;
     private int skillGradeCount;
     private int initialAttibuteNumber = 0;
+    
 
     //장착 스킬
     [SerializeField] private int equipSkillCount;
@@ -167,9 +168,20 @@ public class SkillSystemManager : MonoBehaviour
     {
         return isSkillUnlocked[skillAttributeNumber, skillGradeNumber];
     }
-
+    
     public void UnlockSkill(int skillAttributeNumber, int skillGradeNumber)
     {
+        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() -
+                                  GameController.Instance.GetcurrentSkillUnlockgradeWisdom(skillGradeNumber);
+        if (wisdomSubtractValue < 0)
+        {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
+            Logger.Info("재화가 부족합니다.");
+            return;
+        }
+        SoundController.Instance.PlaySFX(SFXType.UpgradeSound);
+        GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
+        
         isSkillUnlocked[skillAttributeNumber, skillGradeNumber] = true;
         skillDataSet[skillAttributeNumber, skillGradeNumber].unlockState = 1;
         onSkillUnlockStateChanged?.Invoke(skillAttributeNumber, skillGradeNumber);
