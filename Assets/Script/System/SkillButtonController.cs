@@ -14,23 +14,19 @@ public class SkillButtonController : MonoBehaviour
         skillButtonImage = GetComponent<Image>();
         skillButtonImage.sprite =
             SkillSystemManager.Instance.GetSkillSprite((int)skillButtonAttributeNumber, skillGradeNumber);
-        SkillSystemManager.Instance.onSkillUnlockStateChanged += ShowButtonSkillUnlockedState;
+        ShowSkillButtonUnlockedState((int)skillButtonAttributeNumber, skillGradeNumber);
+        SkillSystemManager.Instance.onSkillUnlockStateChanged += UpdateButtonSkillUnlockedState;
     }
     
 
     public void OnSkillButtonClick()
     {
-        Logger.Info($"{skillButtonAttributeNumber}, {skillGradeNumber}");
         SkillSystemManager.Instance.ShowDialogue(skillButtonAttributeNumber, skillGradeNumber);
     }
 
-    public void ShowButtonSkillUnlockedState(int skillAttributeNumber , int skillGradeNumber )
+    public void ShowSkillButtonUnlockedState(int skillAttributeNumber, int skillGradeNumber)
     {
-        if (skillAttributeNumber != (int)skillButtonAttributeNumber || skillGradeNumber != this.skillGradeNumber)
-        {
-            return;
-        }
-        bool isSkillUnlocked = SkillSystemManager.Instance.isSkillUsingUnloked((int)skillButtonAttributeNumber, skillGradeNumber);
+        bool isSkillUnlocked = SkillSystemManager.Instance.isSkillUsingUnloked(skillAttributeNumber,skillGradeNumber);
         if (isSkillUnlocked)
         {
             skillButtonImage.color = Color.white;
@@ -39,5 +35,16 @@ public class SkillButtonController : MonoBehaviour
         {
             skillButtonImage.color = Color.gray;
         }
+    }
+
+    public void UpdateButtonSkillUnlockedState(int skillAttributeNumber , int skillGradeNumber )
+    {
+        if (skillAttributeNumber != (int)skillButtonAttributeNumber || skillGradeNumber != this.skillGradeNumber)
+        {
+            return;
+        }
+        
+        ShowSkillButtonUnlockedState(skillAttributeNumber,skillGradeNumber);
+        
     }
 }

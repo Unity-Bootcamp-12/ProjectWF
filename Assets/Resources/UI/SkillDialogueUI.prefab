@@ -311,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011921, y: 28.8005}
+  m_AnchoredPosition: {x: 0, y: 28.800476}
   m_SizeDelta: {x: 400, y: 624.399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6803352109682905659
@@ -1717,7 +1717,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2562983933623740502}
-  - component: {fileID: 1588160224451715640}
   - component: {fileID: 7423450138992123839}
   - component: {fileID: 4217356076142322379}
   - component: {fileID: 8476258900478906211}
@@ -1736,9 +1735,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4919145461729286796}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3686614051150268451}
@@ -1749,28 +1748,6 @@ RectTransform:
   m_AnchoredPosition: {x: 399.99994, y: 666.6666}
   m_SizeDelta: {x: 799.99994, y: 1333.3333}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1588160224451715640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919145461729286796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 907a03a4b25881140b04e77124b36cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueSkillImage: {fileID: 5964760071759604661}
-  skillNameText: {fileID: 1306256925970879341}
-  skillSpecText: {fileID: 3325808060135190766}
-  equipButtonText: {fileID: 1449741429637558163}
-  ownedSkillButtonSet: []
-  skillCoolTime: 0
-  skillExplainText: 
-  skillLevel: 0
-  skillAttribute: 0
-  skillDamagePower: 0
 --- !u!223 &7423450138992123839
 Canvas:
   m_ObjectHideFlags: 0

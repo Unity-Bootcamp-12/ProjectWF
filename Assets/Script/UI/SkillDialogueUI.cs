@@ -37,6 +37,7 @@ public class SkillDialogueUI : BaseUI
             SkillSystemManager.Instance.isSkillUsingUnloked(skillData.skillAttribute, skillData.skillGrade);
         isEquipped = SkillSystemManager.Instance.IsSkillEquipped(skillName);
         ShowEquipTextState();
+        Logger.Info($"nullCheck:{skillData.skillGrade}");
     }
 
     public void OnClickEquipButton()
@@ -92,6 +93,7 @@ public class SkillDialogueUI : BaseUI
 
         else
         {
+
             if (skillData.skillGrade == 0)
             {
                 skillEquipButtonText.text = "기술 습득";
