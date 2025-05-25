@@ -108,4 +108,9 @@ public class PlayerController : MonoBehaviour
     {
         this.state = state;
     }
+
+    public void PlayerAttackSound()
+    {   
+        SoundController.Instance.PlaySFX(SFXType.PlayerAttackSound);
+    }
 }

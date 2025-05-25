@@ -31,6 +31,7 @@ public class MagicDefaultAttackController : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("Monster"))
         {
+            SoundController.Instance.PlaySFX(SFXType.PlayerAttackEffectSound);
             Destroy(this.gameObject);
         }
     }

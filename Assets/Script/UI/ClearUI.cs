@@ -63,8 +63,9 @@ public class ClearUI : BaseUI
         int earnedWisdom = GetEarnedWisdom();
         clearEarnedWisdomText.text = earnedWisdom.ToString();
         GameController.Instance.SetCurrentWisdom(GameController.Instance.GetCurrentWisdom() + earnedWisdom);
+        SoundController.Instance.StopBGMWithFade();
+        SoundController.Instance.PlaySFX(SFXType.ClearSound);
         base.ShowUI();
-
         await ClearEarnWidomEffect();
     }
 

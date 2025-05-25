@@ -12,6 +12,7 @@ public class MonsterHitMap : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("Fortress"))
         {
+            SoundController.Instance.PlaySFX(SFXType.PlayerDamagedSound);
             GameController.Instance.GetDamageToFortress(parentMonsterPower);
             Logger.Info($"데미지파워 : {parentMonsterPower}");
             
