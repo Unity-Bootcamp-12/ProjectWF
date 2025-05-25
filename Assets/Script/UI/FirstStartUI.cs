@@ -29,6 +29,7 @@ public class FirstStartUI : BaseUI
 
     public void OnClickStartButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.StartButtonSound);
         OnStartButtonClick?.Invoke((int)WaveState.Ready);
         CloseUI();
     }

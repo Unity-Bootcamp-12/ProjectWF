@@ -57,17 +57,20 @@ public class ReadyUI : BaseUI
     public override void ShowUI()
     {
         base.ShowUI();
+        SoundController.Instance.PlayBGM(BGMType.MainBGM);
         ChangeWisdomText();
     }
 
     public void OnClickReadyButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         GameController.Instance.ChangeWaveState((int)WaveState.Start);
         CloseUI();
     }
 
     public void OnClickSkillButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         UIManager.Instance.OpenUI<SkillSettingUI>(new SkillSettingUIData());
     }
 
@@ -80,10 +83,12 @@ public class ReadyUI : BaseUI
     {
         if (hpUpgradeExpense > GameController.Instance.GetCurrentWisdom())
         {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;
         }
         
         GameController.Instance.UpgradeFortressHP(hpUpgradeExpense);
+        SoundController.Instance.PlaySFX(SFXType.UpgradeSound);
         hpUpgradeExpense = GetHpUpgradeExpense();
         hpUpgradeButtonExpenseText.text = hpUpgradeExpense.ToString();
         ChangeWisdomText();
@@ -98,10 +103,12 @@ public class ReadyUI : BaseUI
     {
         if (attackPowerUpgradeExpense > GameController.Instance.GetCurrentWisdom())
         {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;
         }
         
         GameController.Instance.UpgradePlayerAttackPower(attackPowerUpgradeExpense);
+        SoundController.Instance.PlaySFX(SFXType.UpgradeSound);
         attackPowerUpgradeExpense = GetAttackPowerUpgradeExpense();
         attackPowerUpgradeButtonExpenseText.text = attackPowerUpgradeExpense.ToString();
         ChangeWisdomText();

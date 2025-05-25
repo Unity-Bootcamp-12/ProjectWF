@@ -61,9 +61,9 @@ public class DefeatUI : BaseUI
         int defeatEarnedWisdom = GetDefeatEarnedWisdom();
         defeatEarnedWisdomText.text = defeatEarnedWisdom.ToString();
         GameController.Instance.SetCurrentWisdom(defeatEarnedWisdom);
-        
+        SoundController.Instance.StopBGMWithFade();
+        SoundController.Instance.PlaySFX(SFXType.DefeatSound);
         base.ShowUI();
-
         await ShowDefeatEarnedWisdomEffect();
     }
 
@@ -75,6 +75,7 @@ public class DefeatUI : BaseUI
     
     public void OnClickRestartButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
         CloseUI();
@@ -82,19 +83,21 @@ public class DefeatUI : BaseUI
 
     public void OnClickQuitButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         Application.Quit();
         CloseUI();
     }
     
     public async UniTask ShowDefeatEarnedWisdomEffect()
     {
+        SoundController.Instance.PlaySFX(SFXType.LostWisdomSound);
         for (int i = 0; i < effectCount; i++)
         {
             var wisdom = GameObject.Instantiate<LostWisdom>(wisdomPrefab, transform);
             wisdom.Explosion(wisdomTargetPosition.position);
             await UniTask.Delay(effectDelay);
         }
-
+        
         ChangeWisdomText();
     }
     

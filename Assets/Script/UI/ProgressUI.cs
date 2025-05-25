@@ -33,6 +33,7 @@ public class ProgressUI : BaseUI
         int waveLevel = GameController.Instance.GetWaveLevel();
         waveText.text = $"Wave {waveLevel}";
         base.ShowUI();
+        SoundController.Instance.PlayBGM(BGMType.BattleBGM, 1.0f);
     }
 
     private void ChangeHPSlider(int currentFortressHP, int maxFortressHP)

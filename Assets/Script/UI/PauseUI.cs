@@ -28,12 +28,14 @@ public class PauseUI : BaseUI
 
     public void OnClickResumeButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         GameController.Instance.ResumeGame();
         CloseUI();
     }
 
     public void OnClickExitButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         GameController.Instance.ExitGame();
     }
 }

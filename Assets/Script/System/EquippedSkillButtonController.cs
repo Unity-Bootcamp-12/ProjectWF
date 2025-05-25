@@ -64,6 +64,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     
     private void OnTargetConfirmed(Vector3 targetPos)
     {
+        SoundController.Instance.PlaySFX(SFXType.CastSound);
         Vector3 spawnPosition = skillIndicator.GetCurrentTargetPosition();
         skillEffectPrefab = Resources.Load<GameObject>(skillPrefabPath);
         GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);

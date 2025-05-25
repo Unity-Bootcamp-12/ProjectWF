@@ -46,6 +46,8 @@ public class StartUI : BaseUI
     
     private async UniTask CountDown(int countDown)
     {
+        SoundController.Instance.StopBGMWithFade();
+        SoundController.Instance.PlaySFX(SFXType.CountDownSound);
         for (int i = countDown; i >0; i--)
         {
             countDownText.text = i.ToString();
