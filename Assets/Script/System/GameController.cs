@@ -24,6 +24,10 @@ public class DefaultValue
     public int increasePlayerAttackPowerValue;
     public int increaseFortressHpValue;
     public int goalKillCountCoefficient;
+    public string defaultSkillUnlockWisdomRequirementSet;
+    public int defaultSkillUpgradeFortressRequirement;
+    public int defaultLevelCoefficient;
+    public int defaultGradeCoefficient;
 }
 
 public class GameController : MonoBehaviour
@@ -58,14 +62,15 @@ public class GameController : MonoBehaviour
     // 스킬 리셋
     public event Action OnSkillReset;
     // 카운트 다운 이후 게임 시작
-    public event Action OnInGameStart;
+    public event Action OnInGameResetSkillCoolTime;
     // Fortress HP 변화 -> UI 변경
     public event Action<int, int> OnChangeFortressHP;
     // Progress UI 닫기
     public event Action<bool> OnEndProgress;
 
     public event Action<int> OnBossSpawn;
-    
+
+    public event Action OnWisdomChanged;
     // 요새 스탯관리
     [SerializeField]private int fortressHp;
     [SerializeField]private int maxFortressHP;
@@ -96,6 +101,12 @@ public class GameController : MonoBehaviour
     private int playerAttackPowerLevel;
     private int increasePlayerAttackPowerValue;
     private int increaseFortressHpValue;
+    
+   // 스킬 언락시 위즈덤 요구량 
+    private int[] skillUnlockWisdomRequirementByGrade;
+    private int skillUpgradeWisdomRequirement;
+    private int levelCoefficient;
+    private int gradeCoefficient;
 
     
     //UI Data
@@ -131,7 +142,30 @@ public class GameController : MonoBehaviour
         increasePlayerAttackPowerValue = defaultValue.increasePlayerAttackPowerValue;
         increaseFortressHpValue = defaultValue.increaseFortressHpValue;
         goalKillCountCoefficient = defaultValue.goalKillCountCoefficient;
+        
+        string UnlockGradeString = defaultValue.defaultSkillUnlockWisdomRequirementSet;
+        skillUnlockWisdomRequirementByGrade = ParsingUnlockSet(UnlockGradeString);
+
+        skillUpgradeWisdomRequirement = defaultValue.defaultSkillUpgradeFortressRequirement;
+        levelCoefficient = defaultValue.defaultLevelCoefficient;
+        gradeCoefficient = defaultValue.defaultGradeCoefficient;
+
     }
+
+    public int[] ParsingUnlockSet(string UnlockGradeString)
+    {
+        string[] UnlockGrade = UnlockGradeString.Split(',');
+        int[] resultUnlockSet = new int[UnlockGrade.Length];
+
+        for (int i = 0; i < UnlockGrade.Length; i++)
+        {
+            resultUnlockSet[i] = int.Parse(UnlockGrade[i]);
+            
+        }
+        
+        return resultUnlockSet;
+    }
+    
     
     public void IncreaseKillCount()
     {
@@ -149,6 +183,19 @@ public class GameController : MonoBehaviour
     public int GetCurrentWisdom()
     {
         return currentWisdomPoint;
+    }
+
+    public int GetcurrentSkillUnlockgradeWisdom(int skillGrade)
+    {
+        return skillUnlockWisdomRequirementByGrade[skillGrade];
+    }
+
+    public int GetSkillUpgradeWisdom(int skillLevel,int skillGrade)
+    {
+        int skillRequiredWisom = skillUpgradeWisdomRequirement
+                                 + skillUpgradeWisdomRequirement * skillLevel * levelCoefficient
+                                 + skillUpgradeWisdomRequirement * skillGrade * gradeCoefficient;
+        return skillRequiredWisom;
     }
     
     public int GetWaveLevel()
@@ -183,6 +230,7 @@ public class GameController : MonoBehaviour
     {
         currentWisdomPoint = value;
         PlayerPrefs.SetInt("CurrentWisdomPoint",  currentWisdomPoint);
+        OnWisdomChanged?.Invoke();
     }
 
     public int GetHPUpgradeLevel()
@@ -207,7 +255,7 @@ public class GameController : MonoBehaviour
          playerAttackPowerLevel++;
          playerAttackPower += increasePlayerAttackPowerValue;
      }
-
+    
     public void ChangeWaveState(int state)
     {
         currentWaveState = (WaveState)state;
@@ -231,9 +279,6 @@ public class GameController : MonoBehaviour
             // Hp값 보관하고 시작 
             fortressHp = maxFortressHP;
             OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
-            
-            // 카운트 다운 이벤트 함수 실행
-            OnInGameStart?.Invoke();
             // UI 변경
             UIManager.Instance.OpenUI<StartUI>(uiDataDictionary[UIType.StartUI]);
         }
@@ -242,8 +287,12 @@ public class GameController : MonoBehaviour
             
             OnProgressPlayerControl?.Invoke(PlayerState.Attack);
             OnProgressMonsterActive?.Invoke(MonsterWaveState.Active);
+            // 스킬 쿨타임 초기화
+            OnSkillReset?.Invoke();
             // UI 변경
             UIManager.Instance.OpenUI<ProgressUI>(uiDataDictionary[UIType.ProgressUI]);
+            OnInGameResetSkillCoolTime?.Invoke();
+            OnInGameResetSkillCoolTime = null;
         }
         else if (currentWaveState == WaveState.End)
         {
@@ -251,8 +300,9 @@ public class GameController : MonoBehaviour
             OnEndProgress?.Invoke(false);
             // 플레이어 공격 멈춤
             OnProgressPlayerControl?.Invoke(PlayerState.Idle);
-            // 스킬 쿨타임 초기화
-            OnSkillReset?.Invoke();
+            
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
             
             if (IsFortressDestoryed())
             {
