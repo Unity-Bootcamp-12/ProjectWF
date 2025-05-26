@@ -11,7 +11,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private SkillData  skillData;
     private int skillAttribute;
     private int skillGrade;
-    private int skillCoolTime;
+    private float skillCoolTime;
     private string skillPrefabPath;
     private bool isOnCooldown = false;
     
