@@ -26,7 +26,17 @@ public enum SFXType
     UpgradeSkillSound,
     PlayerAttackSound,
     PlayerAttackEffectSound,
-    CastSound
+    CastSound,
+    Meteor,
+    FireExplosion,
+    FireWall,
+    LightningAura,
+    LightningSlash,
+    ElectroSpark,
+    SlientWaterSlash,
+    HydroFrozen,
+    DevilRainFog
+    
 }
 
 public class SoundController : MonoBehaviour
@@ -106,6 +116,19 @@ public class SoundController : MonoBehaviour
     public void PlaySFX(SFXType type)
     {
         sfxSource.PlayOneShot(sfxDic[type]);
+    }
+
+    public void PlaySkillSFX(string skillName)
+    {
+        AudioClip clip = Resources.Load<AudioClip>($"Sound/SFX/{skillName}");
+        if (clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Logger.Warning($"SFX {skillName} not found!");
+        }
     }
 
     public void PlayBGM(BGMType type, float fadeTime = 0)

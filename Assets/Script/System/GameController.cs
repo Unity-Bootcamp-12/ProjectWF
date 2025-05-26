@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
     // 스킬 리셋
     public event Action OnSkillReset;
     // 카운트 다운 이후 게임 시작
-    public event Action OnInGameStart;
+    public event Action OnInGameResetSkillCoolTime;
     // Fortress HP 변화 -> UI 변경
     public event Action<int, int> OnChangeFortressHP;
     // Progress UI 닫기
@@ -212,9 +212,6 @@ public class GameController : MonoBehaviour
             // Hp값 보관하고 시작 
             fortressHp = maxFortressHP;
             OnChangeFortressHP?.Invoke(fortressHp, maxFortressHP);
-            
-            // 카운트 다운 이벤트 함수 실행
-            OnInGameStart?.Invoke();
             // UI 변경
             UIManager.Instance.OpenUI<StartUI>(uiDataDictionary[UIType.StartUI]);
         }
@@ -223,8 +220,12 @@ public class GameController : MonoBehaviour
             
             OnProgressPlayerControl?.Invoke(PlayerState.Attack);
             OnProgressMonsterActive?.Invoke(MonsterWaveState.Active);
+            // 스킬 쿨타임 초기화
+            OnSkillReset?.Invoke();
             // UI 변경
             UIManager.Instance.OpenUI<ProgressUI>(uiDataDictionary[UIType.ProgressUI]);
+            OnInGameResetSkillCoolTime?.Invoke();
+            OnInGameResetSkillCoolTime = null;
         }
         else if (currentWaveState == WaveState.End)
         {
@@ -232,8 +233,9 @@ public class GameController : MonoBehaviour
             OnEndProgress?.Invoke(false);
             // 플레이어 공격 멈춤
             OnProgressPlayerControl?.Invoke(PlayerState.Idle);
-            // 스킬 쿨타임 초기화
-            OnSkillReset?.Invoke();
+            
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
             
             if (IsFortressDestoryed())
             {
