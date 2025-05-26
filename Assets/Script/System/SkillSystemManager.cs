@@ -50,7 +50,7 @@ public class SkillSystemManager : MonoBehaviour
     private Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
     [SerializeField] private GameObject[] ownedSkillButtonSet;
 
-    private EnumSkillAttribute currentSkillAttribute;
+    public EnumSkillAttribute CurrentSkillAttribute { get; private set; }
     private int currentSkillGradeNumber;
     public event Action<int, int> onSkillUnlockStateChanged;
 
@@ -184,10 +184,10 @@ public class SkillSystemManager : MonoBehaviour
     // 다이얼로그 
     public void ShowDialogue(EnumSkillAttribute skillAttribute, int skillGradeNumber)
     {
-        currentSkillAttribute = skillAttribute;
+        CurrentSkillAttribute = skillAttribute;
         currentSkillGradeNumber = skillGradeNumber;
         // UI 매니저에서 다이얼로그 받아옴
-        UIManager.Instance.OpenUI<SkillDialogueUI>(skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber]);
+        UIManager.Instance.OpenUI<SkillDialogueUI>(skillDataSet[(int)CurrentSkillAttribute, currentSkillGradeNumber]);
     }
 
 
@@ -207,8 +207,8 @@ public class SkillSystemManager : MonoBehaviour
                     skillEquipMap.Add(skillName, true);
                 }
 
-                equipSkillData[i] = skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber];
-                skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = i;
+                equipSkillData[i] = skillDataSet[(int)CurrentSkillAttribute, currentSkillGradeNumber];
+                skillDataSet[(int)CurrentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = i;
                 return;
             }
         }
@@ -222,7 +222,7 @@ public class SkillSystemManager : MonoBehaviour
             if (equipSkillData[i] != null && equipSkillData[i].skillName == skillName)
             {
                 equipSkillData[i] = null;
-                skillDataSet[(int)currentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = -1;
+                skillDataSet[(int)CurrentSkillAttribute, currentSkillGradeNumber].equippedIndexPosition = -1;
                 
                 
                 return;
