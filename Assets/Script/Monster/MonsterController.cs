@@ -20,13 +20,21 @@ public enum MonsterWaveState
     Active
 }
 
+public enum ElementalAttribute
+{
+    None,
+    Lightning,
+    Fire,
+    Water
+}
+
 public class MonsterController : MonoBehaviour
 {
     private int monsterHp;
     private int monsterAttackPower;
     private float monsterSpeed = 1.0f;
-    private ElementalAttribute strengthAttribute;
-    private ElementalAttribute weakAttribute;
+    [SerializeField]private ElementalAttribute strengthAttribute;
+    [SerializeField]private ElementalAttribute weakAttribute;
     private bool isBoss;
     private int monsterAttackSpeed;
     [SerializeField] private Slider monsterHpSlider;
@@ -36,6 +44,8 @@ public class MonsterController : MonoBehaviour
     Vector3 targetPostion;
     Animator monsterAnimator;
     public ParticleSystem monsterDamageEffect;
+    [SerializeField] private ParticleSystem weakDamageEffect;
+    [SerializeField] private ParticleSystem strengthDamageEffect;
 
     private Vector3 fortressPosition;
 
@@ -130,14 +140,35 @@ public class MonsterController : MonoBehaviour
         fortressPositionX = status.monsterDistanceValue;
     }
 
-    public void TakeDamage(bool isSkill, int amount)
+    public void TakeDamage(bool isSkill, int amount, ElementalAttribute attribute)
     {
+        if (currentState == MonsterState.Die)
+        {
+            return;
+        }
         if (isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
+            Logger.Info(attribute.ToString());
+            if (attribute == weakAttribute)
+            {
+                weakDamageEffect.Play();
+                amount++;
+            }
+            else if(attribute == strengthAttribute)
+            {
+                strengthDamageEffect.Play();
+                amount--;
+            }
+            else
+            {
+                monsterDamageEffect.Play();
+            }
+            
             currentMonsterHP -= amount;
         }
         else if (!isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
+            monsterDamageEffect.Play();
             currentMonsterHP -= amount;
         }
 
@@ -153,8 +184,7 @@ public class MonsterController : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
-            monsterDamageEffect.Play();
-            TakeDamage(false, playerAttackPower);
+            TakeDamage(false, playerAttackPower, ElementalAttribute.None);
         }
     }
 

@@ -12,6 +12,12 @@ public class SkillController : MonoBehaviour
         skillDamagePower = damage;
     }
     
+    private ElementalAttribute attribute;
+
+    public void SetAttribute(ElementalAttribute attribute)
+    {
+        this.attribute = attribute;
+    }
     
     [SerializeField]private float skillDamageInterval = 0.3f;
     private Coroutine skillDamageCoroutine;
@@ -62,7 +68,7 @@ public class SkillController : MonoBehaviour
             }
             else
             {
-                monster.TakeDamage(true, skillDamagePower);
+                monster.TakeDamage(true, skillDamagePower, attribute);
             }
         }
     }
@@ -82,7 +88,7 @@ public class SkillController : MonoBehaviour
     {
         while (true)
         {
-            monster.TakeDamage(true, skillDamagePower);
+            monster.TakeDamage(true, skillDamagePower, attribute);
             yield return new WaitForSeconds(skillDamageInterval);
         }
     }

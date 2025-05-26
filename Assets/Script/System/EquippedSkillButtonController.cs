@@ -69,9 +69,27 @@ public class EquippedSkillButtonController : MonoBehaviour
         skillEffectPrefab = Resources.Load<GameObject>(skillPrefabPath);
         GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
         SkillController controller = skillPrefab.GetComponent<SkillController>();
+
         if (controller != null)
         {
             controller.SetSkillDamagePower(skillData.skillDamagePower);
+            
+            SkillData currentSkill = SkillSystemManager.Instance.equipSkillData[skillIndex];
+            EnumSkillAttribute currentAttribute = (EnumSkillAttribute)currentSkill.skillAttribute;
+            ElementalAttribute attribute = ElementalAttribute.None;
+            if (currentAttribute == EnumSkillAttribute.Fire)
+            {
+                attribute = ElementalAttribute.Fire;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Lightning)
+            {
+                attribute = ElementalAttribute.Lightning;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Water)
+            {
+                attribute = ElementalAttribute.Water;
+            }
+            controller.SetAttribute(attribute);
         }
         GetComponent<Image>().color = Color.black;
             
