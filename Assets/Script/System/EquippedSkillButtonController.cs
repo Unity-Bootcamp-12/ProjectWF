@@ -13,6 +13,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private int skillAttribute;
     private int skillGrade;
     private int skillCoolTime;
+
     private bool isOnCooldown = false;
     private string skillName;
     
@@ -73,9 +74,27 @@ public class EquippedSkillButtonController : MonoBehaviour
         GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
         SoundController.Instance.PlaySkillSFX(skillName);
         SkillController controller = skillPrefab.GetComponent<SkillController>();
+
         if (controller != null)
         {
             controller.SetSkillDamagePower(skillData.skillDamagePower);
+            
+            SkillData currentSkill = SkillSystemManager.Instance.equipSkillData[skillIndex];
+            EnumSkillAttribute currentAttribute = (EnumSkillAttribute)currentSkill.skillAttribute;
+            ElementalAttribute attribute = ElementalAttribute.None;
+            if (currentAttribute == EnumSkillAttribute.Fire)
+            {
+                attribute = ElementalAttribute.Fire;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Lightning)
+            {
+                attribute = ElementalAttribute.Lightning;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Water)
+            {
+                attribute = ElementalAttribute.Water;
+            }
+            controller.SetAttribute(attribute);
         }
         GetComponent<Image>().color = Color.black;
             

@@ -24,6 +24,10 @@ public class DefaultValue
     public int increasePlayerAttackPowerValue;
     public int increaseFortressHpValue;
     public int goalKillCountCoefficient;
+    public string defaultSkillUnlockWisdomRequirementSet;
+    public int defaultSkillUpgradeFortressRequirement;
+    public int defaultLevelCoefficient;
+    public int defaultGradeCoefficient;
 }
 
 public class GameController : MonoBehaviour
@@ -52,7 +56,8 @@ public class GameController : MonoBehaviour
     public event Action<bool> OnEndProgress;
 
     public event Action<int> OnBossSpawn;
-    
+
+    public event Action OnWisdomChanged;
     // 요새 스탯관리
     [SerializeField]private int fortressHp;
     [SerializeField]private int maxFortressHP;
@@ -77,6 +82,12 @@ public class GameController : MonoBehaviour
     private int playerAttackPowerLevel;
     private int increasePlayerAttackPowerValue;
     private int increaseFortressHpValue;
+    
+   // 스킬 언락시 위즈덤 요구량 
+    private int[] skillUnlockWisdomRequirementByGrade;
+    private int skillUpgradeWisdomRequirement;
+    private int levelCoefficient;
+    private int gradeCoefficient;
 
     
     //UI Data
@@ -112,7 +123,30 @@ public class GameController : MonoBehaviour
         increasePlayerAttackPowerValue = defaultValue.increasePlayerAttackPowerValue;
         increaseFortressHpValue = defaultValue.increaseFortressHpValue;
         goalKillCountCoefficient = defaultValue.goalKillCountCoefficient;
+        
+        string UnlockGradeString = defaultValue.defaultSkillUnlockWisdomRequirementSet;
+        skillUnlockWisdomRequirementByGrade = ParsingUnlockSet(UnlockGradeString);
+
+        skillUpgradeWisdomRequirement = defaultValue.defaultSkillUpgradeFortressRequirement;
+        levelCoefficient = defaultValue.defaultLevelCoefficient;
+        gradeCoefficient = defaultValue.defaultGradeCoefficient;
+
     }
+
+    public int[] ParsingUnlockSet(string UnlockGradeString)
+    {
+        string[] UnlockGrade = UnlockGradeString.Split(',');
+        int[] resultUnlockSet = new int[UnlockGrade.Length];
+
+        for (int i = 0; i < UnlockGrade.Length; i++)
+        {
+            resultUnlockSet[i] = int.Parse(UnlockGrade[i]);
+            
+        }
+        
+        return resultUnlockSet;
+    }
+    
     
     public void IncreaseKillCount()
     {
@@ -130,6 +164,19 @@ public class GameController : MonoBehaviour
     public int GetCurrentWisdom()
     {
         return currentWisdomPoint;
+    }
+
+    public int GetcurrentSkillUnlockgradeWisdom(int skillGrade)
+    {
+        return skillUnlockWisdomRequirementByGrade[skillGrade];
+    }
+
+    public int GetSkillUpgradeWisdom(int skillLevel,int skillGrade)
+    {
+        int skillRequiredWisom = skillUpgradeWisdomRequirement
+                                 + skillUpgradeWisdomRequirement * skillLevel * levelCoefficient
+                                 + skillUpgradeWisdomRequirement * skillGrade * gradeCoefficient;
+        return skillRequiredWisom;
     }
     
     public int GetWaveLevel()
@@ -164,6 +211,7 @@ public class GameController : MonoBehaviour
     {
         currentWisdomPoint = value;
         PlayerPrefs.SetInt("CurrentWisdomPoint",  currentWisdomPoint);
+        OnWisdomChanged?.Invoke();
     }
 
     public int GetHPUpgradeLevel()
@@ -188,7 +236,7 @@ public class GameController : MonoBehaviour
          playerAttackPowerLevel++;
          playerAttackPower += increasePlayerAttackPowerValue;
      }
-
+    
     public void ChangeWaveState(int state)
     {
         currentWaveState = (WaveState)state;

@@ -7,5 +7,9 @@
     "defaultAttackPowerLevel" : 1,
     "increasePlayerAttackPowerValue" : 1,
     "increaseFortressHpValue" : 25,
-    "goalKillCountCoefficient" : 2
+    "goalKillCountCoefficient" : 2,
+    "defaultSkillUnlockWisdomRequirementSet":"100,500,1000" ,
+    "defaultSkillUpgradeFortressRequirement" : 100,
+    "defaultLevelCoefficient": 2,
+    "defaultGradeCoefficient": 4
 }
