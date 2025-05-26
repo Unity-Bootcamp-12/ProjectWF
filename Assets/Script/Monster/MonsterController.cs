@@ -62,10 +62,14 @@ public class MonsterController : MonoBehaviour
     private int currentMonsterHP;
     private int playerAttackPower;
 
+    private ElementalAttribute baseAttackAttribute;
+    
     void Start()
     {
         GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
-
+        GameController.Instance.OnChangeBaseAttackAttribute += ChangeBaseAttackAttribute;
+        GameController.Instance.OnChangePlayerAttackPower += ChangePlayerAttackPower;
+        
         isMoving = true;
         monsterAnimator = GetComponent<Animator>();
         monsterAnimator.SetBool("IsMoving", isMoving);
@@ -148,7 +152,6 @@ public class MonsterController : MonoBehaviour
         }
         if (isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
-            Logger.Info(attribute.ToString());
             if (attribute == weakAttribute)
             {
                 weakDamageEffect.Play();
@@ -184,7 +187,7 @@ public class MonsterController : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
-            TakeDamage(false, playerAttackPower, ElementalAttribute.None);
+            TakeDamage(false, playerAttackPower, baseAttackAttribute);
         }
     }
 
@@ -230,7 +233,6 @@ public class MonsterController : MonoBehaviour
 
     public void DeActvieMonsterAttackHitMap()
     {
-        //Logger.Info("히트맵 비활성화 함수 작동확인 ");
         monsterAttackHitMap.SetActive(false);
     }
 
@@ -238,5 +240,15 @@ public class MonsterController : MonoBehaviour
     {
         currentWaveState = newState;
         playerAttackPower = GameController.Instance.GetPlayerAttackPower();
+    }
+
+    private void ChangeBaseAttackAttribute(ElementalAttribute attribute)
+    {
+        baseAttackAttribute = attribute;
+    }
+
+    public void ChangePlayerAttackPower(int value)
+    {
+        playerAttackPower = value;
     }
 }
