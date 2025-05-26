@@ -10,6 +10,7 @@ public enum EnumSkillAttribute
     Fire = 0,
     Lightning = 1,
     Water = 2,
+    None= 3,
 }
 
 public enum EnumSkillTargetType
@@ -18,6 +19,14 @@ public enum EnumSkillTargetType
     InFrontOfPlayer = 1,
     ByMousePoint = 2
 }
+
+public enum EnumSkillType
+{
+    Buff = 0,
+    Normal = 1,
+    DeBuff = 2
+}
+
 
 [System.Serializable]
 public class SkillData : BaseUIData

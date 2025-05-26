@@ -32,13 +32,26 @@ public class GameController : MonoBehaviour
     
     //웨이브 이벤트 관련 
     [SerializeField]private WaveState currentWaveState = WaveState.Ready;
-    
     public WaveState GetCurrentWaveState()
     {
         return currentWaveState;
     }
     private int waveLevel;
-    
+    [SerializeField]private ElementalAttribute baseAttackAttribute = ElementalAttribute.None;
+
+    public void SetBaseAttackAttribute(ElementalAttribute attribute)
+    {
+        baseAttackAttribute = attribute;
+        OnChangeBaseAttackAttribute?.Invoke(baseAttackAttribute);
+    }
+
+    public ElementalAttribute GetBaseAttackAttribute()
+    {
+        return baseAttackAttribute;
+    }
+
+    public event Action<int> OnChangePlayerAttackPower;
+    public event Action<ElementalAttribute> OnChangeBaseAttackAttribute;
     public event Action<int, int> OnReadyMonsterSpawn;
     public event Action<PlayerState> OnProgressPlayerControl;
     public event Action<MonsterWaveState> OnProgressMonsterActive;
@@ -62,6 +75,12 @@ public class GameController : MonoBehaviour
     public int GetPlayerAttackPower()
     {
         return playerAttackPower;
+    }
+
+    public void IncreasePlayerAttackPower(int value)
+    {
+        playerAttackPower += value;
+        OnChangePlayerAttackPower?.Invoke(playerAttackPower);
     }
     
     // 킬 카운트 관리

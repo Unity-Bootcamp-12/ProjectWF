@@ -40,7 +40,6 @@ public class EquippedSkillButtonController : MonoBehaviour
             skillImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillAttribute, skillGrade);
             backGroundImage.sprite = skillImage.sprite;
             skillPrefabPath = skillData.skillPrefabPath;
-
         }
         else
         {
@@ -51,6 +50,7 @@ public class EquippedSkillButtonController : MonoBehaviour
 
     public void OnSkillButtonClick()
     {
+        
         if (isOnCooldown || isSkillLocked) 
         {
             return;   
@@ -58,7 +58,12 @@ public class EquippedSkillButtonController : MonoBehaviour
         skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
         skillIndicator.SetSkillIndex(skillIndex);
         
-        skillIndicator.StartTargeting(OnTargetConfirmed);        
+        
+        
+        skillIndicator.StartTargeting(OnTargetConfirmed);     
+        
+        
+        
         GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
     }
     
@@ -90,6 +95,7 @@ public class EquippedSkillButtonController : MonoBehaviour
                 attribute = ElementalAttribute.Water;
             }
             controller.SetAttribute(attribute);
+            controller.SetSkillType((EnumSkillType)skillData.skillType);
         }
         GetComponent<Image>().color = Color.black;
             
@@ -154,4 +160,6 @@ public class EquippedSkillButtonController : MonoBehaviour
         await UniTask.Delay(1000);
         isSkillLocked = false;
     }
+    
+    
 }

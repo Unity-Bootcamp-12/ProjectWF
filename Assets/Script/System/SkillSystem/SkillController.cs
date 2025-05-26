@@ -19,6 +19,13 @@ public class SkillController : MonoBehaviour
         this.attribute = attribute;
     }
     
+    private EnumSkillType skillType;
+
+    public void SetSkillType(EnumSkillType skillType)
+    {
+        this.skillType = skillType;
+    }
+    
     [SerializeField]private float skillDamageInterval = 0.3f;
     private Coroutine skillDamageCoroutine;
     private ParticleSystem skillParticle;
@@ -38,6 +45,7 @@ public class SkillController : MonoBehaviour
     
     private void OnEnable()
     {
+        
         StartCoroutine(HandleCollider());
     }
 
@@ -47,7 +55,14 @@ public class SkillController : MonoBehaviour
         float particleDuration = skillParticle.main.duration; 
 
         yield return new WaitForSeconds(particleStartDelay);
-
+        
+        if (skillType == (int)EnumSkillType.Buff)
+        {
+            Logger.Info(attribute.ToString());
+            GameController.Instance.SetBaseAttackAttribute(attribute);
+            GameController.Instance.IncreasePlayerAttackPower(1);
+        }
+        
         if (collider != null && skillParticle.isPlaying)
         {
             collider.enabled = true;
@@ -104,5 +119,10 @@ public class SkillController : MonoBehaviour
     private void OnDestroy()
     {
         StopDamage();
+        if (skillType == EnumSkillType.Buff)
+        {
+            GameController.Instance.SetBaseAttackAttribute(ElementalAttribute.None);
+            GameController.Instance.IncreasePlayerAttackPower(-1);
+        }
     }
 }
