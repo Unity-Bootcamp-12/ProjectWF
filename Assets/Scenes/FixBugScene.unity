@@ -997,7 +997,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetingPanel: {fileID: 0}
-  skillIndicatorPrefab: {fileID: 0}
+  rectangleSkillIndicatorPrefab: {fileID: 0}
+  circleSkillIndicatorPrefab: {fileID: 0}
+  playerTransform: {fileID: 0}
 --- !u!4 &938957797
 Transform:
   m_ObjectHideFlags: 0

@@ -51,7 +51,8 @@ public class ReadyUI : BaseUI
         
         skillButtonText.text = readyUIData.skillButtonText;
         readyButtonText.text = readyUIData.readyButtonText;
-        
+        GameController.Instance.OnWisdomChanged += ChangeWisdomText;
+
     }
 
     public override void ShowUI()

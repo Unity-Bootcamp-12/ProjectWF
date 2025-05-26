@@ -14,6 +14,7 @@ public class SkillDialogueUI : BaseUI
     public Image skillIcon;
 
     public TextMeshProUGUI skillEquipButtonText;
+    public TextMeshProUGUI skillUpgradeButtonText;
 
     private SkillData skillData;
     private bool isEquipped;
@@ -37,6 +38,7 @@ public class SkillDialogueUI : BaseUI
             SkillSystemManager.Instance.isSkillUsingUnloked(skillData.skillAttribute, skillData.skillGrade);
         isEquipped = SkillSystemManager.Instance.IsSkillEquipped(skillName);
         ShowEquipTextState();
+        ShowUpgradeTextState();
         Logger.Info($"nullCheck:{skillData.skillGrade}");
     }
 
@@ -76,10 +78,28 @@ public class SkillDialogueUI : BaseUI
         CloseUI();
     }
 
-    public void UpgradeSkill()
+    public void OnClickUpgradeButton()
     {
-        
+        SkillSystemManager.Instance.UpgradeSkill(skillData.skillAttribute, skillData.skillGrade);
+        UpgradeTextState();
+
     }
+
+    
+    public void ShowUpgradeTextState()
+    {
+        skillUpgradeButtonText.text ="강화" + "\n"+GameController.Instance.GetSkillUpgradeWisdom(skillData.skillLevel, skillData.skillGrade).ToString();
+    }
+
+    public void UpgradeTextState()
+    {
+        ShowUpgradeTextState();
+        skillLevelText.text = skillData.skillLevel.ToString();
+        skillDamagePowerText.text = skillData.skillDamagePower.ToString();
+        skillCoolTimeText.text = skillData.skillCoolTime.ToString();    
+    }
+    
+    
     public void ShowEquipTextState()
     {
         if (isSkillUnlocked)

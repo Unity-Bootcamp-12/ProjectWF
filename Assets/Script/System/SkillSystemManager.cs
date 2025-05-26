@@ -23,7 +23,7 @@ public enum EnumSkillTargetType
 public class SkillData : BaseUIData
 {
     public string skillName;
-    public int skillCoolTime;
+    public float skillCoolTime;
     public string skillExplainText;
     public int skillLevel;
     public int skillAttribute;
@@ -53,8 +53,6 @@ public class SkillSystemManager : MonoBehaviour
     private EnumSkillAttribute currentSkillAttribute;
     private int currentSkillGradeNumber;
     public event Action<int, int> onSkillUnlockStateChanged;
-
-
     [System.Serializable]
     public class SkillDataList
     {
@@ -191,7 +189,38 @@ public class SkillSystemManager : MonoBehaviour
     {
         return (EnumSkillTargetType)data.skillTargetType;
     }
-    
+    // 스킬 업그레이드
+
+    public void UpgradeSkill(int skillAttributeNumber, int skillGradeNumber)
+    {
+        if (!isSkillUnlocked[skillAttributeNumber, skillGradeNumber])
+        {
+            return;
+        }
+        int skillLevel = skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel;
+        int requiredValue = GameController.Instance.GetSkillUpgradeWisdom(skillLevel,skillGradeNumber);
+        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() - requiredValue;
+        
+        if (wisdomSubtractValue < 0)
+        {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
+            Logger.Info("재화가 부족합니다.");
+            return;
+        }
+        
+        GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
+        skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel += 1;
+        skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
+        skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-=0.1f*(skillLevel+1);
+        if (skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime <= 0)
+        {
+            skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime=0.01f;
+        }
+        
+        
+        
+
+    }
 
     // 다이얼로그 
     public void ShowDialogue(EnumSkillAttribute skillAttribute, int skillGradeNumber)

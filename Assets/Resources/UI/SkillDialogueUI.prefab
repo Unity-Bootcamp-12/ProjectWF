@@ -1832,6 +1832,7 @@ MonoBehaviour:
   skillDamagePowerText: {fileID: 2432175653029108706}
   skillIcon: {fileID: 5964760071759604661}
   skillEquipButtonText: {fileID: 1449741429637558163}
+  skillUpgradeButtonText: {fileID: 2193624188622614535}
 --- !u!1 &6118952056533043256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,7 +2850,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8865508613998940832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4069586633571855452}
+        m_TargetAssemblyTypeName: SkillDialogueUI, Assembly-CSharp
+        m_MethodName: OnClickUpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9185193618945662264
 GameObject:
   m_ObjectHideFlags: 0
