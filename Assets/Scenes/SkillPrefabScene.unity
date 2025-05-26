@@ -1176,54 +1176,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &938957795
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 938957797}
-  - component: {fileID: 938957796}
-  m_Layer: 0
-  m_Name: SkillIndicatorController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &938957796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938957795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78d66c7449efdf4c9d6c8383ef4aa80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetingPanel: {fileID: 0}
-  rectangleSkillIndicatorPrefab: {fileID: 0}
-  circleSkillIndicatorPrefab: {fileID: 0}
-  playerTransform: {fileID: 0}
---- !u!4 &938957797
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938957795}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.8255577, y: 381.6314, z: 5.198539}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037048947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1669,6 @@ SceneRoots:
   - {fileID: 2013694378}
   - {fileID: 666200495}
   - {fileID: 118319421}
-  - {fileID: 938957797}
   - {fileID: 1404989315}
   - {fileID: 1988961141}
   - {fileID: 236039929}

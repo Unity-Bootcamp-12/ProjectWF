@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using static MonsterSpwaner;
 using static SkillSystemManager;
@@ -62,6 +63,7 @@ public class SkillSystemManager : MonoBehaviour
     private SkillDataList skillJsonDataList;
     private SkillData[,] skillDataSet;
     private Sprite[,] skillSpriteSet;
+    private AudioResource[,] skillAudioSet;
     private bool[,] isSkillUnlocked;
     private int skillAttributeCount;
     private int skillGradeCount;
@@ -189,6 +191,7 @@ public class SkillSystemManager : MonoBehaviour
     {
         return (EnumSkillTargetType)data.skillTargetType;
     }
+
     // 스킬 업그레이드
 
     public void UpgradeSkill(int skillAttributeNumber, int skillGradeNumber)

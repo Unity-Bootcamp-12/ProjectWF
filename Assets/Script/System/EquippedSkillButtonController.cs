@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -11,9 +12,10 @@ public class EquippedSkillButtonController : MonoBehaviour
     private SkillData  skillData;
     private int skillAttribute;
     private int skillGrade;
-    private float skillCoolTime;
-    private string skillPrefabPath;
+    private int skillCoolTime;
+
     private bool isOnCooldown = false;
+    private string skillName;
     
     [Header("UI 요소")]
     private Image skillImage;
@@ -24,29 +26,31 @@ public class EquippedSkillButtonController : MonoBehaviour
     private GameObject skillEffectPrefab;
     private bool isSkillLocked = false;
 
-    private string skillname;
     
     private void Awake()
     {
         skillImage = GetComponent<Image>();
-        
+    }
+
+    private void OnEnable()
+    {
         if (SkillSystemManager.Instance.equipSkillData[skillIndex] != null)
         {
             skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
             skillAttribute = skillData.skillAttribute;
             skillGrade = skillData.skillGrade;
             skillCoolTime = skillData.skillCoolTime;
-            skillname = skillData.skillName;
+            skillName = skillData.skillName;
             skillImage.sprite = SkillSystemManager.Instance.GetSkillSprite(skillAttribute, skillGrade);
             backGroundImage.sprite = skillImage.sprite;
-            skillPrefabPath = skillData.skillPrefabPath;
-
         }
         else
         {
             skillData = null;
             skillImage.sprite = null;
         }
+        backGroundImage.sprite = skillImage.sprite;      
+        GameController.Instance.OnInGameResetSkillCoolTime += ResetCooldown;
     }
 
     public void OnSkillButtonClick()
@@ -66,8 +70,9 @@ public class EquippedSkillButtonController : MonoBehaviour
     {
         SoundController.Instance.PlaySFX(SFXType.CastSound);
         Vector3 spawnPosition = skillIndicator.GetCurrentTargetPosition();
-        skillEffectPrefab = Resources.Load<GameObject>(skillPrefabPath);
+        skillEffectPrefab = Resources.Load<GameObject>($"SkillPrefab/{skillName}");
         GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
+        SoundController.Instance.PlaySkillSFX(skillName);
         SkillController controller = skillPrefab.GetComponent<SkillController>();
 
         if (controller != null)
@@ -101,57 +106,41 @@ public class EquippedSkillButtonController : MonoBehaviour
     private async UniTaskVoid StartCooldown()
     {
         float timer = skillCoolTime;
-
+        
         while (timer > 0f)
         {
+            if (isOnCooldown == false)
+            {
+                return;
+            }
+
             if (isSkillLocked)
             {
-                return;                
+                return;
             }
+
             timer -= Time.deltaTime;
 
             float ratio = Mathf.Clamp01(timer / skillCoolTime);
             skillImage.fillAmount = ratio;
             cooldownText.text = Mathf.CeilToInt(timer).ToString();
 
-            await UniTask.Yield();            
+            await UniTask.Yield();
+            
         }
 
         // 쿨다운 완료
         isOnCooldown = false;
         skillImage.fillAmount = 0f;
         cooldownText.text = "";
-
-        backGroundImage.color = Color.white;
-        GetComponent<Image>().color = Color.white;
     }   
 
     private void ResetCooldown()
     {
-        isSkillLocked = true;
+        isSkillLocked = false;
         isOnCooldown = false;
-        skillImage.fillAmount = 0f;
+        skillImage.fillAmount = 0f; 
         cooldownText.text = "";
-        DelayIsEndGame().Forget();
-        backGroundImage.color = Color.white;
-        GetComponent<Image>().color = Color.white;
     }
 
-    private void InGameSkill()
-    {
-        DelayInGameSkill().Forget();
-    }
-
-    private async UniTask DelayInGameSkill()
-    {
-        isSkillLocked = true;
-        await UniTask.Delay(5000);
-        isSkillLocked = false;
-    }
-
-    private async UniTask DelayIsEndGame()
-    {
-        await UniTask.Delay(1000);
-        isSkillLocked = false;
-    }
 }

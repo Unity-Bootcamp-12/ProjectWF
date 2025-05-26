@@ -12,7 +12,7 @@ public enum IndicatorType
 
 public class SkillIndicator : MonoBehaviour
 {
-    [SerializeField]private GameObject targetingPanel;
+    [SerializeField]private Canvas targetingPanel;
     [SerializeField]private Image rectangleSkillIndicatorPrefab;
     [SerializeField]private Image circleSkillIndicatorPrefab;
     
@@ -69,11 +69,15 @@ public class SkillIndicator : MonoBehaviour
             indicatorType = IndicatorType.None;
         }
     }
-    
 
+    private void OnEnable()
+    {
+        GameController.Instance.OnSkillReset += EndTargeting;
+    }
+    
     private void Start()
     {
-        targetingPanel.SetActive(false);
+        targetingPanel.enabled = false;
     }
 
     private void Update()
@@ -88,7 +92,6 @@ public class SkillIndicator : MonoBehaviour
         // 에디터에서 보여지는 경우
         if (Input.GetMouseButtonDown(0))
         {
-            // 타겟패널안에 입력할 경우
             if (IsMouseOnPanel())
             {
                 Vector3 targetWorldPosition = GetTargetWorldPositionInEditor();
@@ -97,7 +100,7 @@ public class SkillIndicator : MonoBehaviour
             // 타겟패널 밖에 입력할 경우
             EndTargeting();
         }
-        #else
+#else
         // 모바일에서 보여지는 경우
         else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -120,14 +123,24 @@ public class SkillIndicator : MonoBehaviour
         }
 
         RectTransform rectangleSkillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
+        RectTransform targetingPanelRectTransform = targetingPanel.GetComponent<RectTransform>();
+        float canvasWidth = targetingPanelRectTransform.rect.width;
+        float canvasHeight = targetingPanelRectTransform.rect.height;
         switch (indicatorType)
         {
             case IndicatorType.Rectangle:
-                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeHorizontal, skillRangeVertical);
+                if (skillRangeHorizontal > skillRangeVertical)
+                {
+                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, skillRangeVertical);
+                }
+                else if (skillRangeHorizontal < skillRangeVertical)
+                {
+                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeHorizontal, canvasHeight);
+                }
                 break;
             case IndicatorType.Circle:
-                float diameter = skillRangeRadius * 2f;
-                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*20, diameter*20);
+                float diameter = skillRangeRadius;
+                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*50, diameter*50);
                 break;
             case IndicatorType.None:
                 skillIndicatorPrefab.gameObject.SetActive(false);
@@ -167,9 +180,8 @@ public class SkillIndicator : MonoBehaviour
             return;
         }
 
-
         isTargeting = true;
-        targetingPanel.SetActive(true);
+        targetingPanel.enabled = true;
         Time.timeScale = 0.5f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         
@@ -259,18 +271,15 @@ public class SkillIndicator : MonoBehaviour
 
     private void EndTargeting()
     {
-        isTargeting = false;
-        targetingPanel.SetActive(false);
-
         if (currentIndicator != null)
         {
             Destroy(currentIndicator);
             currentIndicator = null;
         }
+        isTargeting = false;
+        targetingPanel.enabled = false;
 
         onTargetConfirmed = null;
-        
-        // 슬로우 모션 해제
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
