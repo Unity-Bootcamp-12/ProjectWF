@@ -43,6 +43,7 @@ public class ProgressUI : BaseUI
 
     public void OnClickPauseButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         GameController.Instance.PauseGame();
         UIManager.Instance.OpenUI<PauseUI>(GameController.Instance.uiDataDictionary[UIType.PauseUI]);
     }

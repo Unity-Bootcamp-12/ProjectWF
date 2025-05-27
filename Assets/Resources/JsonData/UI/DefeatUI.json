@@ -4,6 +4,7 @@
     "currentWaveText" : "현재 웨이브",
     "wisdomText" : "수고비 ",
     "defeatEarnedWisdomCoefficient" : 0.6,
+
     "effectCount" : 5,
     "effectDelay" : 100
 }

@@ -9860,7 +9860,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 1.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6815102377269973531
 MonoBehaviour:
@@ -9874,7 +9874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58a44440b55f3f4fa12cc9d2074fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillAttackPower: 1
   skillDamageInterval: 0.3
   isContinous: 1
 --- !u!114 &3899017434785749254

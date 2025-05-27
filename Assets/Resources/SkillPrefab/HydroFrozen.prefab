@@ -4930,8 +4930,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7881155042065575939}
   - {fileID: 2058481957144427068}
@@ -9831,7 +9831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58a44440b55f3f4fa12cc9d2074fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillAttackPower: 1
   skillDamageInterval: 0.3
   isContinous: 1
 --- !u!1 &8381508231864556019

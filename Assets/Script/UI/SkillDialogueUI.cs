@@ -46,6 +46,7 @@ public class SkillDialogueUI : BaseUI
     {
         if (isSkillUnlocked)
         {
+            SoundController.Instance.PlaySFX(SFXType.UIClickSound);
             if (isEquipped)
             {
                 SkillSystemManager.Instance.ReleaseSkill(skillName);
@@ -60,7 +61,7 @@ public class SkillDialogueUI : BaseUI
         {
             if (skillData.skillGrade == 0)
             {
-               
+                SoundController.Instance.PlaySFX(SFXType.UpgradeSkillSound);
                 SkillSystemManager.Instance.UnlockSkill(skillData.skillAttribute, skillData.skillGrade);
             }
 
@@ -70,7 +71,12 @@ public class SkillDialogueUI : BaseUI
                     SkillSystemManager.Instance.isSkillUsingUnloked(skillData.skillAttribute, skillData.skillGrade - 1);
                 if (isBeforeSkillUnloked)
                 {
+                    SoundController.Instance.PlaySFX(SFXType.UpgradeSkillSound);
                     SkillSystemManager.Instance.UnlockSkill(skillData.skillAttribute, skillData.skillGrade);
+                }
+                else
+                {
+                    SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
                 }
             }
         }
@@ -146,6 +152,7 @@ public class SkillDialogueUI : BaseUI
 
     public void OnClickExitButton()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         CloseUI();
     }
 }
