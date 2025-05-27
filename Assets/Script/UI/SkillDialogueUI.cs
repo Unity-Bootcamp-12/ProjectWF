@@ -71,7 +71,6 @@ public class SkillDialogueUI : BaseUI
                     SkillSystemManager.Instance.isSkillUsingUnloked(skillData.skillAttribute, skillData.skillGrade - 1);
                 if (isBeforeSkillUnloked)
                 {
-                    SoundController.Instance.PlaySFX(SFXType.UpgradeSkillSound);
                     SkillSystemManager.Instance.UnlockSkill(skillData.skillAttribute, skillData.skillGrade);
                 }
                 else

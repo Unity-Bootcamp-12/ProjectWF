@@ -56,7 +56,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     public void OnSkillButtonClick()
     {
         
-        if (isOnCooldown || isSkillLocked) 
+        if (isOnCooldown || isSkillLocked || skillData == null) 
         {
             SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;   

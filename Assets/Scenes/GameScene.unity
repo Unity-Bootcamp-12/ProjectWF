@@ -169,6 +169,7 @@ MonoBehaviour:
   maxFortressHP: 50
   playerAttackPower: 0
   currentWisdomPoint: 0
+  consumedWisdomPoint: 0
 --- !u!1 &236039925
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,9 +709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-
   m_IsActive: 1
-
 --- !u!4 &403458901
 Transform:
   m_ObjectHideFlags: 0

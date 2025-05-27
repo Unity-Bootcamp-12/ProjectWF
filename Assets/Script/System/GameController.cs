@@ -71,6 +71,8 @@ public class GameController : MonoBehaviour
     public event Action<int> OnBossSpawn;
 
     public event Action OnWisdomChanged;
+
+    public event Action OnWaveEnd;
     // 요새 스탯관리
     [SerializeField]private int fortressHp;
     [SerializeField]private int maxFortressHP;
@@ -315,6 +317,7 @@ public class GameController : MonoBehaviour
         }
         else if (currentWaveState == WaveState.End)
         {
+            OnWaveEnd?.Invoke();
             // progress ui close
             OnEndProgress?.Invoke(false);
             // 플레이어 공격 멈춤
@@ -365,5 +368,10 @@ public class GameController : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("CurrentWisdomPoint", 500);
     }
 }

@@ -40,12 +40,12 @@ public class SkillController : MonoBehaviour
         {
             collider.enabled = false;
         }
-        
+
+        GameController.Instance.OnWaveEnd += DestroyParticle;
     }
     
     private void OnEnable()
     {
-        
         StartCoroutine(HandleCollider());
     }
 
@@ -116,8 +116,14 @@ public class SkillController : MonoBehaviour
         }
     }
 
+    private void DestroyParticle()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
+        GameController.Instance.OnWaveEnd -= DestroyParticle;
         StopDamage();
         if (skillType == EnumSkillType.Buff)
         {

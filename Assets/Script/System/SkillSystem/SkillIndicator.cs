@@ -34,6 +34,9 @@ public class SkillIndicator : MonoBehaviour
     private EnumSkillTargetType skillTargetType;
     [SerializeField] private Transform playerTransform;
     private Vector2 indicatorVelocity;
+
+    private int widthResolution;
+    private int heightResolution;
     
     public void SetSkillIndex(int index)
     {
@@ -83,13 +86,13 @@ public class SkillIndicator : MonoBehaviour
 
     private void Update()
     {
+        #if UNITY_EDITOR
+
         if (!isTargeting)
         {
             return;
         }
         
-        #if UNITY_EDITOR
-
         UpdateIndicatorPositionToMouse();
 
         // 에디터에서 보여지는 경우
@@ -104,6 +107,11 @@ public class SkillIndicator : MonoBehaviour
             EndTargeting();
         }
         #else
+        if (!isTargeting)
+        {
+            return;
+        }
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -134,7 +142,17 @@ public class SkillIndicator : MonoBehaviour
         }
 
         RectTransform rectangleSkillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
+        
+        
         RectTransform targetingPanelRectTransform = targetingPanel.GetComponent<RectTransform>();
+        heightResolution = Screen.height;
+        widthResolution = Screen.width;
+
+        Logger.Info($"{heightResolution} x {widthResolution}");
+        Vector2 offsetMin = targetingPanelRectTransform.offsetMin;
+        offsetMin.y = heightResolution * 0.2f;
+        targetingPanelRectTransform.offsetMin = offsetMin;
+        
         float canvasWidth = targetingPanelRectTransform.rect.width;
         float canvasHeight = targetingPanelRectTransform.rect.height;
         switch (indicatorType)
@@ -142,11 +160,11 @@ public class SkillIndicator : MonoBehaviour
             case IndicatorType.Rectangle:
                 if (skillRangeHorizontal > skillRangeVertical)
                 {
-                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, skillRangeVertical);
+                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, canvasHeight * 0.1f);
                 }
                 else if (skillRangeHorizontal < skillRangeVertical)
                 {
-                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeHorizontal, canvasHeight);
+                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth * 0.2f, canvasHeight);
                 }
                 else if (skillRangeHorizontal == skillRangeVertical)
                 {
@@ -156,7 +174,8 @@ public class SkillIndicator : MonoBehaviour
                 break;
             case IndicatorType.Circle:
                 float diameter = skillRangeRadius;
-                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*100, diameter*100);
+                float coefficient = widthResolution * (float)100 / 1080;
+                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*coefficient, diameter*coefficient);
                 break;
             case IndicatorType.None:
                 skillIndicatorPrefab.gameObject.SetActive(false);

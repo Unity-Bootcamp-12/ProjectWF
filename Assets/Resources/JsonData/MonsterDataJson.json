@@ -3,7 +3,7 @@
     {
       "monsterID": 1,
       "monsterName": "DevilFly",
-      "monsterHP": 5,
+      "monsterHP": 15,
       "monsterAttackPower": 1,
       "monsterSpeed": 2.2,
       "strengthElementalAttribute": 1,
@@ -15,7 +15,7 @@
     {
       "monsterID": 2,
       "monsterName": "Mimic",
-      "monsterHP": 5,
+      "monsterHP": 25,
       "monsterAttackPower": 2,
       "monsterSpeed": 1,
       "strengthElementalAttribute": 0,
@@ -27,7 +27,7 @@
     {
       "monsterID": 3,
       "monsterName": "FlyingMonoeye",
-      "monsterHP": 5,
+      "monsterHP": 20,
       "monsterAttackPower": 3,
       "monsterSpeed": 1.5,
       "strengthElementalAttribute": 3,
@@ -39,7 +39,7 @@
     {
       "monsterID": 4,
       "monsterName": "Dragon",
-      "monsterHP": 10,
+      "monsterHP": 50,
       "monsterAttackPower": 10,
       "monsterSpeed": 0.5,
       "strengthElementalAttribute": 2,
@@ -51,7 +51,7 @@
     {
       "monsterID": 5,
       "monsterName": "Minotaur",
-      "monsterHP": 10,
+      "monsterHP": 50,
       "monsterAttackPower": 10,
       "monsterSpeed": 0.5,
       "strengthElementalAttribute": 3,
