@@ -12,7 +12,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private SkillData  skillData;
     private int skillAttribute;
     private int skillGrade;
-    private int skillCoolTime;
+    private float skillCoolTime;
 
     private bool isOnCooldown = false;
     private string skillName;
