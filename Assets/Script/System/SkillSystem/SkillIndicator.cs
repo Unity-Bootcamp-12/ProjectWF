@@ -33,6 +33,7 @@ public class SkillIndicator : MonoBehaviour
     
     private EnumSkillTargetType skillTargetType;
     [SerializeField] private Transform playerTransform;
+    private Vector2 indicatorVelocity;
     
     public void SetSkillIndex(int index)
     {
@@ -82,11 +83,13 @@ public class SkillIndicator : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
         if (!isTargeting)
         {
             return;
         }
+        
+        #if UNITY_EDITOR
+
         UpdateIndicatorPositionToMouse();
 
         // 에디터에서 보여지는 경우
@@ -100,17 +103,25 @@ public class SkillIndicator : MonoBehaviour
             // 타겟패널 밖에 입력할 경우
             EndTargeting();
         }
-#else
-        // 모바일에서 보여지는 경우
-        else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        #else
+        if (Input.touchCount > 0)
         {
-            Vector3 touchPosition = Input.GetTouch(0).position;
-            if (IsTouchOnPanel(touchPosition))
+            Touch touch = Input.GetTouch(0);
+            
+            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
-                Vector3 targetWorldPosition = GetTargetWorldPositionInGame(touchPosition);
-                onTargetConfirmed?.Invoke(targetWorldPosition);
+                UpdateIndicatorPositionToTouch();
             }
-            EndTargeting();
+            
+            if (touch.phase == TouchPhase.Ended)
+            {
+                if (IsTouchOnPanel(touch.position))
+                {
+                    Vector3 worldPos = GetTargetWorldPositionInGame(touch.position);
+                    onTargetConfirmed?.Invoke(worldPos);
+                }
+                EndTargeting();
+            }
         }
         #endif
     }
@@ -241,6 +252,36 @@ public class SkillIndicator : MonoBehaviour
 
         // 위치 적용
         indicatorRect.localPosition = clampedPosition;
+    }
+    
+    private void UpdateIndicatorPositionToTouch()
+    {
+        if (indicatorType == IndicatorType.None|| Input.touchCount == 0)
+        {
+            return;
+        }
+
+        Vector2 localPoint;
+        RectTransform imageRect = targetingPanel.GetComponent<RectTransform>();
+        RectTransform indicatorRect = currentIndicator.GetComponent<RectTransform>();
+
+        // 마우스 위치를 패널 기준 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            imageRect,
+            Input.touches[0].position,
+            null,
+            out localPoint
+        );
+
+        // 인디케이터 크기 맞춤으로 제작
+        Vector2 clampedPosition = ClampToPanel(imageRect, indicatorRect, localPoint);
+
+        // 위치 적용
+        indicatorRect.localPosition = Vector2.SmoothDamp(
+            indicatorRect.localPosition,
+            clampedPosition,
+            ref indicatorVelocity,
+            0.05f);
     }
     
     private Vector2 ClampToPanel(RectTransform image, RectTransform indicator, Vector2 localPos)
