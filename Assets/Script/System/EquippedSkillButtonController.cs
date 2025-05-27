@@ -12,7 +12,7 @@ public class EquippedSkillButtonController : MonoBehaviour
     private SkillData  skillData;
     private int skillAttribute;
     private int skillGrade;
-    private int skillCoolTime;
+    private float skillCoolTime;
 
     private bool isOnCooldown = false;
     private string skillName;
@@ -58,6 +58,7 @@ public class EquippedSkillButtonController : MonoBehaviour
         
         if (isOnCooldown || isSkillLocked) 
         {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;   
         }
         skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];

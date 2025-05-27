@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944979146596728160}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.12278779, y: 0.6963643, z: -0.12278779, w: 0.6963643}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -158,7 +158,7 @@ Transform:
   - {fileID: 1159526365236496512}
   - {fileID: 982658035966953912}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 90, z: 0}
 --- !u!198 &7133700740149455236
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5108,8 +5108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 9.301392, y: 5.590477, z: 1.7580787}
-  m_Center: {x: -0.37537193, y: 1.8547621, z: -0.15903229}
+  m_Size: {x: 9.301392, y: 5.5904775, z: 0.6753343}
+  m_Center: {x: -0.37537193, y: 1.854762, z: -0.07923122}
 --- !u!114 &3232310796591610075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5122,7 +5122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58a44440b55f3f4fa12cc9d2074fe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillAttackPower: 1
   skillDamageInterval: 0.3
   isContinous: 1
 --- !u!1 &6599313418816421422

@@ -219,7 +219,8 @@ public class SkillSystemManager : MonoBehaviour
             Logger.Info("재화가 부족합니다.");
             return;
         }
-        
+
+        SoundController.Instance.PlaySFX(SFXType.UpgradeSkillSound);
         GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel += 1;
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;

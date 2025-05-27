@@ -137,10 +137,15 @@ public class SkillIndicator : MonoBehaviour
                 {
                     rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(skillRangeHorizontal, canvasHeight);
                 }
+                else if (skillRangeHorizontal == skillRangeVertical)
+                {
+                    rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, canvasHeight);
+                }
+
                 break;
             case IndicatorType.Circle:
                 float diameter = skillRangeRadius;
-                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*50, diameter*50);
+                rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*100, diameter*100);
                 break;
             case IndicatorType.None:
                 skillIndicatorPrefab.gameObject.SetActive(false);
@@ -317,6 +322,7 @@ public class SkillIndicator : MonoBehaviour
     private Vector3 GetTargetWorldPositionInEditor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red, 30);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
             return new Vector3(hit.point.x, inGameGroundHeight, hit.point.z);
