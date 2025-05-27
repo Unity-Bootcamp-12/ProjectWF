@@ -21,6 +21,7 @@ public class SkillButtonController : MonoBehaviour
 
     public void OnSkillButtonClick()
     {
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         SkillSystemManager.Instance.ShowDialogue(skillButtonAttributeNumber, skillGradeNumber);
     }
 

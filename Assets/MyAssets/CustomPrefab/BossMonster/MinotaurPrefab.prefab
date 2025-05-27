@@ -1939,6 +1939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c9beb964adac24ba7332987bc38670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strengthAttribute: 0
+  weakAttribute: 0
   monsterHpSlider: {fileID: 2478486889367735012}
   monsterDamageEffect: {fileID: 8235218832333834703}
   weakDamageEffect: {fileID: 4587087144681622669}
@@ -1963,8 +1965,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2421176, y: 2.0777955, z: 0.5106849}
-  m_Center: {x: 0.09281883, y: 0.53889656, z: 0.21990362}
+  m_Size: {x: 1.2421176, y: 2.0777955, z: 1.0314404}
+  m_Center: {x: 0.09281883, y: 0.53889656, z: 0.48028287}
 --- !u!54 &7722788250355697750
 Rigidbody:
   m_ObjectHideFlags: 0

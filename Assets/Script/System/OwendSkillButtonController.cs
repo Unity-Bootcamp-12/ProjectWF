@@ -41,8 +41,10 @@ public class OwendSkillButtonController:MonoBehaviour
     {
         if (skillData == null)
         {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;
         }
+        SoundController.Instance.PlaySFX(SFXType.UIClickSound);
         SkillSystemManager.Instance.ShowDialogue((EnumSkillAttribute)skillAttribute,skillGrade);
     }
 }

@@ -9,7 +9,6 @@ public class DefeatUIData : BaseUIData
     public string waveDefeatText;
     public string maxWaveText;
     public string currentWaveText;
-    public string wisdomText;
     public int defeatEarnedWisdomCoefficient;
     public int effectCount;
     public int effectDelay;
@@ -20,7 +19,6 @@ public class DefeatUI : BaseUI
     public TextMeshProUGUI waveDefeatText;
     public TextMeshProUGUI maxWaveText;
     public TextMeshProUGUI currentWaveText;
-    public TextMeshProUGUI wisdomText;
     public TextMeshProUGUI currentWaveLevelText;
     public TextMeshProUGUI maxWaveLevelText;
     public TextMeshProUGUI defeatEarnedWisdomText;
@@ -48,7 +46,7 @@ public class DefeatUI : BaseUI
         waveDefeatText.text = defeatUIData.waveDefeatText;
         maxWaveText.text = defeatUIData.maxWaveText;
         currentWaveText.text = defeatUIData.currentWaveText;
-        wisdomText.text = defeatUIData.wisdomText;
+        
         effectCount =  defeatUIData.effectCount;
         effectDelay =  defeatUIData.effectDelay;
     }
