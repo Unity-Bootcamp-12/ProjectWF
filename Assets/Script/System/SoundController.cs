@@ -33,7 +33,7 @@ public enum SFXType
     LightningAura,
     LightningSlash,
     ElectroSpark,
-    SlientWaterSlash,
+    SilentWaterSlash,
     HydroFrozen,
     DevilRainFog
     

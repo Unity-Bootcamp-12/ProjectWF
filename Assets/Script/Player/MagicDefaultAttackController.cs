@@ -29,7 +29,7 @@ public class MagicDefaultAttackController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Contains("Monster"))
+        if (other.gameObject.tag.CompareTo("Monster") == 0)
         {
             SoundController.Instance.PlaySFX(SFXType.PlayerAttackEffectSound);
             Destroy(this.gameObject);

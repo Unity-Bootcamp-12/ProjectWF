@@ -121,13 +121,6 @@ public class MonsterController : MonoBehaviour
 
     void MonsterMove()
     {
-        if (Mathf.Abs(transform.position.x - fortressPosition.x) < 0.01f)
-        {
-            currentState = MonsterState.Attack;
-            monsterAnimator.SetBool("IsMoving", false);
-            return;
-        }
-
         transform.position += new Vector3(-1, 0, 0) * monsterSpeed * Time.deltaTime;
     }
 
@@ -188,6 +181,11 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
             TakeDamage(false, playerAttackPower, baseAttackAttribute);
+        }
+        else if (other.gameObject.tag.Contains("MonsterAttackPosition"))
+        {
+            currentState = MonsterState.Attack;
+            monsterAnimator.SetBool("IsMoving", false);
         }
     }
 
