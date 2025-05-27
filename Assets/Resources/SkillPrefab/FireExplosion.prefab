@@ -9875,7 +9875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDamageInterval: 0.3
-  isContinous: 1
+  isContinous: 0
 --- !u!114 &3899017434785749254
 MonoBehaviour:
   m_ObjectHideFlags: 0

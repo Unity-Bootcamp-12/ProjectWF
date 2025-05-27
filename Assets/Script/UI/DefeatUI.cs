@@ -10,7 +10,7 @@ public class DefeatUIData : BaseUIData
     public string maxWaveText;
     public string currentWaveText;
 
-    public int defeatEarnedWisdomCoefficient;
+    public float defeatEarnedWisdomCoefficient;
     public int effectCount;
     public int effectDelay;
 }

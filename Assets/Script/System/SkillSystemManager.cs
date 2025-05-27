@@ -228,7 +228,7 @@ public class SkillSystemManager : MonoBehaviour
         GameController.Instance.AccumlateConsumedWisdom(wisdomUpgradeCost);
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel += 1;
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
-        skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-=0.1f*(skillLevel+1);
+        skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-= 0.01f*(skillLevel+1);
         if (skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime <= 0)
         {
             skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime=0.01f;
