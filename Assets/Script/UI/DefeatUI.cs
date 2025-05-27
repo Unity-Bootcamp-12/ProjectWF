@@ -10,7 +10,7 @@ public class DefeatUIData : BaseUIData
     public string maxWaveText;
     public string currentWaveText;
     public string wisdomText;
-    public int defeatEarnedWisdomCoefficient;
+    public float defeatEarnedWisdomCoefficient;
     public int effectCount;
     public int effectDelay;
 }
@@ -33,7 +33,7 @@ public class DefeatUI : BaseUI
     private DefeatUIData defeatUIData;
 
     private int skillCount;
-    private int defeatEarnedWisdomCoefficient;
+    private float defeatEarnedWisdomCoefficient;
     
     private int effectCount;
     private int effectDelay;
@@ -43,8 +43,8 @@ public class DefeatUI : BaseUI
         base.SetInfo(uiData);
         
         defeatUIData = uiData as DefeatUIData;
-        
-        defeatEarnedWisdomCoefficient =  defeatUIData.defeatEarnedWisdomCoefficient;
+
+        defeatEarnedWisdomCoefficient = defeatUIData.defeatEarnedWisdomCoefficient;
         waveDefeatText.text = defeatUIData.waveDefeatText;
         maxWaveText.text = defeatUIData.maxWaveText;
         currentWaveText.text = defeatUIData.currentWaveText;
@@ -70,7 +70,10 @@ public class DefeatUI : BaseUI
     private int GetDefeatEarnedWisdom()
     {
         // skillCount 차후에 곱해줘야함
-        return GameController.Instance.GetWaveLevel()*defeatEarnedWisdomCoefficient;
+        float moneyLoss = (GameController.Instance.GetCurrentWisdom() + 
+                         GameController.Instance.GetConsumedWisdom())*defeatEarnedWisdomCoefficient;
+        GameController.Instance.InitConsumedWisdom();
+        return (int)moneyLoss;
     }
     
     public void OnClickRestartButton()

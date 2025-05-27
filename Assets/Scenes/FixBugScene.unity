@@ -164,10 +164,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWaveState: 0
+  baseAttackAttribute: 0
   fortressHp: 0
   maxFortressHP: 50
   playerAttackPower: 0
   currentWisdomPoint: 0
+  consumedWisdomPoint: 0
 --- !u!1001 &302274605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,7 +916,7 @@ MonoBehaviour:
   magicballSpawnTransform: {fileID: 1963673267}
   monsterLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   playerPosition: {fileID: 0}
   monsterTarget: {fileID: 0}
   state: 0

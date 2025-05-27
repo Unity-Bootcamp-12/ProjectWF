@@ -95,6 +95,7 @@ public class GameController : MonoBehaviour
 
     // 재화(위즈덤 관리)
     [SerializeField]private int currentWisdomPoint;
+    [SerializeField]private int consumedWisdomPoint;// 위즈덤 소비 누적
     
     // 요새강화 
     private int fortressHPLevel;
@@ -233,6 +234,22 @@ public class GameController : MonoBehaviour
         OnWisdomChanged?.Invoke();
     }
 
+    public void AccumlateConsumedWisdom(int value)
+    {
+        consumedWisdomPoint+=value;
+        
+    }
+
+    public void InitConsumedWisdom()
+    {
+        consumedWisdomPoint = 0;
+    }
+    public int GetConsumedWisdom()
+    {
+        return consumedWisdomPoint;
+    }
+    
+
     public int GetHPUpgradeLevel()
     {
         return fortressHPLevel;
@@ -245,6 +262,7 @@ public class GameController : MonoBehaviour
     public void UpgradeFortressHP(int expense)
     {
         currentWisdomPoint -= expense;
+        AccumlateConsumedWisdom(expense);
         fortressHPLevel++;
         maxFortressHP += increaseFortressHpValue;
     }
@@ -252,6 +270,7 @@ public class GameController : MonoBehaviour
      public void UpgradePlayerAttackPower(int expense)
      {
          currentWisdomPoint -= expense;
+         AccumlateConsumedWisdom(expense);
          playerAttackPowerLevel++;
          playerAttackPower += increasePlayerAttackPowerValue;
      }

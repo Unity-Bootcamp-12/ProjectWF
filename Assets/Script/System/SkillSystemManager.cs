@@ -180,16 +180,19 @@ public class SkillSystemManager : MonoBehaviour
     
     public void UnlockSkill(int skillAttributeNumber, int skillGradeNumber)
     {
-        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() -
-                                  GameController.Instance.GetcurrentSkillUnlockgradeWisdom(skillGradeNumber);
+        int UnlockCost = GameController.Instance.GetcurrentSkillUnlockgradeWisdom(skillGradeNumber);
+        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() - UnlockCost;
+                                  
         if (wisdomSubtractValue < 0)
         {
             SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             Logger.Info("재화가 부족합니다.");
             return;
         }
+        
         SoundController.Instance.PlaySFX(SFXType.UpgradeSound);
         GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
+        GameController.Instance.AccumlateConsumedWisdom(UnlockCost);
         
         isSkillUnlocked[skillAttributeNumber, skillGradeNumber] = true;
         skillDataSet[skillAttributeNumber, skillGradeNumber].unlockState = 1;
@@ -210,8 +213,8 @@ public class SkillSystemManager : MonoBehaviour
             return;
         }
         int skillLevel = skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel;
-        int requiredValue = GameController.Instance.GetSkillUpgradeWisdom(skillLevel,skillGradeNumber);
-        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() - requiredValue;
+        int wisdomUpgradeCost = GameController.Instance.GetSkillUpgradeWisdom(skillLevel,skillGradeNumber);
+        int wisdomSubtractValue = GameController.Instance.GetCurrentWisdom() - wisdomUpgradeCost;
         
         if (wisdomSubtractValue < 0)
         {
@@ -221,6 +224,7 @@ public class SkillSystemManager : MonoBehaviour
         }
         
         GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
+        GameController.Instance.AccumlateConsumedWisdom(wisdomUpgradeCost);
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel += 1;
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-=0.1f*(skillLevel+1);
@@ -303,38 +307,5 @@ public class SkillSystemManager : MonoBehaviour
             return false;
         }
     }
-
-    private SkillDataList ConvertSkillDataSetToList()
-    {
-        SkillDataList dataList = new SkillDataList();
-        dataList.skillDataList = new List<SkillData>();
-
-        for (int i = 0; i < skillAttributeCount; i++)
-        {
-            for (int j = 0; j < skillGradeCount; j++)
-            {
-                if (skillDataSet[i, j] != null)
-                {
-                    dataList.skillDataList.Add(skillDataSet[i, j]);
-                }
-            }
-        }
-
-        return dataList;
-    }
-
-    public void SaveSkillDataToJson()
-    {
-        SkillDataList dataList = ConvertSkillDataSetToList();
-        string json = JsonUtility.ToJson(dataList, true);
-
-#if UNITY_EDITOR
-        string path = Application.dataPath + "/Resources/JsonData/SkillDataJson.json";
-        System.IO.File.WriteAllText(path, json);
-        UnityEditor.AssetDatabase.Refresh(); // 에디터 상 파일 반영
-        Logger.Info("Skill data saved to JSON at: " + path);
-#else
-    Logger.Warning("Saving JSON is only supported in the Unity Editor.");
-#endif
-    }
+    
 }
