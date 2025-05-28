@@ -51,67 +51,37 @@ public class EquippedSkillButtonController : MonoBehaviour
         }
         backGroundImage.sprite = skillImage.sprite;      
         GameController.Instance.OnInGameResetSkillCoolTime += ResetCooldown;
+        SkillSystemManager.Instance.OnSkillUsed += StartCooldown;
     }
 
     public void OnSkillButtonClick()
     {
-        
         if (isOnCooldown || isSkillLocked || skillData == null) 
         {
             SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;   
         }
-        skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
-        skillIndicator.SetSkillIndex(skillIndex);
-        
-        
-        
-        skillIndicator.StartTargeting(OnTargetConfirmed);     
-        
-        
-        
+        SkillSystemManager.Instance.SetUsedSkillData(skillIndex);
+        Logger.Info($"skill button click {skillIndex}");
         GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+        
+        skillIndicator.Open(skillIndex);
     }
     
-    private void OnTargetConfirmed(Vector3 targetPos)
-    {
-        SoundController.Instance.PlaySFX(SFXType.CastSound);
-        Vector3 spawnPosition = skillIndicator.GetCurrentTargetPosition();
-        skillEffectPrefab = Resources.Load<GameObject>($"SkillPrefab/{skillName}");
-        GameObject skillPrefab = Instantiate(skillEffectPrefab, spawnPosition, skillEffectPrefab.transform.rotation);
-        SoundController.Instance.PlaySkillSFX(skillName);
-        SkillController controller = skillPrefab.GetComponent<SkillController>();
 
-        if (controller != null)
+    private async void StartCooldown(int skillIndex)
+    {
+        if (this.skillIndex != skillIndex)
         {
-            controller.SetSkillDamagePower(skillData.skillDamagePower);
-            
-            SkillData currentSkill = SkillSystemManager.Instance.equipSkillData[skillIndex];
-            EnumSkillAttribute currentAttribute = (EnumSkillAttribute)currentSkill.skillAttribute;
-            ElementalAttribute attribute = ElementalAttribute.None;
-            if (currentAttribute == EnumSkillAttribute.Fire)
-            {
-                attribute = ElementalAttribute.Fire;
-            }
-            else if (currentAttribute == EnumSkillAttribute.Lightning)
-            {
-                attribute = ElementalAttribute.Lightning;
-            }
-            else if (currentAttribute == EnumSkillAttribute.Water)
-            {
-                attribute = ElementalAttribute.Water;
-            }
-            controller.SetAttribute(attribute);
-            controller.SetSkillType((EnumSkillType)skillData.skillType);
+            return;
         }
         GetComponent<Image>().color = Color.black;
-            
         isOnCooldown = true;
-        StartCooldown().Forget();
+        await Cooldown();
     }
     
     // 프레임마다 대기하며 쿨타임 UI 갱신
-    private async UniTaskVoid StartCooldown()
+    private async UniTask Cooldown()
     {
         float timer = skillCoolTime;
         

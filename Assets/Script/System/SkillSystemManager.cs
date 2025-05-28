@@ -63,6 +63,10 @@ public class SkillSystemManager : MonoBehaviour
     public EnumSkillAttribute CurrentSkillAttribute { get; private set; }
     private int currentSkillGradeNumber;
     public event Action<int, int> onSkillUnlockStateChanged;
+
+    public event Action<int> OnSkillUsed;
+    
+    
     [System.Serializable]
     public class SkillDataList
     {
@@ -82,7 +86,25 @@ public class SkillSystemManager : MonoBehaviour
     //장착 스킬
     [SerializeField] private int equipSkillCount;
     public SkillData[] equipSkillData;
+    
+    private SkillData usedSkillData;
 
+    public void SetUsedSkillData(int skillIndex)
+    {
+        usedSkillData = equipSkillData[skillIndex];
+    }
+
+    public SkillData GetUsedSkillData()
+    {
+        return usedSkillData;
+    }
+
+    public void StartUseSkill(int skillIndex)
+    {
+        OnSkillUsed?.Invoke(skillIndex);
+        usedSkillData = null;
+    }
+    
     private void Awake()
     {
         if (Instance == null)
@@ -131,8 +153,6 @@ public class SkillSystemManager : MonoBehaviour
             skillDataSet[skillInputData.skillAttribute, skillInputData.skillGrade] = skillInputData;
             skillSpriteSet[skillInputData.skillAttribute, skillInputData.skillGrade] =
                 Resources.Load<Sprite>($"IconData/{skillInputData.skillName}");
-            InitUnLockSkillSetting(skillInputData);
-            InitEquipSkillSetting(skillInputData);
         }
     }
 
@@ -227,7 +247,11 @@ public class SkillSystemManager : MonoBehaviour
         GameController.Instance.SetCurrentWisdom(wisdomSubtractValue);
         GameController.Instance.AccumlateConsumedWisdom(wisdomUpgradeCost);
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel += 1;
-        skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
+        if (skillDataSet[skillAttributeNumber, skillGradeNumber].skillType != (int)EnumSkillType.Buff)
+        {
+            skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
+        }
+
         skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-= 0.01f*(skillLevel+1);
         if (skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime <= 0)
         {

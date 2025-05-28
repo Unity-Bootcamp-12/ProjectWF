@@ -166,7 +166,7 @@ MonoBehaviour:
   currentWaveState: 0
   baseAttackAttribute: 0
   fortressHp: 0
-  maxFortressHP: 50
+  maxFortressHP: 10000
   playerAttackPower: 0
   currentWisdomPoint: 0
   consumedWisdomPoint: 0
