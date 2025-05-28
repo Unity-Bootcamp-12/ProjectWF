@@ -84,54 +84,57 @@ public class SkillIndicator : MonoBehaviour
         targetingPanel.enabled = false;
     }
 
+    enum UseStage
+    {
+        Ready,
+        Use,
+        End
+    }
+    private UseStage _currentUseStage = UseStage.Ready;
+    private Vector2 _recentScreenPosition = Vector2.zero;
+    
     private void Update()
     {
-        #if UNITY_EDITOR
-
-        if (!isTargeting)
-        {
-            return;
-        }
-        
-        UpdateIndicatorPositionToMouse();
-
-        // 에디터에서 보여지는 경우
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (IsMouseOnPanel())
-            {
-                Vector3 targetWorldPosition = GetTargetWorldPositionInEditor();
-                onTargetConfirmed?.Invoke(targetWorldPosition);
-            }
-            // 타겟패널 밖에 입력할 경우
-            EndTargeting();
-        }
-        #else
         if (!isTargeting)
         {
             return;
         }
 
-        if (Input.touchCount > 0)
+        switch (_currentUseStage)
         {
-            Touch touch = Input.GetTouch(0);
-            
-            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-            {
-                UpdateIndicatorPositionToTouch();
-            }
-            
-            if (touch.phase == TouchPhase.Ended)
-            {
-                if (IsTouchOnPanel(touch.position))
+            case UseStage.Ready:
+                #if UNITY_EDITOR
+                _recentScreenPosition = Input.mousePosition;
+                #elif UNITY_ANDROID || UNITY_IOS
+                _recentScreenPosition = Input.GetTouch(0).position;
+                #endif
+                UpdateIndicatorPosition(_recentScreenPosition);
+
+                #if UNITY_EDITOR
+                if (Input.GetMouseButtonDown(0))
+                #elif UNITY_ANDROID || UNITY_IOS
+                if (Input.touchCount == 0)
+                #endif                    
                 {
-                    Vector3 worldPos = GetTargetWorldPositionInGame(touch.position);
-                    onTargetConfirmed?.Invoke(worldPos);
+                    if (IsValidToUseSkill(_recentScreenPosition))
+                    {
+                        _currentUseStage = UseStage.Use;
+                    }
+                    else
+                    {
+                        _currentUseStage = UseStage.End;
+                    }
                 }
+                break;
+            case UseStage.Use:
+                Vector3 targetWorldPosition = GetTargetWorldPositionFrom(_recentScreenPosition);
+                onTargetConfirmed?.Invoke(targetWorldPosition);
+                _currentUseStage = UseStage.End;
+                break;
+            case UseStage.End:
                 EndTargeting();
-            }
+                break;
         }
-        #endif
     }
 
     private Image SkillIndicatorPrefab(Image skillIndicatorPrefab, int skillRangeVertical, int skillRangeHorizontal, int skillRangeRadius, int skillAttribute)
@@ -247,6 +250,32 @@ public class SkillIndicator : MonoBehaviour
         
     }
 
+    private void UpdateIndicatorPosition(Vector2 screenPosition)
+    {
+        if (indicatorType == IndicatorType.None)
+        {
+            return;
+        }
+
+        Vector2 localPoint;
+        RectTransform imageRect = targetingPanel.GetComponent<RectTransform>();
+        RectTransform indicatorRect = currentIndicator.GetComponent<RectTransform>();
+
+        // 전달받은 스크린 좌표를 패널 기준 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            imageRect,
+            screenPosition,
+            null,
+            out localPoint
+        );
+
+        // 인디케이터 크기 맞춤으로 제작
+        Vector2 clampedPosition = ClampToPanel(imageRect, indicatorRect, localPoint);
+
+        // 위치 적용
+        indicatorRect.localPosition = clampedPosition;
+    }
+    
     private void UpdateIndicatorPositionToMouse()
     {
         if (indicatorType == IndicatorType.None)
@@ -320,13 +349,12 @@ public class SkillIndicator : MonoBehaviour
         return new Vector2(clampedX, clampedY);
     }
 
-    // 에디터용
-    private bool IsMouseOnPanel()
+    private bool IsValidToUseSkill(Vector2 screenPosition)
     {
-        RectTransform panelRect = targetingPanel.GetComponent<RectTransform>();
-        return RectTransformUtility.RectangleContainsScreenPoint(panelRect, Input.mousePosition);
+        var panelRect = targetingPanel.GetComponent<RectTransform>();
+        return RectTransformUtility.RectangleContainsScreenPoint(panelRect, screenPosition);
     }
-
+    
     // 모바일용
     private bool IsTouchOnPanel(Vector2 touchPosition)
     {
@@ -347,6 +375,8 @@ public class SkillIndicator : MonoBehaviour
         onTargetConfirmed = null;
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+
+        _currentUseStage = UseStage.Ready;
     }
 
     public Vector3 GetCurrentTargetPosition()
@@ -366,11 +396,11 @@ public class SkillIndicator : MonoBehaviour
             case EnumSkillTargetType.InFrontOfPlayer:
                 float distance = 2f; 
                 Vector3 forwardPos = playerTransform.position + playerTransform.forward * distance;
-                Vector3 targetMousePos = GetTargetWorldPositionInEditor();
+                Vector3 targetMousePos = GetTargetWorldPositionFrom(_recentScreenPosition);
                 spawnPosition = new Vector3(forwardPos.x, forwardPos.y, targetMousePos.z);
                 break;
             case EnumSkillTargetType.ByMousePoint:
-                spawnPosition = GetTargetWorldPositionInEditor();
+                spawnPosition = GetTargetWorldPositionFrom(_recentScreenPosition);
                 break;
         }
 
@@ -379,9 +409,9 @@ public class SkillIndicator : MonoBehaviour
     }
 
     // 에디터에서 사용
-    private Vector3 GetTargetWorldPositionInEditor()
+    private Vector3 GetTargetWorldPositionFrom(Vector2 screenPosition)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 30);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
@@ -403,3 +433,4 @@ public class SkillIndicator : MonoBehaviour
         return Vector3.zero;
     }
 }
+
