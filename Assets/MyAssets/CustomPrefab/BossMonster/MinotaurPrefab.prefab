@@ -91,16 +91,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6274899340182426907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8888039448062859319}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.5, y: 19.4}
+  m_AnchoredPosition: {x: 12.8, y: 19.4}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2920154126454808690
@@ -2154,13 +2154,57 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterHPBarPosition
       objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957718932765287453, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_SizeDelta.y
       value: 97.506
       objectReference: {fileID: 0}
     - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2169,6 +2213,10 @@ PrefabInstance:
     - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 17.874
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877335778333291104, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6026040131983064895, guid: 2a50c7d30074be044853aa3aa23d7a08, type: 3}
       propertyPath: m_LocalScale.x

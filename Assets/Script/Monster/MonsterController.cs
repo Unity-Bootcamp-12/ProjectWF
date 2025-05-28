@@ -50,6 +50,7 @@ public class MonsterController : MonoBehaviour
     private Vector3 fortressPosition;
 
     private MonsterState currentState = MonsterState.Move;
+    public MonsterState CurrentState => currentState;
 
     [SerializeField] private float fortressPositionX;
 
@@ -63,7 +64,8 @@ public class MonsterController : MonoBehaviour
     private int playerAttackPower;
 
     private ElementalAttribute baseAttackAttribute;
-    
+
+    private bool isDead = false;
     void Start()
     {
         GameController.Instance.OnProgressMonsterActive += ChangeMonsterWaveState;
@@ -79,7 +81,7 @@ public class MonsterController : MonoBehaviour
 
         transform.GetChild(0).GetComponent<MonsterHitMap>().SetparentMonsterPower(monsterAttackPower);
         currentMonsterHP = monsterHp;
-
+        isDead = false;
         if (isBoss)
         {
             currentWaveState = MonsterWaveState.Active;
@@ -143,6 +145,7 @@ public class MonsterController : MonoBehaviour
         {
             return;
         }
+        
         if (isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
             if (attribute == weakAttribute)
@@ -164,14 +167,17 @@ public class MonsterController : MonoBehaviour
         }
         else if (!isSkill && GameController.Instance.GetCurrentWaveState() == WaveState.Progress)
         {
+            Logger.Info(amount.ToString());
             monsterDamageEffect.Play();
             currentMonsterHP -= amount;
         }
 
         monsterHpSlider.value = (float)currentMonsterHP / monsterHp;
 
-        if (currentMonsterHP <= 0)
+        if (currentMonsterHP <= 0 && isDead == false)
         {
+            Logger.Warning($"{name} MonsterDead, Skill: {isSkill}");
+            currentState = MonsterState.Die;
             MonsterDead();
         }
     }
@@ -180,6 +186,10 @@ public class MonsterController : MonoBehaviour
     {
         if (other.gameObject.tag.Contains("PlayerNoramalAttack"))
         {
+            if (currentState == MonsterState.Die)
+            {
+                return;
+            }
             TakeDamage(false, playerAttackPower, baseAttackAttribute);
         }
         else if (other.gameObject.tag.Contains("MonsterAttackPosition"))
@@ -191,12 +201,7 @@ public class MonsterController : MonoBehaviour
 
     private void MonsterDead()
     {
-        if (currentState == MonsterState.Die)
-        {
-            return;
-        }
-
-        currentState = MonsterState.Die;
+        isDead = true;
         isMoving = false;
         DeActvieMonsterAttackHitMap();
         GetComponent<Collider>().enabled = false;

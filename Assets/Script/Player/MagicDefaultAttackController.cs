@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ public class MagicDefaultAttackController : MonoBehaviour
         moveDirection = targetPosition.position - transform.position;
         moveDirection.Normalize();
         
+    }
+
+    private void Start()
+    {
+        Destroy(gameObject, 3f);
     }
 
     void Update()

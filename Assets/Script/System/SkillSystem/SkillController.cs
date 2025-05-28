@@ -60,7 +60,8 @@ public class SkillController : MonoBehaviour
         {
             Logger.Info(attribute.ToString());
             GameController.Instance.SetBaseAttackAttribute(attribute);
-            GameController.Instance.IncreasePlayerAttackPower(1);
+            
+            GameController.Instance.IncreasePlayerAttackPower(GameController.Instance.GetPlayerAttackPower()/2);
         }
         
         if (collider != null && skillParticle.isPlaying)
@@ -77,6 +78,10 @@ public class SkillController : MonoBehaviour
     {
         if (other.TryGetComponent(out MonsterController monster))
         {
+            if (monster.CurrentState == MonsterState.Die)
+            {
+                return;
+            }
             if (isContinous)
             {
                 skillDamageCoroutine = StartCoroutine(SkillDamageIntervalCoroutine(monster));
@@ -101,7 +106,7 @@ public class SkillController : MonoBehaviour
 
     private IEnumerator SkillDamageIntervalCoroutine(MonsterController monster)
     {
-        while (true)
+        while (monster.CurrentState != MonsterState.Die)
         {
             monster.TakeDamage(true, skillDamagePower, attribute);
             yield return new WaitForSeconds(skillDamageInterval);
@@ -128,7 +133,7 @@ public class SkillController : MonoBehaviour
         if (skillType == EnumSkillType.Buff)
         {
             GameController.Instance.SetBaseAttackAttribute(ElementalAttribute.None);
-            GameController.Instance.IncreasePlayerAttackPower(-1);
+            GameController.Instance.IncreasePlayerAttackPower(-GameController.Instance.GetPlayerAttackPower()/3);
         }
     }
 }

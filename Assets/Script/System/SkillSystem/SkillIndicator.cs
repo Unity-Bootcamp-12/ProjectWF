@@ -12,14 +12,12 @@ public enum IndicatorType
 
 public class SkillIndicator : MonoBehaviour
 {
-    [SerializeField]private Canvas targetingPanel;
+    [SerializeField]private RectTransform targetingPanel;
     [SerializeField]private Image rectangleSkillIndicatorPrefab;
     [SerializeField]private Image circleSkillIndicatorPrefab;
     
     private IndicatorType indicatorType;
     private Image currentIndicator;
-    private Action<Vector3> onTargetConfirmed;
-    private bool isTargeting = false;
     
     private Camera mainCamera;
     private float inGameGroundHeight = 1.5f;
@@ -37,29 +35,15 @@ public class SkillIndicator : MonoBehaviour
 
     private int widthResolution;
     private int heightResolution;
-    
-    public void SetSkillIndex(int index)
-    {
-        skillIndex = index;
-        
-        if (SkillSystemManager.Instance.equipSkillData[skillIndex] != null)
-        {
-            skillData = SkillSystemManager.Instance.equipSkillData[skillIndex];
-            skillRangeVertical = skillData.skillRangeVertical;
-            skillRangeHorizontal = skillData.skillRangeHorizontal;
-            skillRangeRadius = skillData.skillRangeRadius;
-            skillAttribute = skillData.skillAttribute;
-            skillTargetType = (EnumSkillTargetType)skillData.skillTargetType;
-            SwitchBySkillType();
-        }
-        else
-        {
-            skillData = null;
-        }
-    }
 
+    private Touch touch;
+    private bool isSkillClicked = false;
+    
+    private GameObject skillEffectPrefab;
+    private string skillName;
     private void SwitchBySkillType()
     {
+        Logger.Info($"{skillRangeVertical}, {skillRangeHorizontal}, {skillRangeRadius}");
         if (skillRangeVertical > 0 && skillRangeHorizontal > 0 && skillRangeRadius > 0)
         {
             indicatorType = IndicatorType.Circle;
@@ -74,84 +58,64 @@ public class SkillIndicator : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        // HACK: 코드 수정을 최소화하기 위한 코드
+        targetingPanel = GetComponent<RectTransform>();
+    }
+
     private void OnEnable()
     {
         GameController.Instance.OnSkillReset += EndTargeting;
     }
-    
-    private void Start()
+
+    private void OnDisable()
     {
-        targetingPanel.enabled = false;
+        GameController.Instance.OnSkillReset -= EndTargeting;
     }
 
-    enum UseStage
+    public void Open(int skillIndex)
     {
-        Ready,
-        Use,
-        End
+        this.skillIndex = skillIndex;
+        SetSkillData(SkillSystemManager.Instance.GetUsedSkillData());
+        gameObject.SetActive(true);
     }
-    private UseStage _currentUseStage = UseStage.Ready;
-    private Vector2 _recentScreenPosition = Vector2.zero;
-    
+
+    private Vector2 _recentScreenPosition;
     private void Update()
     {
-        if (!isTargeting)
+        if (Input.GetMouseButtonDown(0))
         {
-            return;
+            CreateIndicator();   
         }
-
-        switch (_currentUseStage)
+        else if (Input.GetMouseButton(0))
         {
-            case UseStage.Ready:
-                #if UNITY_EDITOR
-                _recentScreenPosition = Input.mousePosition;
-                #elif UNITY_ANDROID || UNITY_IOS
-                _recentScreenPosition = Input.GetTouch(0).position;
-                #endif
-                UpdateIndicatorPosition(_recentScreenPosition);
-
-                #if UNITY_EDITOR
-                if (Input.GetMouseButtonDown(0))
-                #elif UNITY_ANDROID || UNITY_IOS
-                if (Input.touchCount == 0)
-                #endif                    
-                {
-                    if (IsValidToUseSkill(_recentScreenPosition))
-                    {
-                        _currentUseStage = UseStage.Use;
-                    }
-                    else
-                    {
-                        _currentUseStage = UseStage.End;
-                    }
-                }
-                break;
-            case UseStage.Use:
+            _recentScreenPosition = Input.mousePosition;
+            UpdateIndicatorPosition(_recentScreenPosition);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (IsValidToUseSkill(_recentScreenPosition))
+            {
                 Vector3 targetWorldPosition = GetTargetWorldPositionFrom(_recentScreenPosition);
-                onTargetConfirmed?.Invoke(targetWorldPosition);
-                _currentUseStage = UseStage.End;
-                break;
-            case UseStage.End:
-                EndTargeting();
-                break;
+                ConfirmTarget(targetWorldPosition);
+                SkillSystemManager.Instance.StartUseSkill(skillIndex);
+            }
+            
+            EndTargeting();
         }
     }
 
-    private Image SkillIndicatorPrefab(Image skillIndicatorPrefab, int skillRangeVertical, int skillRangeHorizontal, int skillRangeRadius, int skillAttribute)
+    private Image SkillIndicatorPrefab(Image skillIndicatorPrefab)
     {
-        if (skillIndicatorPrefab == null)
-        {
-            return null;
-        }
+        return Instantiate(skillIndicatorPrefab);
 
         RectTransform rectangleSkillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
-        
         
         RectTransform targetingPanelRectTransform = targetingPanel.GetComponent<RectTransform>();
         heightResolution = Screen.height;
         widthResolution = Screen.width;
 
-        Logger.Info($"{heightResolution} x {widthResolution}");
         Vector2 offsetMin = targetingPanelRectTransform.offsetMin;
         offsetMin.y = heightResolution * 0.2f;
         targetingPanelRectTransform.offsetMin = offsetMin;
@@ -211,29 +175,64 @@ public class SkillIndicator : MonoBehaviour
         
     }
 
-    public void StartTargeting(Action<Vector3> onConfirm)
+    public void SetSkillData(SkillData skillData)
     {
-        if (isTargeting)
-        {
-            return;
-        }
-
-        isTargeting = true;
-        targetingPanel.enabled = true;
         Time.timeScale = 0.5f;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        
-        onTargetConfirmed = onConfirm;
 
-        SwithIndicatorType();
+        this.skillData = skillData;
+        skillName = skillData.skillName;
+        skillRangeRadius = skillData.skillRangeRadius;
+        skillRangeHorizontal = skillData.skillRangeHorizontal;
+        skillRangeVertical = skillData.skillRangeVertical;
         
+        Logger.Info($"Indicator start {skillName}");
+        
+        SwitchBySkillType();
     }
 
-    private void SwithIndicatorType()
+    private async void ConfirmTarget(Vector3 targetPos)
     {
+        SoundController.Instance.PlaySFX(SFXType.CastSound);
+        // TODO: 스킬에 따라 스폰 위치 다시 결정해야 함.
+        //Vector3 spawnPosition = GetCurrentTargetPosition();
+        skillEffectPrefab = Resources.Load<GameObject>($"SkillPrefab/{skillName}");
+        GameObject skillPrefab = Instantiate(skillEffectPrefab, targetPos, skillEffectPrefab.transform.rotation);
+        SoundController.Instance.PlaySkillSFX(skillName);
+        SkillController controller = skillPrefab.GetComponent<SkillController>();
+        
+        if (controller != null)
+        {
+            controller.SetSkillDamagePower(skillData.skillDamagePower);
+            
+            SkillData currentSkill = SkillSystemManager.Instance.equipSkillData[skillIndex];
+            EnumSkillAttribute currentAttribute = (EnumSkillAttribute)currentSkill.skillAttribute;
+            ElementalAttribute attribute = ElementalAttribute.None;
+            if (currentAttribute == EnumSkillAttribute.Fire)
+            {
+                attribute = ElementalAttribute.Fire;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Lightning)
+            {
+                attribute = ElementalAttribute.Lightning;
+            }
+            else if (currentAttribute == EnumSkillAttribute.Water)
+            {
+                attribute = ElementalAttribute.Water;
+            }
+            controller.SetAttribute(attribute);
+            controller.SetSkillType((EnumSkillType)skillData.skillType);
+        }
+        
+    }
+    
+    private void CreateIndicator()
+    {
+        Logger.Info($"{indicatorType}");
         if (indicatorType == IndicatorType.Circle)
         {
-            var prefab = SkillIndicatorPrefab(circleSkillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
+            //TODO: 인디케이터 인스턴싱 후 색상, 크기 조정 등
+            var prefab = circleSkillIndicatorPrefab;
+            //var prefab = SkillIndicatorPrefab(circleSkillIndicatorPrefab);
             if (prefab != null)
             {
                 currentIndicator = Instantiate(prefab, targetingPanel.transform);
@@ -241,7 +240,8 @@ public class SkillIndicator : MonoBehaviour
         }
         else if (indicatorType == IndicatorType.Rectangle)
         {
-            var prefab = SkillIndicatorPrefab(rectangleSkillIndicatorPrefab, skillRangeVertical, skillRangeHorizontal, skillRangeRadius, skillAttribute);
+            var prefab = rectangleSkillIndicatorPrefab;
+            //var prefab = SkillIndicatorPrefab(rectangleSkillIndicatorPrefab);
             if (prefab != null)
             {
                 currentIndicator = Instantiate(prefab, targetingPanel.transform);
@@ -276,62 +276,6 @@ public class SkillIndicator : MonoBehaviour
         indicatorRect.localPosition = clampedPosition;
     }
     
-    private void UpdateIndicatorPositionToMouse()
-    {
-        if (indicatorType == IndicatorType.None)
-        {
-            return;
-        }
-
-        Vector2 localPoint;
-        RectTransform imageRect = targetingPanel.GetComponent<RectTransform>();
-        RectTransform indicatorRect = currentIndicator.GetComponent<RectTransform>();
-
-        // 마우스 위치를 패널 기준 로컬 좌표로 변환
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            imageRect,
-            Input.mousePosition,
-            null,
-            out localPoint
-        );
-
-        // 인디케이터 크기 맞춤으로 제작
-        Vector2 clampedPosition = ClampToPanel(imageRect, indicatorRect, localPoint);
-
-        // 위치 적용
-        indicatorRect.localPosition = clampedPosition;
-    }
-    
-    private void UpdateIndicatorPositionToTouch()
-    {
-        if (indicatorType == IndicatorType.None|| Input.touchCount == 0)
-        {
-            return;
-        }
-
-        Vector2 localPoint;
-        RectTransform imageRect = targetingPanel.GetComponent<RectTransform>();
-        RectTransform indicatorRect = currentIndicator.GetComponent<RectTransform>();
-
-        // 마우스 위치를 패널 기준 로컬 좌표로 변환
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            imageRect,
-            Input.touches[0].position,
-            null,
-            out localPoint
-        );
-
-        // 인디케이터 크기 맞춤으로 제작
-        Vector2 clampedPosition = ClampToPanel(imageRect, indicatorRect, localPoint);
-
-        // 위치 적용
-        indicatorRect.localPosition = Vector2.SmoothDamp(
-            indicatorRect.localPosition,
-            clampedPosition,
-            ref indicatorVelocity,
-            0.05f);
-    }
-    
     private Vector2 ClampToPanel(RectTransform image, RectTransform indicator, Vector2 localPos)
     {
         Vector2 panelSize = image.rect.size;
@@ -354,13 +298,6 @@ public class SkillIndicator : MonoBehaviour
         var panelRect = targetingPanel.GetComponent<RectTransform>();
         return RectTransformUtility.RectangleContainsScreenPoint(panelRect, screenPosition);
     }
-    
-    // 모바일용
-    private bool IsTouchOnPanel(Vector2 touchPosition)
-    {
-        RectTransform panelRect = targetingPanel.GetComponent<RectTransform>();
-        return RectTransformUtility.RectangleContainsScreenPoint(panelRect, touchPosition);
-    }
 
     private void EndTargeting()
     {
@@ -369,14 +306,10 @@ public class SkillIndicator : MonoBehaviour
             Destroy(currentIndicator);
             currentIndicator = null;
         }
-        isTargeting = false;
-        targetingPanel.enabled = false;
-
-        onTargetConfirmed = null;
+        
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f;
-
-        _currentUseStage = UseStage.Ready;
+        
+        gameObject.SetActive(false);
     }
 
     public Vector3 GetCurrentTargetPosition()
@@ -413,18 +346,6 @@ public class SkillIndicator : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 30);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-        {
-            return new Vector3(hit.point.x, inGameGroundHeight, hit.point.z);
-        }
-
-        return Vector3.zero;
-    }
-    
-    // 모바일에서 사용
-    private Vector3 GetTargetWorldPositionInGame(Vector2 touchScreenPosition)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(touchScreenPosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
             return new Vector3(hit.point.x, inGameGroundHeight, hit.point.z);
