@@ -35,7 +35,7 @@ public enum SFXType
     ElectroSpark,
     SilentWaterSlash,
     HydroFrozen,
-    DevilRainFog
+    DevilsRainFog
     
 }
 

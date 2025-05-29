@@ -345,7 +345,6 @@ public class SkillIndicator : MonoBehaviour
 
     }
 
-    // 에디터에서 사용
     private Vector3 GetTargetWorldPositionFrom(Vector2 screenPosition)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
