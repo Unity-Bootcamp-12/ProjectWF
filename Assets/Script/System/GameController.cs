@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour
     public event Action OnWisdomChanged;
 
     public event Action OnWaveEnd;
+    
     // 요새 스탯관리
     [SerializeField]private int fortressHp;
     [SerializeField]private int maxFortressHP;
