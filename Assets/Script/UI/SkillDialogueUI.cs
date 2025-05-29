@@ -39,7 +39,6 @@ public class SkillDialogueUI : BaseUI
         isEquipped = SkillSystemManager.Instance.IsSkillEquipped(skillName);
         ShowEquipTextState();
         ShowUpgradeTextState();
-        Logger.Info($"nullCheck:{skillData.skillGrade}");
     }
 
     public void OnClickEquipButton()
@@ -87,13 +86,20 @@ public class SkillDialogueUI : BaseUI
     {
         SkillSystemManager.Instance.UpgradeSkill(skillData.skillAttribute, skillData.skillGrade);
         UpgradeTextState();
-
     }
 
     
     public void ShowUpgradeTextState()
     {
-        skillUpgradeButtonText.text ="강화" + "\n"+GameController.Instance.GetSkillUpgradeWisdom(skillData.skillLevel, skillData.skillGrade).ToString();
+        
+        if (isSkillUnlocked)
+        {
+            skillUpgradeButtonText.text ="강화" + "\n"+GameController.Instance.GetSkillUpgradeWisdom(skillData.skillLevel, skillData.skillGrade).ToString();
+        }
+        else
+        {
+            skillUpgradeButtonText.text = "사용 불가";
+        }
     }
 
     public void UpgradeTextState()
@@ -101,7 +107,7 @@ public class SkillDialogueUI : BaseUI
         ShowUpgradeTextState();
         skillLevelText.text = skillData.skillLevel.ToString();
         skillDamagePowerText.text = skillData.skillDamagePower.ToString();
-        skillCoolTimeText.text = skillData.skillCoolTime.ToString();    
+        skillCoolTimeText.text = skillData.skillCoolTime.ToString("F2");    
     }
     
     
@@ -126,7 +132,7 @@ public class SkillDialogueUI : BaseUI
 
             if (skillData.skillGrade == 0)
             {
-                skillEquipButtonText.text = "기술 습득";
+                skillEquipButtonText.text = $"기술 습득\n{GameController.Instance.GetcurrentSkillUnlockgradeWisdom(skillData.skillGrade)}";
                 skillIcon.color = Color.gray;
             }
 
@@ -136,7 +142,7 @@ public class SkillDialogueUI : BaseUI
                     SkillSystemManager.Instance.isSkillUsingUnloked(skillData.skillAttribute, skillData.skillGrade - 1);
                 if (isBeforeSkillUnloked)
                 {
-                    skillEquipButtonText.text = "기술 습득";
+                    skillEquipButtonText.text = $"기술 습득\n{GameController.Instance.GetcurrentSkillUnlockgradeWisdom(skillData.skillGrade)}";
                     skillIcon.color = Color.gray;
                 }
 

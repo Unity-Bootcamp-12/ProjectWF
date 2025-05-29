@@ -55,6 +55,7 @@ public class SkillData : BaseUIData
 
 public class SkillSystemManager : MonoBehaviour
 {
+    [SerializeField] private float scaleFactor = 3;
     static public SkillSystemManager Instance { get; private set; }
 
     private Dictionary<string, bool> skillEquipMap = new Dictionary<string, bool>();
@@ -230,6 +231,7 @@ public class SkillSystemManager : MonoBehaviour
     {
         if (!isSkillUnlocked[skillAttributeNumber, skillGradeNumber])
         {
+            SoundController.Instance.PlaySFX(SFXType.UpgradeNegativeSound);
             return;
         }
         int skillLevel = skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel;
@@ -252,7 +254,15 @@ public class SkillSystemManager : MonoBehaviour
             skillDataSet[skillAttributeNumber, skillGradeNumber].skillDamagePower += 1;
         }
 
-        skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime-= 0.01f*(skillLevel+1);
+        //스킬 쿨타임 감소 공식 적용
+        float scale = skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime * scaleFactor;
+        float log = Mathf.Log10(skillDataSet[skillAttributeNumber, skillGradeNumber].skillLevel);
+        
+        skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime =
+            Mathf.Max(0.01f,
+                skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime- scale * log);
+        
+        
         if (skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime <= 0)
         {
             skillDataSet[skillAttributeNumber, skillGradeNumber].skillCoolTime=0.01f;

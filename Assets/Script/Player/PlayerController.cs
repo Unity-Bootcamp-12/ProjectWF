@@ -9,6 +9,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    private int attackTime = 1200;
     bool isBallSpawned = false;
     public GameObject magicBall;
     public Transform magicballSpawnTransform;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         playerAnimator.SetTrigger("Attack");
 
-        await UniTask.Delay(500);
+        await UniTask.Delay(attackTime);
         
         if (monsterTarget != null)
         {
