@@ -66,6 +66,11 @@ public class SkillIndicator : MonoBehaviour
         targetingPanel = GetComponent<RectTransform>();
     }
 
+    private void Start()
+    {
+        GameController.Instance.OnWaveEnd += EndTargeting;
+    }
+
     private void OnEnable()
     {
         GameController.Instance.OnSkillReset += EndTargeting;
@@ -253,7 +258,6 @@ public class SkillIndicator : MonoBehaviour
         color.a = 0.2f;
         skillIndicatorImage.color = color;
     }
-    
 
     private void UpdateIndicatorPosition(Vector2 screenPosition)
     {
