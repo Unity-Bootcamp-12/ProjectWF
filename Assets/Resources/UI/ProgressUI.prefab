@@ -1750,7 +1750,6 @@ RectTransform:
   - {fileID: 4693146757119118990}
   - {fileID: 6875894392552318391}
   - {fileID: 342679582764026564}
-
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2326,10 +2325,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4442382004453868132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 147.06946}
-  m_SizeDelta: {x: 1080, y: 1625.8611}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 160}
+  m_SizeDelta: {x: 0, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5983578826853917615
 MonoBehaviour:
@@ -2345,6 +2344,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetingPanel: {fileID: 0}
   rectangleSkillIndicatorPrefab: {fileID: 2103197868761745199, guid: 5f955f277b26e3146b247cd132a33deb, type: 3}
+  heightRectangleSkillIndicatorPrefab: {fileID: 7322249234259187287, guid: f6e8e8990b44041e1881bd093465e67a, type: 3}
+  widthRectangleSkillIndicatorPrefab: {fileID: 3430150959403440018, guid: 5b7342800ff7a4b438436fcfc6c95a2e, type: 3}
   circleSkillIndicatorPrefab: {fileID: 2103197868761745199, guid: b89667c2fb225074ebc4ee322735037e, type: 3}
   playerTransform: {fileID: 2832143512311734151, guid: d93277a4c22ebd641a895e5fb4f3b8eb, type: 3}
 --- !u!222 &4667260255446701707
