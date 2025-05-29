@@ -66,6 +66,11 @@ public class SkillIndicator : MonoBehaviour
         targetingPanel = GetComponent<RectTransform>();
     }
 
+    private void Start()
+    {
+        GameController.Instance.OnWaveEnd += EndTargeting;
+    }
+
     private void OnEnable()
     {
         GameController.Instance.OnSkillReset += EndTargeting;
@@ -253,76 +258,6 @@ public class SkillIndicator : MonoBehaviour
         color.a = 0.2f;
         skillIndicatorImage.color = color;
     }
-    
-    // private Image SkillIndicatorPrefab(Image skillIndicatorPrefab)
-    // {
-    //     // return Instantiate(skillIndicatorPrefab);
-    //
-    //     RectTransform rectangleSkillIndicatorPrefabRectTransform = skillIndicatorPrefab.GetComponent<RectTransform>();
-    //     
-    //     RectTransform targetingPanelRectTransform = targetingPanel.GetComponent<RectTransform>();
-    //     heightResolution = Screen.height;
-    //     widthResolution = Screen.width;
-    //
-    //     Vector2 offsetMin = targetingPanelRectTransform.offsetMin;
-    //     offsetMin.y = heightResolution * 0.2f;
-    //     targetingPanelRectTransform.offsetMin = offsetMin;
-    //     
-    //     float canvasWidth = targetingPanelRectTransform.rect.width;
-    //     float canvasHeight = targetingPanelRectTransform.rect.height;
-    //     switch (indicatorType)
-    //     {
-    //         case IndicatorType.Rectangle:
-    //             if (skillRangeHorizontal > skillRangeVertical)
-    //             {
-    //                 rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, canvasHeight * 0.1f);
-    //             }
-    //             else if (skillRangeHorizontal < skillRangeVertical)
-    //             {
-    //                 rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth * 0.2f, canvasHeight);
-    //             }
-    //             else if (skillRangeHorizontal == skillRangeVertical)
-    //             {
-    //                 rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(canvasWidth, canvasHeight);
-    //             }
-    //
-    //             break;
-    //         case IndicatorType.Circle:
-    //             float diameter = skillRangeRadius;
-    //             float coefficient = widthResolution * (float)100 / 1080;
-    //             rectangleSkillIndicatorPrefabRectTransform.sizeDelta = new Vector2(diameter*coefficient, diameter*coefficient);
-    //             break;
-    //         case IndicatorType.None:
-    //             skillIndicatorPrefab.gameObject.SetActive(false);
-    //             break;
-    //         default:
-    //             skillIndicatorPrefab.gameObject.SetActive(false);
-    //             break;
-    //     }
-    //     
-    //     Color indicatorColor = Color.white;
-    //     switch (skillAttribute)
-    //     {
-    //         case 0:
-    //             indicatorColor = new Color(1f, 0f, 0f, 0.2f);
-    //             break;
-    //         case 1:
-    //             indicatorColor = new Color(0f, 1f, 1f, 0.2f);
-    //             break;
-    //         case 2:
-    //             indicatorColor = new Color(0f, 0f, 1f, 0.2f);
-    //             break;
-    //         default:
-    //             indicatorColor = Color.white;
-    //             break;
-    //     }
-    //
-    //     skillIndicatorPrefab.color = indicatorColor;
-    //
-    //     return skillIndicatorPrefab;
-    //     
-    // }
-
 
     private void UpdateIndicatorPosition(Vector2 screenPosition)
     {
