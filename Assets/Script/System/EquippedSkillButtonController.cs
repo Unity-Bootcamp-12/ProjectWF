@@ -62,7 +62,6 @@ public class EquippedSkillButtonController : MonoBehaviour
             return;   
         }
         SkillSystemManager.Instance.SetUsedSkillData(skillIndex);
-        Logger.Info($"skill button click {skillIndex}");
         GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         
         skillIndicator.Open(skillIndex);
